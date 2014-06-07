@@ -23,7 +23,7 @@ public class Oracle {
             //test comm 2
             connectionPool = new SimpleJDBCConnectionPool("com.mysql.jdbc.Driver",
                     "jdbc:mysql://localhost:3306/babyboard", "root",
-                    "bragal", 2, 5);
+                    "", 2, 5);
 
         } catch (Exception e) {
             System.out.println(e.toString());
