@@ -1,0 +1,130 @@
+package com.mycompany.babyboardsite.Data;
+
+import com.vaadin.data.Item;
+import com.vaadin.data.util.filter.Compare;
+import com.vaadin.data.util.sqlcontainer.RowId;
+import com.vaadin.data.util.sqlcontainer.SQLContainer;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+/**
+ *
+ * @author baptman
+ */
+public class Baby {
+
+    //Information contenu dans la table sql
+    private int idBaby;
+    private String name;
+    private String old;
+    private int sex;
+    private String firstname;
+    
+    
+    Oracle oracle = new Oracle();
+    private SQLContainer babyTable;
+    private SQLContainer factTable;
+    public List<MainFact> FactList;
+
+    
+    //getteur
+    public int getId() {
+        return idBaby;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getOld() {
+        return old;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public String getFisrtname() {
+        return firstname;
+    }
+
+    //Constructeur pour récupérer un bébé avec son idBay
+    public Baby(int idB) {
+
+        babyTable = oracle.queryTable("babies");
+        babyTable.addContainerFilter(new Compare.Equal("idBaby", idB));// WHERE idBaby=idBaby
+        idBaby = idB;
+        Item infoUser = babyTable.getItem(new RowId(new Object[]{idBaby}));
+        name = infoUser.getItemProperty("name").getValue().toString();
+        old = infoUser.getItemProperty("age").getValue().toString();
+        sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
+        firstname = infoUser.getItemProperty("firstName").getValue().toString();
+    }
+
+    //TEST: pour afficher quelques infos du bébé
+    public Component printBabyInfo() {
+        Label infoB = new Label("name " + name + " firstname: " + firstname);
+        return infoB;
+    }
+
+    //pour récupérer les faits marquants associé au bébé
+    public void getBabyMainFacts() {
+        factTable = oracle.queryTable("mainfacts");
+        factTable.addContainerFilter((new Compare.Equal("idBaby", idBaby)));
+    }
+
+    //pour récupérer les faits marquants correspondant à une date
+    public void getBabyMainFacts(String date) {
+
+//        factTable = oracle.queryTable("mainfacts");
+        Collection factsIds;
+        List<MainFact> listMFact = new ArrayList<MainFact>();
+
+        try {
+            factTable.addContainerFilter(new Compare.Equal("date", date));
+
+            factsIds = factTable.getItemIds();
+            for (Object item : factsIds) {
+
+                int i = Integer.parseInt(item.toString());
+                Item infoJonctionTable = factTable.getItem(new RowId(new Object[]{i}));
+                MainFact mainFact = new MainFact(Integer.parseInt(infoJonctionTable.getItemProperty("idFact").getValue().toString()),
+                        Integer.parseInt(infoJonctionTable.getItemProperty("idBaby").getValue().toString()),
+                        infoJonctionTable.getItemProperty("title").getValue().toString(),
+                        infoJonctionTable.getItemProperty("description").getValue().toString(),
+                        infoJonctionTable.getItemProperty("date").getValue().toString(),
+                        infoJonctionTable.getItemProperty("hours").getValue().toString());
+                listMFact.add(mainFact);
+            }
+        } catch (Exception e) {
+            System.out.println("e");
+        }
+        FactList = new ArrayList<MainFact>();
+        FactList = listMFact;
+    }
+
+    //TEST: pour ajouter des faits marquants 
+    //NB: BDD MODIFIÉE DEPUIS REQUÊTE PLUS VALIDE
+    public void addBabyMainFacts(String date) {
+
+        factTable = oracle.queryTable("mainfacts");
+        Collection factsIds = new ArrayList<Object>();
+        List<MainFact> listMFact = new ArrayList<MainFact>();
+
+        try {
+            Item rowItem = factTable.getItem(factTable.addItem());
+            rowItem.getItemProperty("idBaby").setValue(idBaby);
+            rowItem.getItemProperty("title").setValue("testAuto");
+            rowItem.getItemProperty("description").setValue("testAuto");
+            rowItem.getItemProperty("date").setValue(date);
+            rowItem.getItemProperty("hours").setValue("00:00:00");// On récupère la dernière ligne de la table parent
+            factTable.commit();
+        } catch (Exception e) {
+            System.out.println("e");
+        }
+    }
+
+}
