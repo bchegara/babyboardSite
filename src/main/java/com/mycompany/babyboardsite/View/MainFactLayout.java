@@ -8,6 +8,8 @@ package com.mycompany.babyboardsite.View;
 import com.mycompany.babyboardsite.Data.*;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.UI;
@@ -21,8 +23,6 @@ import com.vaadin.ui.Window;
 public abstract class MainFactLayout extends UI {
 
     private VerticalLayout mainFactComponent;
-    private Window subWindow = new Window("Sub-window");
-    private VerticalLayout subContent = new VerticalLayout();
 
     MainFactLayout(Baby baby) {
         final VerticalLayout factComponent = new VerticalLayout();
@@ -39,19 +39,13 @@ public abstract class MainFactLayout extends UI {
         } catch (Exception e) {
             System.out.println("e");
         }
-
-        Button connectionButton = new Button("Ouvrir Pop Up");
-
-        connectionButton.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
+        final Button open = new Button("Open Sub-Window");
+        open.addClickListener(new ClickListener() {
+            public void buttonClick(ClickEvent event) {
                 popup();
             }
-
         });
-
-        factComponent.addComponent(connectionButton);
+        mainFactComponent.addComponent(open);
 
         mainFactComponent.addComponent(factComponent);
     }
@@ -61,19 +55,10 @@ public abstract class MainFactLayout extends UI {
     }
 
     public void popup() {
-        // Create a sub-window and set the content
+        PopUp sub = new PopUp();
 
-        subContent.setMargin(true);
-        subWindow.setContent(subContent);
+        // Add it to the root component
+        UI.getCurrent().addWindow(sub);
 
-        // Put some components in it
-        subContent.addComponent(new Label("Meatball sub"));
-        subContent.addComponent(new Button("Awlright"));
-
-        // Center it in the browser window
-        subWindow.center();
-
-        // Open it in the UI
-        addWindow(subWindow);
     }
 }

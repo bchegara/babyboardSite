@@ -23,7 +23,7 @@ public class Oracle {
             //test comm 2
             connectionPool = new SimpleJDBCConnectionPool("com.mysql.jdbc.Driver",
                     "jdbc:mysql://localhost:3306/babyboard", "root",
-                    "", 2, 5);
+                    "root", 2, 5);
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -35,7 +35,6 @@ public class Oracle {
 
     public SQLContainer queryTable(String tableName) {
 
-        
         SQLContainer container = null;
 
         try {
