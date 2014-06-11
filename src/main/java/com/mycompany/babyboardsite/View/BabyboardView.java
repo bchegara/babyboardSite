@@ -7,6 +7,7 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.InlineDateField;
 import com.vaadin.ui.Label;
@@ -92,7 +93,13 @@ public class BabyboardView extends Panel implements View {
                 //pour récupérer les faits marquants du bébée associer à la date du calendrier
                 baby.getBabyMainFacts(formatDateToString(date));
                 //objet répresentant les fait marquant du bébé
-                MainFactLayout mainFactComponent = new MainFactLayout(baby);
+                MainFactLayout mainFactComponent = new MainFactLayout(baby) {
+
+                    @Override
+                    protected void init(VaadinRequest request) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                };
                 //on ajoute les faits marquants au layout
                 layout.addComponent(mainFactComponent.getMainFactLayout());
                 //On ajoute le calendrier
