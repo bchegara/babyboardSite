@@ -13,12 +13,14 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 /**
  *
  * @author baptman
  */
 public class MainFactLayout {
+    private Window subWindow;
 
     private VerticalLayout mainFactComponent;
 
@@ -56,11 +58,30 @@ public class MainFactLayout {
         return mainFactComponent;
     }
 
+    //Code de la classe popup déplacer ici
     public void popup() {
-        PopUp sub = new PopUp();
+//        PopUp sub = new PopUp();
+        subWindow = new Window();
+        VerticalLayout content = new VerticalLayout();
+        content.addComponent(new Label("YEAH BITCH"));
+        content.setMargin(true);
+        subWindow.setContent(content);
+        subWindow.center();
+        subWindow.setCaption("Ajouter faits marquants");
 
+        // Disable the close button
+        subWindow.setClosable(true);
+
+        // Trivial logic for closing the sub-window
+        Button ok = new Button("OK");
+        ok.addClickListener(new ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                subWindow.close();
+            }
+        });
+        content.addComponent(ok);
         // Add it to the root component
-        UI.getCurrent().addWindow(sub);
+        UI.getCurrent().addWindow(subWindow);
 
     }
 }

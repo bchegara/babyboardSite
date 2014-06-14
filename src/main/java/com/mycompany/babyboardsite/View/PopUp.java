@@ -29,7 +29,7 @@ public class PopUp extends Window {
         setContent(content);
 
         // Disable the close button
-        setClosable(false);
+        setClosable(true);
 
         // Trivial logic for closing the sub-window
         Button ok = new Button("OK");
