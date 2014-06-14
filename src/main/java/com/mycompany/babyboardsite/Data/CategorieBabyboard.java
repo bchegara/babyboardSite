@@ -5,13 +5,8 @@
  */
 package com.mycompany.babyboardsite.Data;
 
-import com.vaadin.data.Item;
 import com.vaadin.data.util.filter.Compare;
-import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  *
@@ -20,7 +15,6 @@ import java.util.List;
 public abstract class CategorieBabyboard {
 
     SQLContainer categorieTable;
-    SQLContainer categorieTableSortedByDate;
     final Oracle oracle = new Oracle();
     Baby baby;
     public String date;

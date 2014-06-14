@@ -7,7 +7,6 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.InlineDateField;
 import com.vaadin.ui.Label;
@@ -16,9 +15,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -77,6 +74,7 @@ public class BabyboardView extends Panel implements View {
                 //TEST on affiche les infos du bébé
                 layout.addComponent(baby.printBabyInfo());
 
+                
                 //Création du calendrier
                 calendar = new InlineDateField();
                 calendar.setValue(date);

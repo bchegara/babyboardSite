@@ -6,29 +6,36 @@
 package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.*;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
 
 /**
  *
  * @author baptman
  */
-public class MainFactLayout{
+public class MainFactLayout {
 
     private VerticalLayout mainFactComponent;
 
     MainFactLayout(Baby baby) {
         final VerticalLayout factComponent = new VerticalLayout();
         mainFactComponent = new VerticalLayout();
+        final HorizontalLayout titleLayout = new HorizontalLayout();
+        titleLayout.addComponent(new Label("Faits marquants"));
+        final Button open = new Button("+");
+        open.addClickListener(new ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                popup();
+            }
+        });
+        titleLayout.addComponent(open);
+        mainFactComponent.addComponent(titleLayout);
 
-        mainFactComponent.addComponent(new Label("Mainfact layout"));
         try {
 
             for (MainFact fact : baby.mainFactCategorie.returnListCategorie()) {
@@ -41,13 +48,6 @@ public class MainFactLayout{
             System.out.println(e.getMessage());
             System.out.println("erreur mainFactLayout");
         }
-        final Button open = new Button("Open Sub-Window");
-        open.addClickListener(new ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                popup();
-            }
-        });
-        mainFactComponent.addComponent(open);
 
         mainFactComponent.addComponent(factComponent);
     }

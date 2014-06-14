@@ -6,9 +6,6 @@ import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  *
@@ -26,8 +23,6 @@ public class Baby {
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
-    private SQLContainer factTable;
-    public List<MainFact> FactList;
 
     //getteur
     public int getId() {

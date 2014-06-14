@@ -9,19 +9,12 @@ package com.mycompany.babyboardsite.View;
  *
  * @author baptman
  */
-import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.mycompany.babyboardsite.Data.*;
-import com.vaadin.event.LayoutEvents.LayoutClickEvent;
-import com.vaadin.event.LayoutEvents.LayoutClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 public class BabyView extends Panel implements View {
