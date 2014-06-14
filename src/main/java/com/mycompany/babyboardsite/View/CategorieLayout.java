@@ -19,16 +19,20 @@ import com.vaadin.ui.Window;
  *
  * @author baptman
  */
-public class MainFactLayout {
+public abstract class CategorieLayout {
+
     private Window subWindow;
+    public VerticalLayout layout;
+    public String title;
+    
 
-    private VerticalLayout mainFactComponent;
-
-    MainFactLayout(Baby baby) {
+    //Constructeur
+    public CategorieLayout(Baby baby) {
+        setTitle();
         final VerticalLayout factComponent = new VerticalLayout();
-        mainFactComponent = new VerticalLayout();
+        layout = new VerticalLayout();
         final HorizontalLayout titleLayout = new HorizontalLayout();
-        titleLayout.addComponent(new Label("Faits marquants"));
+        titleLayout.addComponent(new Label(title));
         final Button open = new Button("+");
         open.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
@@ -36,29 +40,17 @@ public class MainFactLayout {
             }
         });
         titleLayout.addComponent(open);
-        mainFactComponent.addComponent(titleLayout);
-
-        try {
-
-            for (MainFact fact : baby.mainFactCategorie.returnListCategorie()) {
-                Label title = new Label(fact.getTitle() + " à " + fact.getHour());
-                Label description = new Label(fact.getDescription());
-                factComponent.addComponent(title);
-                factComponent.addComponent(description);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("erreur mainFactLayout");
-        }
-
-        mainFactComponent.addComponent(factComponent);
+        layout.addComponent(titleLayout);
+        layout.addComponent(contenu(baby));
     }
-
-    public VerticalLayout getMainFactLayout() {
-        return mainFactComponent;
+    public VerticalLayout getLayout(){
+        return layout;
     }
-
-    //Code de la classe popup déplacer ici
+    
+    public abstract VerticalLayout contenu(Baby baby);
+    
+    public abstract void setTitle();
+    
     public void popup() {
 //        PopUp sub = new PopUp();
         subWindow = new Window();
@@ -84,4 +76,5 @@ public class MainFactLayout {
         UI.getCurrent().addWindow(subWindow);
 
     }
+
 }

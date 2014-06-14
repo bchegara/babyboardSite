@@ -100,11 +100,10 @@ public class BabyboardView extends Panel implements View {
                     }
 
                 });
-                
-                //On instancie notre layout des faits marquants
-                MainFactLayout mainFactComponent = new MainFactLayout(baby);
-                //on ajoute les faits marquants au layout
-                layout.addComponent(mainFactComponent.getMainFactLayout());
+                //on instancie l'objet stokant le layout des fait marquants
+                CategorieLayoutMainFact mainFactComponent = new CategorieLayoutMainFact(baby);
+                //on ajoute le layout fait marquant au layout de la page
+                layout.addComponent(mainFactComponent.getLayout());
                 //On ajoute le calendrier
                 layout.addComponent(calendar);
 
