@@ -22,14 +22,13 @@ public class Baby {
     private String old;
     private int sex;
     private String firstname;
-    
-    
+    public MainFactCategorie mainFactCategorie;
+
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
     private SQLContainer factTable;
     public List<MainFact> FactList;
 
-    
     //getteur
     public int getId() {
         return idBaby;
@@ -70,61 +69,16 @@ public class Baby {
         return infoB;
     }
 
-    //pour récupérer les faits marquants associé au bébé
-    public void getBabyMainFacts() {
-        factTable = oracle.queryTable("mainfacts");
-        factTable.addContainerFilter((new Compare.Equal("idBaby", idBaby)));
+    //pour récupérer les données des catégories du carnet de bord (instancie les objets et récupère les table de données
+    //correspondantes
+    public void getBabyCategorie(String date) {
+        this.mainFactCategorie = new MainFactCategorie(date, this);
+        this.mainFactCategorie.setSQLContainer();
+
     }
 
-    //pour récupérer les faits marquants correspondant à une date
-    public void getBabyMainFacts(String date) {
-
-//        factTable = oracle.queryTable("mainfacts");
-        Collection factsIds;
-        List<MainFact> listMFact = new ArrayList<MainFact>();
-
-        try {
-            factTable.addContainerFilter(new Compare.Equal("date", date));
-
-            factsIds = factTable.getItemIds();
-            for (Object item : factsIds) {
-
-                int i = Integer.parseInt(item.toString());
-                Item infoJonctionTable = factTable.getItem(new RowId(new Object[]{i}));
-                MainFact mainFact = new MainFact(Integer.parseInt(infoJonctionTable.getItemProperty("idFact").getValue().toString()),
-                        Integer.parseInt(infoJonctionTable.getItemProperty("idBaby").getValue().toString()),
-                        infoJonctionTable.getItemProperty("title").getValue().toString(),
-                        infoJonctionTable.getItemProperty("description").getValue().toString(),
-                        infoJonctionTable.getItemProperty("date").getValue().toString(),
-                        infoJonctionTable.getItemProperty("hours").getValue().toString());
-                listMFact.add(mainFact);
-            }
-        } catch (Exception e) {
-            System.out.println("e");
-        }
-        FactList = new ArrayList<MainFact>();
-        FactList = listMFact;
-    }
-
-    //TEST: pour ajouter des faits marquants 
-    //NB: BDD MODIFIÉE DEPUIS REQUÊTE PLUS VALIDE
-    public void addBabyMainFacts(String date) {
-
-        factTable = oracle.queryTable("mainfacts");
-        Collection factsIds = new ArrayList<Object>();
-        List<MainFact> listMFact = new ArrayList<MainFact>();
-
-        try {
-            Item rowItem = factTable.getItem(factTable.addItem());
-            rowItem.getItemProperty("idBaby").setValue(idBaby);
-            rowItem.getItemProperty("title").setValue("testAuto");
-            rowItem.getItemProperty("description").setValue("testAuto");
-            rowItem.getItemProperty("date").setValue(date);
-            rowItem.getItemProperty("hours").setValue("00:00:00");// On récupère la dernière ligne de la table parent
-            factTable.commit();
-        } catch (Exception e) {
-            System.out.println("e");
-        }
-    }
-
+    //Pour changer la date dans les objets représentant les catégories
+    public void changeDateBabyCategorie(String date) {
+        mainFactCategorie.setDate(date);
+    }        
 }

@@ -20,7 +20,7 @@ import com.vaadin.ui.Window;
  *
  * @author baptman
  */
-public abstract class MainFactLayout extends UI {
+public class MainFactLayout{
 
     private VerticalLayout mainFactComponent;
 
@@ -28,16 +28,18 @@ public abstract class MainFactLayout extends UI {
         final VerticalLayout factComponent = new VerticalLayout();
         mainFactComponent = new VerticalLayout();
 
+        mainFactComponent.addComponent(new Label("Mainfact layout"));
         try {
 
-            for (MainFact fact : baby.FactList) {
+            for (MainFact fact : baby.mainFactCategorie.returnListCategorie()) {
                 Label title = new Label(fact.getTitle() + " à " + fact.getHour());
                 Label description = new Label(fact.getDescription());
                 factComponent.addComponent(title);
                 factComponent.addComponent(description);
             }
         } catch (Exception e) {
-            System.out.println("e");
+            System.out.println(e.getMessage());
+            System.out.println("erreur mainFactLayout");
         }
         final Button open = new Button("Open Sub-Window");
         open.addClickListener(new ClickListener() {

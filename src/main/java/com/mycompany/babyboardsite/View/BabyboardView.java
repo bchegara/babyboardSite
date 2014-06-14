@@ -1,7 +1,7 @@
 package com.mycompany.babyboardsite.View;
 
-import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.mycompany.babyboardsite.Data.*;
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
@@ -16,7 +16,9 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -49,17 +51,28 @@ public class BabyboardView extends Panel implements View {
         } else {
 
             try {
-                //On récupère le numéro de l'enfant mis dans la VaadinSession dans la vue BabyView
-                babyNumber = Integer.parseInt(VaadinSession.getCurrent().getAttribute("babyNumber").toString());
-                //on récupère l'enfant dans la liste 
-                baby = user.babyList.get(babyNumber);
-                //Si il n'y a pas de date stocké dans la VaadinSession on en redifinit une nouvelle
-                //ca sera la date du jour actuel
                 if (!isDateVaadinSession()) {
+                    //On récupère le numéro de l'enfant mis dans la VaadinSession dans la vue BabyView
+                    babyNumber = Integer.parseInt(VaadinSession.getCurrent().getAttribute("babyNumber").toString());
+                    //on récupère l'enfant dans la liste 
+                    baby = user.babyList.get(babyNumber);
+                    //Si il n'y a pas de date stocké dans la VaadinSession on en redifinit une nouvelle
+                    //ca sera la date du jour actuel
+
                     date = new java.util.Date();
+                    baby.getBabyCategorie(formatDateToString(date));
+                    baby.mainFactCategorie.setDate(formatDateToString(date));
+                    VaadinSession.getCurrent().setAttribute("baby", baby);
+
                 } else {
                     //Sinon on récupère la date
                     date = (Date) VaadinSession.getCurrent().getAttribute("date");
+                    baby = (Baby) VaadinSession.getCurrent().getAttribute("baby");
+
+                    //Permet de changer la date pour les catégorie de l'enfant 
+                    baby.changeDateBabyCategorie(formatDateToString(date));
+                    VaadinSession.getCurrent().setAttribute("baby", baby);
+
                 }
                 //TEST on affiche les infos du bébé
                 layout.addComponent(baby.printBabyInfo());
@@ -78,6 +91,8 @@ public class BabyboardView extends Panel implements View {
                         VaadinSession.getCurrent().setAttribute("date", date);
                         //on redirige l'utilisateur vers la vue du babyBoard, pour le réactualiser
                         //avec la nouvelle date
+                        VaadinSession.getCurrent().setAttribute("baby", baby);
+
                         navigator.navigateTo(BabyboardView.NAME);
 
                         final String valueString = String.valueOf(event.getProperty()
@@ -87,19 +102,9 @@ public class BabyboardView extends Panel implements View {
                     }
 
                 });
-
-                //Pour récupérer les fait marquants du bébé
-                baby.getBabyMainFacts();
-                //pour récupérer les faits marquants du bébée associer à la date du calendrier
-                baby.getBabyMainFacts(formatDateToString(date));
-                //objet répresentant les fait marquant du bébé
-                MainFactLayout mainFactComponent = new MainFactLayout(baby) {
-
-                    @Override
-                    protected void init(VaadinRequest request) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-                };
+                
+                //On instancie notre layout des faits marquants
+                MainFactLayout mainFactComponent = new MainFactLayout(baby);
                 //on ajoute les faits marquants au layout
                 layout.addComponent(mainFactComponent.getMainFactLayout());
                 //On ajoute le calendrier
