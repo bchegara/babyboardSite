@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 07 Juin 2014 à 03:01
+-- Généré le: Dim 15 Juin 2014 à 01:36
 -- Version du serveur: 5.5.37-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4
 
@@ -19,6 +19,39 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `babyboard`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `activities`
+--
+
+CREATE TABLE IF NOT EXISTS `activities` (
+  `idActivitie` int(11) NOT NULL AUTO_INCREMENT,
+  `idBaby` int(11) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `kind` varchar(100) NOT NULL,
+  `duree` int(11) NOT NULL,
+  `note` int(11) NOT NULL,
+  `hour` int(11) NOT NULL,
+  `minute` int(11) NOT NULL,
+  PRIMARY KEY (`idActivitie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Contenu de la table `activities`
+--
+
+INSERT INTO `activities` (`idActivitie`, `idBaby`, `date`, `kind`, `duree`, `note`, `hour`, `minute`) VALUES
+(1, 1, 'Sun Jun 15  CEST 2014', 'sport', 1, 3, 16, 12),
+(2, 1, 'Sat Jun 14  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(3, 1, 'Fri Jun 13  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(4, 1, 'Sat Jun 14  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(5, 1, 'Sun Jun 15  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(6, 1, 'Sat Jun 21  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(7, 1, 'Fri Jun 20  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(8, 1, 'Thu Jun 05  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(9, 1, 'Fri Jun 06  CEST 2014', 'testAuto', 3, 3, 12, 12);
 
 -- --------------------------------------------------------
 
@@ -79,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `mainfacts` (
   `date` varchar(50) NOT NULL,
   `hours` varchar(10) NOT NULL,
   PRIMARY KEY (`idFact`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `mainfacts`
@@ -93,7 +126,10 @@ INSERT INTO `mainfacts` (`idFact`, `idBaby`, `title`, `description`, `date`, `ho
 (5, 1, 'fact5', 'testAuto', 'Fri Jun 06  CEST 2014', '00:00:00'),
 (6, 1, 'fact6', 'testAuto', 'Fri Jun 13  CEST 2014', '00:00:00'),
 (7, 1, 'fact7', 'testAuto', 'Thu Jun 12  CEST 2014', '00:00:00'),
-(8, 1, 'fact8', 'testAuto', 'Thu Jun 19  CEST 2014', '00:00:00');
+(8, 1, 'fact8', 'testAuto', 'Thu Jun 19  CEST 2014', '00:00:00'),
+(9, 1, 'testAuto', 'testAuto', 'Sun Jun 15  CEST 2014', '00:00:00'),
+(10, 1, 'testAuto', 'testAuto', 'Sat Jun 14  CEST 2014', '00:00:00'),
+(11, 1, 'testAuto', 'testAuto', 'Fri Jun 13  CEST 2014', '00:00:00');
 
 -- --------------------------------------------------------
 

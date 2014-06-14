@@ -31,6 +31,7 @@ public abstract class CategorieLayout {
         setTitle();
         final VerticalLayout factComponent = new VerticalLayout();
         layout = new VerticalLayout();
+        layout.setMargin(true);
         final HorizontalLayout titleLayout = new HorizontalLayout();
         titleLayout.addComponent(new Label(title));
         final Button open = new Button("+");

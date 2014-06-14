@@ -8,6 +8,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.InlineDateField;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
@@ -101,11 +102,19 @@ public class BabyboardView extends Panel implements View {
 
                 });
                 //on instancie l'objet stokant le layout des fait marquants
+                HorizontalLayout categorieLayout = new HorizontalLayout();
+                
                 CategorieLayoutMainFact mainFactComponent = new CategorieLayoutMainFact(baby);
                 //on ajoute le layout fait marquant au layout de la page
-                layout.addComponent(mainFactComponent.getLayout());
+                categorieLayout.addComponent(mainFactComponent.getLayout());
                 //On ajoute le calendrier
-                layout.addComponent(calendar);
+                CategorieLayoutActivitie activitieComponent = new CategorieLayoutActivitie(baby);
+                categorieLayout.addComponent(activitieComponent.getLayout());
+                categorieLayout.setSpacing(true);
+                categorieLayout.addComponent(calendar);
+//                layout.addComponent(calendar);
+                layout.addComponent(categorieLayout);
+                
 
             } catch (Exception e) {
                 //Si il n'y pas  la présence de la variable permettant d'identifier l'enfant dans la 

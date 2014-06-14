@@ -20,6 +20,7 @@ public class Baby {
     private int sex;
     private String firstname;
     public MainFactCategorie mainFactCategorie;
+    public ActivitieCategorie activitieCategorie;
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
@@ -69,11 +70,16 @@ public class Baby {
     public void getBabyCategorie(String date) {
         this.mainFactCategorie = new MainFactCategorie(date, this);
         this.mainFactCategorie.setSQLContainer();
+        
+        this.activitieCategorie = new ActivitieCategorie(date, this);
+        this.activitieCategorie.setSQLContainer();
+        
 
     }
 
     //Pour changer la date dans les objets représentant les catégories
     public void changeDateBabyCategorie(String date) {
         mainFactCategorie.setDate(date);
+        activitieCategorie.setDate(date);
     }        
 }

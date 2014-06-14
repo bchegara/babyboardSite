@@ -15,7 +15,6 @@ public class MainFact {
     private String description;
     private String hour;
     private SQLContainer factTable;
-    final Oracle oracle = new Oracle();
 
     //Classe représentant un fait marquant
     MainFact(int idF, int idB, String titleF, String descriptionF, String hourF, String dateF) {
