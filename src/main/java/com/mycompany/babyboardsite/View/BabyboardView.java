@@ -110,6 +110,9 @@ public class BabyboardView extends Panel implements View {
                 //On ajoute le calendrier
                 CategorieLayoutActivitie activitieComponent = new CategorieLayoutActivitie(baby);
                 categorieLayout.addComponent(activitieComponent.getLayout());
+                
+                CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
+                categorieLayout.addComponent(siesteComponent.getLayout());
                 categorieLayout.setSpacing(true);
                 categorieLayout.addComponent(calendar);
 //                layout.addComponent(calendar);

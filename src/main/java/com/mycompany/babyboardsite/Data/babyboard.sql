@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 15 Juin 2014 à 01:36
+-- Généré le: Dim 15 Juin 2014 à 22:16
 -- Version du serveur: 5.5.37-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `activities` (
   `hour` int(11) NOT NULL,
   `minute` int(11) NOT NULL,
   PRIMARY KEY (`idActivitie`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `activities`
@@ -51,7 +51,9 @@ INSERT INTO `activities` (`idActivitie`, `idBaby`, `date`, `kind`, `duree`, `not
 (6, 1, 'Sat Jun 21  CEST 2014', 'testAuto', 3, 3, 12, 12),
 (7, 1, 'Fri Jun 20  CEST 2014', 'testAuto', 3, 3, 12, 12),
 (8, 1, 'Thu Jun 05  CEST 2014', 'testAuto', 3, 3, 12, 12),
-(9, 1, 'Fri Jun 06  CEST 2014', 'testAuto', 3, 3, 12, 12);
+(9, 1, 'Fri Jun 06  CEST 2014', 'testAuto', 3, 3, 12, 12),
+(10, 1, 'Sun Jun 15  CEST 2014', 'musique', 1, 5, 14, 0),
+(11, 1, 'Sun Jun 15  CEST 2014', 'devoir', 1, 2, 16, 0);
 
 -- --------------------------------------------------------
 
@@ -112,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `mainfacts` (
   `date` varchar(50) NOT NULL,
   `hours` varchar(10) NOT NULL,
   PRIMARY KEY (`idFact`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Contenu de la table `mainfacts`
@@ -129,7 +131,39 @@ INSERT INTO `mainfacts` (`idFact`, `idBaby`, `title`, `description`, `date`, `ho
 (8, 1, 'fact8', 'testAuto', 'Thu Jun 19  CEST 2014', '00:00:00'),
 (9, 1, 'testAuto', 'testAuto', 'Sun Jun 15  CEST 2014', '00:00:00'),
 (10, 1, 'testAuto', 'testAuto', 'Sat Jun 14  CEST 2014', '00:00:00'),
-(11, 1, 'testAuto', 'testAuto', 'Fri Jun 13  CEST 2014', '00:00:00');
+(11, 1, 'testAuto', 'testAuto', 'Fri Jun 13  CEST 2014', '00:00:00'),
+(12, 1, 'testAuto', 'testAuto', 'Sun Jun 15  CEST 2014', '00:00:00'),
+(13, 1, 'testAuto', 'testAuto', 'Sun Jun 15  CEST 2014', '10:10:00'),
+(14, 1, 'testAuto', 'testAuto', 'Sun Jun 15  CEST 2014', '00:00:00'),
+(15, 1, 'testManuel', 'zke,klz', 'Sun Jun 15  CEST 2014', '20:20:00'),
+(16, 1, 'scs', 'scd', 'Sun Jun 15  CEST 2014', '12:12:00'),
+(17, 1, 'test', 'testest', 'Sun Jun 15  CEST 2014', '10:10:00'),
+(18, 1, 'testpoooo', 'testooo', 'Sun Jun 15  CEST 2014', '10:10:00'),
+(19, 1, 'zak,', 'azda', 'Sun Jun 15  CEST 2014', '10:10:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `siestes`
+--
+
+CREATE TABLE IF NOT EXISTS `siestes` (
+  `idSieste` int(11) NOT NULL AUTO_INCREMENT,
+  `idBaby` int(11) NOT NULL,
+  `heure` int(11) NOT NULL,
+  `minute` int(11) NOT NULL,
+  `duree` int(11) NOT NULL,
+  `note` int(11) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  PRIMARY KEY (`idSieste`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `siestes`
+--
+
+INSERT INTO `siestes` (`idSieste`, `idBaby`, `heure`, `minute`, `duree`, `note`, `date`) VALUES
+(1, 1, 15, 30, 1, 4, 'Sun Jun 15  CEST 2014');
 
 -- --------------------------------------------------------
 

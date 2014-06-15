@@ -20,7 +20,7 @@ public class Activitie {
     private int minute;
     private int heure;
 
-    Activitie(int id, int idBaby, String date, String title, int duree, int note, int min, int h) {
+    Activitie(int id, int idBaby, String date, String title, int duree, int note, int h, int min) {
         idActivitie = id;
         this.idBaby = idBaby;
         this.date = date;
@@ -32,7 +32,7 @@ public class Activitie {
     }
 
     public String getTime() {
-        return "" + heure + ":" + minute;
+        return "" + heure + "h" + minute;
     }
 
     public int getNote() {

@@ -21,6 +21,7 @@ public class Baby {
     private String firstname;
     public MainFactCategorie mainFactCategorie;
     public ActivitieCategorie activitieCategorie;
+    public SiesteCategorie siesteCategorie;
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
@@ -74,6 +75,8 @@ public class Baby {
         this.activitieCategorie = new ActivitieCategorie(date, this);
         this.activitieCategorie.setSQLContainer();
         
+        this.siesteCategorie = new SiesteCategorie(date, this);
+        this.siesteCategorie.setSQLContainer();
 
     }
 
@@ -81,5 +84,6 @@ public class Baby {
     public void changeDateBabyCategorie(String date) {
         mainFactCategorie.setDate(date);
         activitieCategorie.setDate(date);
+        siesteCategorie.setDate(date);
     }        
 }

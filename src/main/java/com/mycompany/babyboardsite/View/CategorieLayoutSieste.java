@@ -3,57 +3,56 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Activitie;
 import com.mycompany.babyboardsite.Data.Baby;
-import com.vaadin.server.Sizeable;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
+import com.mycompany.babyboardsite.Data.Sieste;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  *
  * @author baptman
  */
-public class CategorieLayoutActivitie extends CategorieLayout {
-    
+public class CategorieLayoutSieste extends CategorieLayout{
+
     TextField hour;
     TextField minute;
     TextField duree;
     TextField note;
-    TextField kind;
-
-    public CategorieLayoutActivitie(Baby baby) {
+    public CategorieLayoutSieste(Baby baby) {
         super(baby);
-
     }
 
     @Override
     public VerticalLayout contenu(Baby baby) {
-
         final VerticalLayout activitieComponent = new VerticalLayout();
         try {
 
-            for (Activitie activitie : baby.activitieCategorie.returnListCategorie()) {
-                Label title = new Label("début: " + activitie.getTime() + " note: " + activitie.getNote());
-                Label description = new Label(activitie.getTitle() + " durée: " + activitie.getDuree()+"h");
+            for (Sieste sieste : baby.siesteCategorie.returnListCategorie()) {
+                Label title = new Label("début: " + sieste.getHour()+ "h" + sieste.getMinute());
+                Label description = new Label("Durée: " + sieste.getDuree()+" note: "+sieste.getNote());
                 activitieComponent.addComponent(title);
                 activitieComponent.addComponent(description);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("erreur mainFactLayout");
+            System.out.println("erreur siesteLayout");
         }
 
         return activitieComponent;
     }
 
+    @Override
     public void setTitle() {
-        title = "Activités";
-        validation = "Activité ajoutée";
+        title = "Siestes";
+        validation = "Sieste ajoutée";
     }
 
     @Override
@@ -61,9 +60,6 @@ public class CategorieLayoutActivitie extends CategorieLayout {
         VerticalLayout popUpContent = new VerticalLayout();
         FormLayout formulaire = new FormLayout();
         formulaire.setSizeUndefined();
-        kind = new TextField("Type d'activité: ");
-        formulaire.addComponent(kind);
-        
         HorizontalLayout heureInline = new HorizontalLayout();
         
         hour = new TextField("Début: ");
@@ -84,10 +80,9 @@ public class CategorieLayoutActivitie extends CategorieLayout {
 
     @Override
     public void addElement() {
-        baby.activitieCategorie.addActivitie(kind.getValue().toString() ,Integer.parseInt(duree.getValue().toString()), Integer.parseInt(note.getValue().toString()),
-                Integer.parseInt(hour.getValue().toString()), Integer.parseInt(minute.getValue().toString()));
+        baby.siesteCategorie.addMainFact(Integer.parseInt(hour.getValue().toString()), Integer.parseInt(minute.getValue().toString()),
+                Integer.parseInt(duree.getValue().toString()), Integer.parseInt(note.getValue().toString()));
     }
     
     
-
 }

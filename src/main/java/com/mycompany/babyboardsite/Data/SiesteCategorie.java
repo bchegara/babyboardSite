@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.babyboardsite.Data;
 
+package com.mycompany.babyboardsite.Data;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
@@ -13,25 +13,22 @@ import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 /**
  *
  * @author baptman
  */
-public class ActivitieCategorie extends CategorieBabyboard {
+public class SiesteCategorie extends CategorieBabyboard{
+    List<Sieste> listActivitie;
+    public SiesteCategorie(String date, Baby baby) {
 
-    List<Activitie> listActivitie;
-
-    public ActivitieCategorie(String date, Baby baby) {
-
-        tableName = "activities";
+        tableName = "siestes";
         this.date = date;
         this.baby = baby;
     }
-
-    public List<Activitie> returnListCategorie() {
+    
+    public List<Sieste> returnListCategorie() {
         Collection factsIds;
-        listActivitie = new ArrayList<Activitie>();
+        listActivitie = new ArrayList<Sieste>();
 
         try {
             categorieTable.removeAllContainerFilters();
@@ -45,44 +42,38 @@ public class ActivitieCategorie extends CategorieBabyboard {
 
                 int i = Integer.parseInt(item.toString());
                 Item infoJonctionTable = catgorieTableSortedByDate.getItem(new RowId(new Object[]{i}));
-                Activitie activitie = new Activitie(Integer.parseInt(infoJonctionTable.getItemProperty("idActivitie").getValue().toString()),
+                Sieste sieste = new Sieste(Integer.parseInt(infoJonctionTable.getItemProperty("idSieste").getValue().toString()),
                         Integer.parseInt(infoJonctionTable.getItemProperty("idBaby").getValue().toString()),
-                        infoJonctionTable.getItemProperty("date").getValue().toString(),
-                        infoJonctionTable.getItemProperty("kind").getValue().toString(),
+                        Integer.parseInt(infoJonctionTable.getItemProperty("heure").getValue().toString()),
+                        Integer.parseInt(infoJonctionTable.getItemProperty("minute").getValue().toString()),
                         Integer.parseInt(infoJonctionTable.getItemProperty("duree").getValue().toString()),
                         Integer.parseInt(infoJonctionTable.getItemProperty("note").getValue().toString()),
-                        Integer.parseInt(infoJonctionTable.getItemProperty("hour").getValue().toString()),
-                        Integer.parseInt(infoJonctionTable.getItemProperty("minute").getValue().toString()));
+                        infoJonctionTable.getItemProperty("date").getValue().toString());
 
-                listActivitie.add(activitie);
+                listActivitie.add(sieste);
             }
         } catch (Exception e) {
             System.out.println("erreur retour liste activities");
         }
         return listActivitie;
     }
-
-    public void addActivitie(String kind, int duree, int note, int hour, int minute) {
-        categorieTable = oracle.queryTable("activities");
+    
+     public void addMainFact(int heure, int minute, int duree, int note) {
+        categorieTable = oracle.queryTable("siestes");
         Collection factsIds = new ArrayList<Object>();
-        List<Activitie> listActivitie = new ArrayList<Activitie>();
+        List<Sieste> listSieste = new ArrayList<Sieste>();
 
         try {
             Item rowItem = categorieTable.getItem(categorieTable.addItem());
             rowItem.getItemProperty("idBaby").setValue(baby.getId());
-            rowItem.getItemProperty("date").setValue(date);
-            rowItem.getItemProperty("kind").setValue(kind);
+            rowItem.getItemProperty("heure").setValue(heure);
+            rowItem.getItemProperty("minute").setValue(minute);
             rowItem.getItemProperty("duree").setValue(duree);
             rowItem.getItemProperty("note").setValue(note);
-            rowItem.getItemProperty("hour").setValue(hour);
-            rowItem.getItemProperty("minute").setValue(minute);// On récupère la dernière ligne de la table parent
+            rowItem.getItemProperty("date").setValue(date);
             categorieTable.commit();
         } catch (Exception e) {
-            System.out.println("erreur ajout fait marquants");
+            System.out.println("e");
         }
     }
-
-   
 }
-
- 
