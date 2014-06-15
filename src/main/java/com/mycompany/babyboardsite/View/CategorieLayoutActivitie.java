@@ -5,10 +5,12 @@
  */
 package com.mycompany.babyboardsite.View;
 
-import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.Activitie;
+import com.mycompany.babyboardsite.Data.Baby;
 import com.vaadin.server.Sizeable;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -29,8 +31,8 @@ public class CategorieLayoutActivitie extends CategorieLayout {
         try {
 
             for (Activitie activitie : baby.activitieCategorie.returnListCategorie()) {
-                Label title = new Label("début"+activitie.getTime() + " note: " + activitie.getNote());
-                Label description = new Label(activitie.getTitle()+" durée: "+activitie.getDuree());
+                Label title = new Label("début" + activitie.getTime() + " note: " + activitie.getNote());
+                Label description = new Label(activitie.getTitle() + " durée: " + activitie.getDuree());
                 activitieComponent.addComponent(title);
                 activitieComponent.addComponent(description);
             }
@@ -44,6 +46,31 @@ public class CategorieLayoutActivitie extends CategorieLayout {
 
     public void setTitle() {
         title = "Activités";
+        validation = "Activité ajoutée";
     }
+
+    @Override
+    public VerticalLayout popUpContent() {
+        VerticalLayout popUpContent = new VerticalLayout();
+        FormLayout formulaire = new FormLayout();
+        formulaire.setSizeUndefined();
+        TextField title = new TextField("Titre: ");
+        TextField description = new TextField("Description: ");
+        
+        
+        formulaire.addComponent(title);
+        formulaire.addComponent(description);
+        
+        
+        popUpContent.addComponent(formulaire);
+        return popUpContent;
+    }
+
+    @Override
+    public void addElement() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 
 }

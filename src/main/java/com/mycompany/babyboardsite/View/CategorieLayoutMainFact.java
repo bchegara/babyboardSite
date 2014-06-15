@@ -7,7 +7,11 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.MainFact;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.TextArea;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -16,7 +20,10 @@ import com.vaadin.ui.VerticalLayout;
  */
 public class CategorieLayoutMainFact extends CategorieLayout {
 
-    
+    private TextField titleTextField;
+    private TextArea description;
+    private TextField hour;
+    private TextField minute;
 
     public CategorieLayoutMainFact(Baby baby) {
         super(baby);
@@ -25,7 +32,7 @@ public class CategorieLayoutMainFact extends CategorieLayout {
 
     @Override
     public VerticalLayout contenu(Baby baby) {
-        
+
         final VerticalLayout factComponent = new VerticalLayout();
         try {
 
@@ -42,7 +49,43 @@ public class CategorieLayoutMainFact extends CategorieLayout {
 
         return factComponent;
     }
-public void setTitle(){
-    title = "faits marquants";
-}
+
+    public void setTitle() {
+        title = "faits marquants";
+        validation = "Faits marquants ajouté!";
+    }
+
+    @Override
+    public VerticalLayout popUpContent() {
+        VerticalLayout popUpContent = new VerticalLayout();
+        FormLayout formulaire = new FormLayout();
+        formulaire.setSizeUndefined();
+        titleTextField = new TextField("Titre: ");
+        description = new TextArea("Description: ");
+        hour = new TextField("heure");
+
+        minute = new TextField("minute");
+//        ComboBox comboboxHour = new ComboBox("heure");
+//        for(int i=0; i<24;i++){
+//            comboboxHour.addItem(""+i);
+//        }
+
+        formulaire.addComponent(titleTextField);
+        formulaire.addComponent(description);
+        formulaire.addComponent(hour);
+        hour.setRequired(true);
+        hour.setRequiredError("Chiffre requis");
+
+        formulaire.addComponent(minute);
+        minute.setRequired(true);
+        minute.setRequiredError("Chiffre requis");
+        popUpContent.addComponent(formulaire);
+        return popUpContent;
+    }
+
+    @Override
+    public void addElement() {
+        baby.mainFactCategorie.addMainFact(titleTextField.getValue().toString(), description.getValue().toString(),
+                Integer.parseInt(hour.getValue().toString()), Integer.parseInt(minute.getValue().toString()));
+    }
 }

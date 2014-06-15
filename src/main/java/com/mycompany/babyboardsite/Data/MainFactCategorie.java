@@ -60,7 +60,7 @@ public class MainFactCategorie extends CategorieBabyboard {
         return listMainFact;
     }
 
-    public void addMainFact() {
+    public void addMainFact(String titleMF, String descriptionMF, int hour, int minute) {
         categorieTable = oracle.queryTable("mainfacts");
         Collection factsIds = new ArrayList<Object>();
         List<MainFact> listMFact = new ArrayList<MainFact>();
@@ -68,13 +68,15 @@ public class MainFactCategorie extends CategorieBabyboard {
         try {
             Item rowItem = categorieTable.getItem(categorieTable.addItem());
             rowItem.getItemProperty("idBaby").setValue(baby.getId());
-            rowItem.getItemProperty("title").setValue("testAuto");
-            rowItem.getItemProperty("description").setValue("testAuto");
+            rowItem.getItemProperty("title").setValue(titleMF);
+            rowItem.getItemProperty("description").setValue(descriptionMF);
             rowItem.getItemProperty("date").setValue(date);
-            rowItem.getItemProperty("hours").setValue("00:00:00");// On récupère la dernière ligne de la table parent
+            rowItem.getItemProperty("hours").setValue(hour+":"+minute+":00");// On récupère la dernière ligne de la table parent
+//            rowItem.getItemProperty("hours").setValue("00:00:00");
             categorieTable.commit();
         } catch (Exception e) {
             System.out.println("e");
         }
     }
+    
 }
