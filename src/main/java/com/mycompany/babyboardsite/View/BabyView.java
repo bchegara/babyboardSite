@@ -37,6 +37,11 @@ public class BabyView extends Panel implements View {
             Label noChildMsg = new Label("Vous n'aver pas d'enfant associé à votre compte!");
             layout.addComponent(noChildMsg);
         } else {
+            try{
+                VaadinSession.getCurrent().setAttribute("date", null);
+            }catch(Exception e){
+                System.out.println("erreur reset date");
+            }
             try {
                 babyNumber = 0;
                 //On parcourt la list des bébé associer à l'utilisateur
