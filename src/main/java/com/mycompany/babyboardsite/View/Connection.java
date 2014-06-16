@@ -1,7 +1,10 @@
 package com.mycompany.babyboardsite.View;
 
-import static com.mycompany.babyboardsite.MyVaadinUI.*;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.mycompany.babyboardsite.Data.*;
+import static com.mycompany.babyboardsite.MyVaadinUI.*;
+import com.vaadin.event.LayoutEvents;
+import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -14,6 +17,8 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
@@ -45,11 +50,11 @@ public class Connection extends Panel implements View {
 
         //bouton de connexion
         Button connectionButton = new Button("Connexion");
-
+        // press enter to validate form
+        connectionButton.setClickShortcut(KeyCode.ENTER);
         //Lien pour le retour à la page d'accueil
         Link lnk = new Link("Accueil", new ExternalResource("#!"));
         formLayout.addComponent(lnk);
-
         connectionButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
                 //On vérifie que  le couple email et mot de passe de passe de l'utilisateur
@@ -68,7 +73,6 @@ public class Connection extends Panel implements View {
             }
         });
         formLayout.addComponent(connectionButton);
-
         setContent(formLayout);
     }
 
