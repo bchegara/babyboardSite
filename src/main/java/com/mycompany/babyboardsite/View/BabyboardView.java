@@ -60,22 +60,18 @@ public class BabyboardView extends Panel implements View {
                     date = new java.util.Date();
                     baby.getBabyCategorie(formatDateToString(date));
                     baby.mainFactCategorie.setDate(formatDateToString(date));
-                    VaadinSession.getCurrent().setAttribute("baby", baby);
-
                 } else {
                     //Sinon on récupère la date
+                    babyNumber = Integer.parseInt(VaadinSession.getCurrent().getAttribute("babyNumber").toString());
                     date = (Date) VaadinSession.getCurrent().getAttribute("date");
-                    baby = (Baby) VaadinSession.getCurrent().getAttribute("baby");
+                    baby = user.babyList.get(babyNumber);
 
                     //Permet de changer la date pour les catégorie de l'enfant 
                     baby.changeDateBabyCategorie(formatDateToString(date));
-                    VaadinSession.getCurrent().setAttribute("baby", baby);
-
                 }
                 //TEST on affiche les infos du bébé
                 layout.addComponent(baby.printBabyInfo());
 
-                
                 //Création du calendrier
                 calendar = new InlineDateField();
                 calendar.setValue(date);
@@ -90,8 +86,6 @@ public class BabyboardView extends Panel implements View {
                         VaadinSession.getCurrent().setAttribute("date", date);
                         //on redirige l'utilisateur vers la vue du babyBoard, pour le réactualiser
                         //avec la nouvelle date
-                        VaadinSession.getCurrent().setAttribute("baby", baby);
-
                         navigator.navigateTo(BabyboardView.NAME);
 
                         final String valueString = String.valueOf(event.getProperty()
@@ -101,23 +95,26 @@ public class BabyboardView extends Panel implements View {
                     }
 
                 });
-                //on instancie l'objet stokant le layout des fait marquants
-                HorizontalLayout categorieLayout = new HorizontalLayout();
-                
-                CategorieLayoutMainFact mainFactComponent = new CategorieLayoutMainFact(baby);
-                //on ajoute le layout fait marquant au layout de la page
-                categorieLayout.addComponent(mainFactComponent.getLayout());
-                //On ajoute le calendrier
-                CategorieLayoutActivitie activitieComponent = new CategorieLayoutActivitie(baby);
-                categorieLayout.addComponent(activitieComponent.getLayout());
-                
-                CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
-                categorieLayout.addComponent(siesteComponent.getLayout());
-                categorieLayout.setSpacing(true);
-                categorieLayout.addComponent(calendar);
+                try {
+                    //on instancie l'objet stokant le layout des fait marquants
+                    HorizontalLayout categorieLayout = new HorizontalLayout();
+
+                    CategorieLayoutMainFact mainFactComponent = new CategorieLayoutMainFact(baby);
+                    //on ajoute le layout fait marquant au layout de la page
+                    categorieLayout.addComponent(mainFactComponent.getLayout());
+                    //On ajoute le calendrier
+                    CategorieLayoutActivitie activitieComponent = new CategorieLayoutActivitie(baby);
+                    categorieLayout.addComponent(activitieComponent.getLayout());
+
+                    CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
+                    categorieLayout.addComponent(siesteComponent.getLayout());
+                    categorieLayout.setSpacing(true);
+                    categorieLayout.addComponent(calendar);
 //                layout.addComponent(calendar);
-                layout.addComponent(categorieLayout);
-                
+                    layout.addComponent(categorieLayout);
+                } catch (Exception e) {
+                    System.out.println("pas de d'infos");
+                }
 
             } catch (Exception e) {
                 //Si il n'y pas  la présence de la variable permettant d'identifier l'enfant dans la 

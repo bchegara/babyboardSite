@@ -7,7 +7,6 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.MainFact;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
@@ -46,7 +45,6 @@ public class CategorieLayoutMainFact extends CategorieLayout {
             System.out.println(e.getMessage());
             System.out.println("erreur mainFactLayout");
         }
-
         return factComponent;
     }
 
@@ -65,10 +63,6 @@ public class CategorieLayoutMainFact extends CategorieLayout {
         hour = new TextField("heure");
 
         minute = new TextField("minute");
-//        ComboBox comboboxHour = new ComboBox("heure");
-//        for(int i=0; i<24;i++){
-//            comboboxHour.addItem(""+i);
-//        }
 
         formulaire.addComponent(titleTextField);
         formulaire.addComponent(description);
