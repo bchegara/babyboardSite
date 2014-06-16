@@ -7,6 +7,7 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.*;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -82,6 +83,7 @@ public abstract class CategorieLayout {
                 navigator.navigateTo(BabyboardView.NAME);
             }
         });
+        ok.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         content.addComponent(ok);
         // Add it to the root component
         UI.getCurrent().addWindow(subWindow);
