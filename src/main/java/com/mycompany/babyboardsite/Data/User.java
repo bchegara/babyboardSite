@@ -61,6 +61,13 @@ public class User {
 
     }
 
+    public Component printErrorSubscribe() {
+        Label errorSubscribe;
+        errorSubscribe = new Label("verifiez email / verifiez password / utilisateur deja existant");
+        return errorSubscribe;
+
+    }
+
     //TEST: Fonction test
     public void setUserInfos() {
         userTable = oracle.queryTable("users");

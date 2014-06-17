@@ -40,11 +40,12 @@ public class Subscribe extends Panel implements View {
 
     public FormLayout subscribeLayout;
     private User user;
+    private int errorSubscribing;
 
     public Subscribe() {
 
         user = VaadinSession.getCurrent().getAttribute(User.class);
-
+        errorSubscribing = 1;
         //layout contenant le formulaire d'inscription
         subscribeLayout = new FormLayout();
         subscribeLayout.setSizeUndefined();
@@ -83,24 +84,33 @@ public class Subscribe extends Panel implements View {
                 //On vérifie que  le couple email et mot de passe de passe de l'utilisateur
                 //corresponde à un utilsateur dans la table user
                 if (textFieldPassword.getValue().equals(textFieldPasswordCheck.getValue())
-                        && textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())) {
+                        && textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())
+                        && textFieldEmail != null
+                        && textFieldPassword != null
+                        && textFieldFirst != null) {
 
                     if (user.checkEmail(textFieldEmail.getValue())) {
                         //insert dans la base de données
                         user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue());
-                    } else {
+                        navigator.navigateTo(Connection.NAME);
+                        errorSubscribing = 0;
 
+                    } else {
+                        navigator.navigateTo(Subscribe.NAME);
                         //un utilisateur possède deja cette adresse email
                     }
                 } else {
+                    navigator.navigateTo(Subscribe.NAME);
+
                     //return erreur password ou email verification
                 }
                 VaadinSession.getCurrent().setAttribute(User.class, user);
 
-                navigator.navigateTo(Connection.NAME);
-
             }
         });
+        if (errorSubscribing == 1) {
+            subscribeLayout.addComponent(user.printErrorSubscribe());
+        }
         subscribeLayout.addComponent(subscribeButton);
         setContent(subscribeLayout);
 
