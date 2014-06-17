@@ -149,6 +149,14 @@ public class User {
         }
     }
 
+    public Boolean checkNotEmpty(String first, String last, String email, String password) {
+        if (!"".equals(first) && !"".equals(last) && !"".equals(email) && password != "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void addUser(String first, String last, String email, String password) {
         SQLContainer userContainer;
 

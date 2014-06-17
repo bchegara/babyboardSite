@@ -81,33 +81,36 @@ public class Subscribe extends Panel implements View {
         subscribeLayout.addComponent(lnk);
         subscribeButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
-                //On vérifie que  le couple email et mot de passe de passe de l'utilisateur
-                //corresponde à un utilsateur dans la table user
-                if (textFieldPassword.getValue().equals(textFieldPasswordCheck.getValue())
-                        && textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())
-                        && textFieldEmail != null
-                        && textFieldPassword != null
-                        && textFieldFirst != null) {
+                //check champs non vides
+                if (user.checkNotEmpty(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue())) {
 
-                    if (user.checkEmail(textFieldEmail.getValue())) {
-                        //insert dans la base de données
-                        user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue());
-                        navigator.navigateTo(Connection.NAME);
-                        errorSubscribing = 0;
+//On vérifie que  le couple email et mot de passe de passe de l'utilisateur
+                    //corresponde à un utilsateur dans la table user
+                    if (textFieldPassword.getValue().equals(textFieldPasswordCheck.getValue())
+                            && textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())) {
 
+                        if (user.checkEmail(textFieldEmail.getValue())) {
+                            //insert dans la base de données
+                            user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue());
+                            navigator.navigateTo(Connection.NAME);
+                            errorSubscribing = 0;
+
+                        } else {
+                            navigator.navigateTo(Subscribe.NAME);
+                            //un utilisateur possède deja cette adresse email
+                        }
                     } else {
                         navigator.navigateTo(Subscribe.NAME);
-                        //un utilisateur possède deja cette adresse email
+
+                        //return erreur password ou email verification
                     }
-                } else {
-                    navigator.navigateTo(Subscribe.NAME);
 
-                    //return erreur password ou email verification
+                    VaadinSession.getCurrent().setAttribute(User.class, user);
+
                 }
-                VaadinSession.getCurrent().setAttribute(User.class, user);
-
             }
         });
+
         if (errorSubscribing == 1) {
             subscribeLayout.addComponent(user.printErrorSubscribe());
         }
