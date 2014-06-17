@@ -82,18 +82,23 @@ public class Subscribe extends Panel implements View {
             public void buttonClick(ClickEvent event) {
                 //On vérifie que  le couple email et mot de passe de passe de l'utilisateur
                 //corresponde à un utilsateur dans la table user
-                if (textFieldPassword.getValue() == textFieldPasswordCheck.getValue()
-                        && textFieldEmail.getValue() == textFieldEmailCheck.getValue()) {
+                if (textFieldPassword.getValue().equals(textFieldPasswordCheck.getValue())
+                        && textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())) {
 
                     if (user.checkEmail(textFieldEmail.getValue())) {
                         //insert dans la base de données
                         user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue());
                     } else {
+
                         //un utilisateur possède deja cette adresse email
                     }
                 } else {
                     //return erreur password ou email verification
                 }
+                VaadinSession.getCurrent().setAttribute(User.class, user);
+
+                navigator.navigateTo(Connection.NAME);
+
             }
         });
         subscribeLayout.addComponent(subscribeButton);

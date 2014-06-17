@@ -1,12 +1,14 @@
 package com.mycompany.babyboardsite.Data;
 
 import com.vaadin.data.Item;
+import com.vaadin.data.Property;
 import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -135,7 +137,7 @@ public class User {
 
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("test");
             return false;
         }
     }
@@ -147,12 +149,23 @@ public class User {
 
         try {
             Item rowItem = userContainer.getItem(userContainer.addItem());
-            rowItem.getItemProperty("firstname").setValue(first);
+            //rowItem.getItemProperty("idUser").setValue(13);
             rowItem.getItemProperty("name").setValue(last);
             rowItem.getItemProperty("email").setValue(email);
             rowItem.getItemProperty("password").setValue(password);
+            rowItem.getItemProperty("adress").setValue("default");
+            rowItem.getItemProperty("zip").setValue(000);
+            rowItem.getItemProperty("city").setValue("default");
+            rowItem.getItemProperty("tel").setValue(666);
+            rowItem.getItemProperty("firstName").setValue(first);
+            rowItem.getItemProperty("rightLevel").setValue("ADMIN");
             userContainer.commit();
-        } catch (Exception e) {
+            System.err.println("commit réussi");
+        } catch (UnsupportedOperationException e) {
+            System.out.println("erreur ajout nouvel user");
+        } catch (Property.ReadOnlyException e) {
+            System.out.println("erreur ajout nouvel user");
+        } catch (SQLException e) {
             System.out.println("erreur ajout nouvel user");
         }
     }
