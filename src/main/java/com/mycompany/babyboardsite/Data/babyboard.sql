@@ -1,32 +1,26 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Dim 15 Juin 2014 à 22:16
--- Version du serveur: 5.5.37-0ubuntu0.14.04.1
--- Version de PHP: 5.5.9-1ubuntu4
+-- Host: localhost
+-- Generation Time: Jun 17, 2014 at 04:02 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Base de données: `babyboard`
+-- Database: `babyboard`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `activities`
+-- Table structure for table `activities`
 --
 
-CREATE TABLE IF NOT EXISTS `activities` (
+CREATE TABLE `activities` (
   `idActivitie` int(11) NOT NULL AUTO_INCREMENT,
   `idBaby` int(11) NOT NULL,
   `date` varchar(50) NOT NULL,
@@ -36,10 +30,10 @@ CREATE TABLE IF NOT EXISTS `activities` (
   `hour` int(11) NOT NULL,
   `minute` int(11) NOT NULL,
   PRIMARY KEY (`idActivitie`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Contenu de la table `activities`
+-- Dumping data for table `activities`
 --
 
 INSERT INTO `activities` (`idActivitie`, `idBaby`, `date`, `kind`, `duree`, `note`, `hour`, `minute`) VALUES
@@ -53,15 +47,16 @@ INSERT INTO `activities` (`idActivitie`, `idBaby`, `date`, `kind`, `duree`, `not
 (8, 1, 'Thu Jun 05  CEST 2014', 'testAuto', 3, 3, 12, 12),
 (9, 1, 'Fri Jun 06  CEST 2014', 'testAuto', 3, 3, 12, 12),
 (10, 1, 'Sun Jun 15  CEST 2014', 'musique', 1, 5, 14, 0),
-(11, 1, 'Sun Jun 15  CEST 2014', 'devoir', 1, 2, 16, 0);
+(11, 1, 'Sun Jun 15  CEST 2014', 'devoir', 1, 2, 16, 0),
+(12, 1, 'Wed Jun 25  CEST 2014', 'aaa', 1, 4, 12, 13);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `babies`
+-- Table structure for table `babies`
 --
 
-CREATE TABLE IF NOT EXISTS `babies` (
+CREATE TABLE `babies` (
   `idBaby` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `age` date NOT NULL,
@@ -71,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `babies` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `babies`
+-- Dumping data for table `babies`
 --
 
 INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`) VALUES
@@ -81,10 +76,10 @@ INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `jonction`
+-- Table structure for table `jonction`
 --
 
-CREATE TABLE IF NOT EXISTS `jonction` (
+CREATE TABLE `jonction` (
   `idJonction` int(10) NOT NULL,
   `idUser` int(10) NOT NULL,
   `idBaby` int(10) NOT NULL,
@@ -92,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `jonction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `jonction`
+-- Dumping data for table `jonction`
 --
 
 INSERT INTO `jonction` (`idJonction`, `idUser`, `idBaby`) VALUES
@@ -103,10 +98,10 @@ INSERT INTO `jonction` (`idJonction`, `idUser`, `idBaby`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mainfacts`
+-- Table structure for table `mainfacts`
 --
 
-CREATE TABLE IF NOT EXISTS `mainfacts` (
+CREATE TABLE `mainfacts` (
   `idFact` int(10) NOT NULL AUTO_INCREMENT,
   `idBaby` int(10) NOT NULL,
   `title` varchar(200) NOT NULL,
@@ -114,10 +109,10 @@ CREATE TABLE IF NOT EXISTS `mainfacts` (
   `date` varchar(50) NOT NULL,
   `hours` varchar(10) NOT NULL,
   PRIMARY KEY (`idFact`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
--- Contenu de la table `mainfacts`
+-- Dumping data for table `mainfacts`
 --
 
 INSERT INTO `mainfacts` (`idFact`, `idBaby`, `title`, `description`, `date`, `hours`) VALUES
@@ -139,15 +134,16 @@ INSERT INTO `mainfacts` (`idFact`, `idBaby`, `title`, `description`, `date`, `ho
 (16, 1, 'scs', 'scd', 'Sun Jun 15  CEST 2014', '12:12:00'),
 (17, 1, 'test', 'testest', 'Sun Jun 15  CEST 2014', '10:10:00'),
 (18, 1, 'testpoooo', 'testooo', 'Sun Jun 15  CEST 2014', '10:10:00'),
-(19, 1, 'zak,', 'azda', 'Sun Jun 15  CEST 2014', '10:10:00');
+(19, 1, 'zak,', 'azda', 'Sun Jun 15  CEST 2014', '10:10:00'),
+(20, 1, 'test', 'test2', 'Wed Jun 18  CEST 2014', '12:13:00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `siestes`
+-- Table structure for table `siestes`
 --
 
-CREATE TABLE IF NOT EXISTS `siestes` (
+CREATE TABLE `siestes` (
   `idSieste` int(11) NOT NULL AUTO_INCREMENT,
   `idBaby` int(11) NOT NULL,
   `heure` int(11) NOT NULL,
@@ -159,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `siestes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `siestes`
+-- Dumping data for table `siestes`
 --
 
 INSERT INTO `siestes` (`idSieste`, `idBaby`, `heure`, `minute`, `duree`, `note`, `date`) VALUES
@@ -168,11 +164,11 @@ INSERT INTO `siestes` (`idSieste`, `idBaby`, `heure`, `minute`, `duree`, `note`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `idUser` int(10) NOT NULL,
+CREATE TABLE `users` (
+  `idUser` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(200) NOT NULL,
@@ -183,18 +179,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstName` varchar(200) NOT NULL,
   `rightLevel` varchar(10) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Contenu de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`idUser`, `name`, `email`, `password`, `adress`, `zip`, `city`, `tel`, `firstName`, `rightLevel`) VALUES
 (1, 'Geoffroy', 'Rouaix', 'tata', '57 rue michel ange', 75016, 'Paris', 618275025, 'Rouaix', 'ADMIN'),
 (2, 'Cheg', 'b', 'a', 'adresse', 75018, 'Paris', 0, 'Baptiste', 'ADMIN'),
 (3, 'name', 'a', 'a', 'add', 0, 'city', 0, 'fname', 'ADMIN'),
-(4, 'namez', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', 88888, 'DEDED', 'ADMIN');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+(4, 'namez', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', 88888, 'DEDED', 'ADMIN'),
+(13, 'kkk', 'kkk', 'kkk', 'test', 13, 'test', 13, 'kkk', 'ADMIN'),
+(14, 'kkk', 'kkk', 'kkk', 'default', 0, 'default', 666, 'kkk', 'ADMIN'),
+(15, 'ppp', 'ppp', 'ppp', 'default', 0, 'default', 666, 'ppp', 'ADMIN');
