@@ -126,6 +126,37 @@ public class User {
         }
     }
 
+    public Boolean checkEmail(String emailToTest) {
+        try {
+            userTable = oracle.queryTable("users");
+            //Ajout du container pour filtrer les résultats
+            userTable.addContainerFilter(
+                    new And(new Equal("email", emailToTest)));// WHERE name=emailToTest AND password=passwordToTest
+
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public void addUser(String first, String last, String email, String password) {
+        SQLContainer userContainer;
+
+        userContainer = oracle.queryTable("users");
+
+        try {
+            Item rowItem = userContainer.getItem(userContainer.addItem());
+            rowItem.getItemProperty("firstname").setValue(first);
+            rowItem.getItemProperty("name").setValue(last);
+            rowItem.getItemProperty("email").setValue(email);
+            rowItem.getItemProperty("password").setValue(password);
+            userContainer.commit();
+        } catch (Exception e) {
+            System.out.println("erreur ajout nouvel user");
+        }
+    }
+
     //Constructeur par défaut
     public User() {
         this.idUser = idUser;

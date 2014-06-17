@@ -13,6 +13,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
@@ -40,7 +41,7 @@ public class Connection extends Panel implements View {
         formLayout = new FormLayout();
         formLayout.setSizeUndefined();
         formLayout.addComponent(textFieldEmail);
-// Mark field as required
+        // Mark field as required
         textFieldEmail.setRequired(true);
         textFieldEmail.setRequiredError("requis!");
 
@@ -72,6 +73,7 @@ public class Connection extends Panel implements View {
                 }
             }
         });
+
         formLayout.addComponent(connectionButton);
         setContent(formLayout);
     }
