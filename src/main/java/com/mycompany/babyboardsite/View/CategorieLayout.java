@@ -26,7 +26,7 @@ import com.vaadin.ui.Window;
  */
 public abstract class CategorieLayout {
 
-    private Window subWindow;
+    public Window subWindow;
     public VerticalLayout layout;
     public String title;
     public Baby baby;
@@ -37,7 +37,6 @@ public abstract class CategorieLayout {
     public CategorieLayout(Baby baby) {
         this.baby = baby;
         setTitle();
-        final VerticalLayout factComponent = new VerticalLayout();
         layout = new VerticalLayout();
         layout.setMargin(true);
         final HorizontalLayout titleLayout = new HorizontalLayout();

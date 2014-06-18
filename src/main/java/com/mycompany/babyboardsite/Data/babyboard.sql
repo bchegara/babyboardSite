@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 18 Juin 2014 à 21:23
--- Version du serveur: 5.5.37-0ubuntu0.14.04.1
--- Version de PHP: 5.5.9-1ubuntu4
+-- Client :  127.0.0.1
+-- Généré le :  Jeu 19 Juin 2014 à 00:57
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `babyboard`
+-- Base de données :  `babyboard`
 --
 
 -- --------------------------------------------------------
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `mainfacts` (
   `date` varchar(50) NOT NULL,
   `hours` varchar(10) NOT NULL,
   PRIMARY KEY (`idFact`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Contenu de la table `mainfacts`
@@ -145,15 +145,16 @@ INSERT INTO `mainfacts` (`idFact`, `idBaby`, `title`, `description`, `date`, `ho
 (19, 1, 'zak,', 'azda', 'Sun Jun 15  CEST 2014', '10:10:00'),
 (20, 2, 'test', 'test', 'Mon Jun 16  CEST 2014', '15:0:00'),
 (21, 1, 'test', 'test', 'Mon Jun 16  CEST 2014', '10:10:00'),
-(22, 1, 'fait marquants', 'adzada', 'Sun Jun 22  CEST 2014', '10:10:00');
+(22, 1, 'fait marquants', 'adzada', 'Sun Jun 22  CEST 2014', '10:10:00'),
+(23, 1, 'test', 'testetst', 'Thu Jun 19  CEST 2014', '10:10:00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numeroUtile`
+-- Structure de la table `numeroutile`
 --
 
-CREATE TABLE IF NOT EXISTS `numeroUtile` (
+CREATE TABLE IF NOT EXISTS `numeroutile` (
   `idNumeroUtile` int(11) NOT NULL AUTO_INCREMENT,
   `idBaby` int(11) NOT NULL,
   `role` varchar(100) NOT NULL,
@@ -164,11 +165,11 @@ CREATE TABLE IF NOT EXISTS `numeroUtile` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `numeroUtile`
+-- Contenu de la table `numeroutile`
 --
 
-INSERT INTO `numeroUtile` (`idNumeroUtile`, `idBaby`, `role`, `nom`, `numero`, `adresse`) VALUES
-(1, 1, 'Médecin', 'Doc', 6060606, '89 rue ');
+INSERT INTO `numeroutile` (`idNumeroUtile`, `idBaby`, `role`, `nom`, `numero`, `adresse`) VALUES
+(1, 1, 'MédecinA', 'Doc', 6060606, '89 rue ');
 
 -- --------------------------------------------------------
 
@@ -211,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `siestes` (
   `note` int(11) NOT NULL,
   `date` varchar(50) NOT NULL,
   PRIMARY KEY (`idSieste`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `siestes`
@@ -219,7 +220,8 @@ CREATE TABLE IF NOT EXISTS `siestes` (
 
 INSERT INTO `siestes` (`idSieste`, `idBaby`, `heure`, `minute`, `duree`, `note`, `date`) VALUES
 (1, 1, 15, 30, 1, 4, 'Sun Jun 15  CEST 2014'),
-(2, 2, 16, 10, 2, 5, 'Mon Jun 16  CEST 2014');
+(2, 2, 16, 10, 2, 5, 'Mon Jun 16  CEST 2014'),
+(3, 1, 15, 10, 1, 5, 'Wed Jun 18  CEST 2014');
 
 -- --------------------------------------------------------
 

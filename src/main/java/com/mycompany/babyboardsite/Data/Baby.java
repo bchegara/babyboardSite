@@ -82,7 +82,7 @@ public class Baby {
         this.siesteCategorie.setSQLContainer();
         
         this.numeroUtileCategorie = new NumeroUtileCategorie(this);
-        this.numeroUtileCategorie.createListCategorie();
+        this.numeroUtileCategorie.setSQLContainer();
         
         this.repasCategorie = new RepasCategorie(date, this);
         this.repasCategorie.setSQLContainer();

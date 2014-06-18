@@ -19,13 +19,16 @@ import java.util.List;
  */
 public class NumeroUtileCategorie extends CategorieBabyboard {
 
+    List<String> idNumeroUtile;
+    List<String> idBaby;
     List<String> role;
     List<String> nom;
     List<String> numero;
     List<String> adresse;
+
     public NumeroUtileCategorie(Baby baby) {
 
-        tableName = "numeroUtile";
+        tableName = "numeroutile";
         this.baby = baby;
     }
 
@@ -35,6 +38,8 @@ public class NumeroUtileCategorie extends CategorieBabyboard {
         nom = new ArrayList<String>();
         numero = new ArrayList<String>();
         adresse = new ArrayList<String>();
+        idNumeroUtile = new ArrayList<String>();
+        idBaby = new ArrayList<String>();
 
         try {
             categorieTable.removeAllContainerFilters();
@@ -46,6 +51,8 @@ public class NumeroUtileCategorie extends CategorieBabyboard {
 
                 int i = Integer.parseInt(item.toString());
                 Item infoJonctionTable = catgorieTableSortedByDate.getItem(new RowId(new Object[]{i}));
+                idNumeroUtile.add(infoJonctionTable.getItemProperty("idNumeroUtile").getValue().toString());
+                idBaby.add(infoJonctionTable.getItemProperty("idBaby").getValue().toString());
                 role.add(infoJonctionTable.getItemProperty("role").getValue().toString());
                 nom.add(infoJonctionTable.getItemProperty("nom").getValue().toString());
                 numero.add(infoJonctionTable.getItemProperty("numero").getValue().toString());
@@ -54,8 +61,35 @@ public class NumeroUtileCategorie extends CategorieBabyboard {
         } catch (Exception e) {
             System.out.println("erreur création liste pour numéro utile");
         }
-        
     }
     
+    @Override
+        public void setSQLContainer() {
+        categorieTable = oracle.queryTable(tableName);
+        categorieTable.addContainerFilter((new Compare.Equal("idBaby", baby.getId())));
+    }
+        public SQLContainer getSQLContainer(){
+            return categorieTable;
+        }
+
+    public List<String> getListRole() {
+        return role;
+    }
+
+    public List<String> getListNom() {
+        return nom;
+    }
+
+    public List<String> getListNuméro() {
+        return numero;
+    }
+
+    public List<String> getListAdresse() {
+        return adresse;
+    }
+
+    public int getSize() {
+        return role.size();
+    }
 
 }
