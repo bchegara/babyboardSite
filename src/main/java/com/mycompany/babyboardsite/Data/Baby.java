@@ -19,10 +19,12 @@ public class Baby {
     private String old;
     private int sex;
     private String firstname;
+    //objet contenant les item pour les catégories du babyboard
     public MainFactCategorie mainFactCategorie;
     public ActivitieCategorie activitieCategorie;
     public SiesteCategorie siesteCategorie;
     public NumeroUtileCategorie numeroUtileCategorie;
+    public RepasCategorie repasCategorie;
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
@@ -81,6 +83,11 @@ public class Baby {
         
         this.numeroUtileCategorie = new NumeroUtileCategorie(this);
         this.numeroUtileCategorie.createListCategorie();
+        
+        this.repasCategorie = new RepasCategorie(date, this);
+        this.repasCategorie.setSQLContainer();
+        
+        
 
     }
 
@@ -89,5 +96,6 @@ public class Baby {
         mainFactCategorie.setDate(date);
         activitieCategorie.setDate(date);
         siesteCategorie.setDate(date);
+        repasCategorie.setDate(date);
     }        
 }

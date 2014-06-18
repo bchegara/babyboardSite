@@ -6,7 +6,6 @@
 package com.mycompany.babyboardsite.Data;
 
 import com.vaadin.data.Item;
-import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;

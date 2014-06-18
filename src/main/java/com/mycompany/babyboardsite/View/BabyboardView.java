@@ -109,8 +109,16 @@ public class BabyboardView extends Panel implements View {
                     CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
                     categorieLayout.addComponent(siesteComponent.getLayout());
                     categorieLayout.setSpacing(true);
-                    categorieLayout.addComponent(calendar);
-//                layout.addComponent(calendar);
+                    
+                    CategorieLayoutRepas repasComponent = new CategorieLayoutRepas(baby);
+                    categorieLayout.addComponent(repasComponent.getLayout());
+                    
+                    VerticalLayout calendarAndNumeroUtile = new VerticalLayout();
+                    calendarAndNumeroUtile.addComponent(calendar);
+                    CategorieLayoutNumeroUtile numeroUtileComponent = new CategorieLayoutNumeroUtile(baby);
+                    calendarAndNumeroUtile.addComponent(numeroUtileComponent.getLayoutHorizontal());
+                    
+                    categorieLayout.addComponent(calendarAndNumeroUtile);
                     layout.addComponent(categorieLayout);
                 } catch (Exception e) {
                     System.out.println("pas de d'infos");

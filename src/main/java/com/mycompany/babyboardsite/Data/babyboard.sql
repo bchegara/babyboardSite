@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 18 Juin 2014 à 10:52
+-- Généré le: Mer 18 Juin 2014 à 21:23
 -- Version du serveur: 5.5.37-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4
 
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `mainfacts` (
   `date` varchar(50) NOT NULL,
   `hours` varchar(10) NOT NULL,
   PRIMARY KEY (`idFact`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `mainfacts`
@@ -144,7 +144,8 @@ INSERT INTO `mainfacts` (`idFact`, `idBaby`, `title`, `description`, `date`, `ho
 (18, 1, 'testpoooo', 'testooo', 'Sun Jun 15  CEST 2014', '10:10:00'),
 (19, 1, 'zak,', 'azda', 'Sun Jun 15  CEST 2014', '10:10:00'),
 (20, 2, 'test', 'test', 'Mon Jun 16  CEST 2014', '15:0:00'),
-(21, 1, 'test', 'test', 'Mon Jun 16  CEST 2014', '10:10:00');
+(21, 1, 'test', 'test', 'Mon Jun 16  CEST 2014', '10:10:00'),
+(22, 1, 'fait marquants', 'adzada', 'Sun Jun 22  CEST 2014', '10:10:00');
 
 -- --------------------------------------------------------
 
@@ -168,6 +169,32 @@ CREATE TABLE IF NOT EXISTS `numeroUtile` (
 
 INSERT INTO `numeroUtile` (`idNumeroUtile`, `idBaby`, `role`, `nom`, `numero`, `adresse`) VALUES
 (1, 1, 'Médecin', 'Doc', 6060606, '89 rue ');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `repas`
+--
+
+CREATE TABLE IF NOT EXISTS `repas` (
+  `idRepas` int(11) NOT NULL AUTO_INCREMENT,
+  `idBaby` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `heure` int(11) NOT NULL,
+  `minute` int(11) NOT NULL,
+  `contenu` varchar(100) NOT NULL,
+  `note` int(11) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  PRIMARY KEY (`idRepas`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `repas`
+--
+
+INSERT INTO `repas` (`idRepas`, `idBaby`, `type`, `heure`, `minute`, `contenu`, `note`, `date`) VALUES
+(1, 1, 'dejeuner', 12, 10, 'Purée', 1, 'Wed Jun 04 CEST 2014'),
+(2, 1, 'Dejeuner', 12, 10, 'purée', 1, 'Wed Jun 18  CEST 2014');
 
 -- --------------------------------------------------------
 
