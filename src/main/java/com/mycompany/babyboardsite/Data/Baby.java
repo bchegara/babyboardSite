@@ -22,6 +22,7 @@ public class Baby {
     public MainFactCategorie mainFactCategorie;
     public ActivitieCategorie activitieCategorie;
     public SiesteCategorie siesteCategorie;
+    public NumeroUtileCategorie numeroUtileCategorie;
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
@@ -77,6 +78,9 @@ public class Baby {
         
         this.siesteCategorie = new SiesteCategorie(date, this);
         this.siesteCategorie.setSQLContainer();
+        
+        this.numeroUtileCategorie = new NumeroUtileCategorie(this);
+        this.numeroUtileCategorie.createListCategorie();
 
     }
 
