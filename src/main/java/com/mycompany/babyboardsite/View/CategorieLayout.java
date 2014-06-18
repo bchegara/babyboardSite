@@ -8,12 +8,14 @@ package com.mycompany.babyboardsite.View;
 import com.mycompany.babyboardsite.Data.*;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.event.ShortcutAction;
+import com.vaadin.server.Sizeable;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
@@ -48,11 +50,18 @@ public abstract class CategorieLayout {
         });
         titleLayout.addComponent(open);
         layout.addComponent(titleLayout);
-        layout.addComponent(contenu(baby));
+        VerticalLayout contenuLayout = contenu(baby);
+        Panel panelItem = new Panel();
+        panelItem.setHeight(15, Sizeable.Unit.EM);
+        panelItem.setWidth(15, Sizeable.Unit.EM);
+        panelItem.setContent(contenuLayout);
+        layout.addComponent(panelItem);
+        
     }
     public VerticalLayout getLayout(){
         return layout;
     }
+
     
     public abstract VerticalLayout contenu(Baby baby);
     
