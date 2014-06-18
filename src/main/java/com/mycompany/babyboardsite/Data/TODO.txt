@@ -1,0 +1,28 @@
+A faire:
+
+-CSS (toutes les pages)
+
+-NumeroUtile à finir (affichage popup + ajout)
+
+-Implementer dans les categorie du babyboard une fonction pour supprimer un élément
+
+-G�rer sur les pages les comptes nourrice ou utilisateur
+
+-Gestion des heures (stockage bdd +saisie à améliorer)
+
+-Associer compte parent à une nourrice
+
+-Asscoier un enfant à une nourrice
+
+-Categorie santé
+
+-V�rification sur la saisie d'informations dans tous les formulaires
+
+-Cr�ation de carnet de bord (bébé) pour un utilisateur parent
+
+-header + footer
+
+-push pour les notifs nourrice (association de bébé)
+
+-post-it
+
