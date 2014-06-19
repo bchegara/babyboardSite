@@ -61,19 +61,22 @@ public class BabyLayout {
     public void openNurses() {
         //ouvrir une pop
         int i = 1;
+        //appel bdd pour check nurses dispo
         //gérer le contenu de la pop up
         if (i == 1) {
-            //afficher la liste des nurses dispo 
+            //afficher la liste des nurses dispo
+            //display nurses dispo
             V1 = new VerticalLayout();
         } else if (i == 2) {
-            //error
-        } else {
             //pas de nurses dispo
+
+        } else {
+            //error       
         }
         popup(V1);
 
     }
-//le vertical layout va servir a contenir les différentes possiblités
+    //le vertical layout va servir a contenir les différentes possiblités
 
     public void popup(VerticalLayout Vlayout) {
 //        PopUp sub = new PopUp();
