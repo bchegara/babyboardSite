@@ -51,8 +51,8 @@ public abstract class CategorieLayout {
         layout.addComponent(titleLayout);
         VerticalLayout contenuLayout = contenu(baby);
         Panel panelItem = new Panel();
-        panelItem.setHeight(15, Sizeable.Unit.EM);
-        panelItem.setWidth(15, Sizeable.Unit.EM);
+        panelItem.setHeight(25, Sizeable.Unit.EM);
+        panelItem.setWidth(30, Sizeable.Unit.EM);
         panelItem.setContent(contenuLayout);
         layout.addComponent(panelItem);
         

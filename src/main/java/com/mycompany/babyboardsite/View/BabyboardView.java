@@ -101,6 +101,7 @@ public class BabyboardView extends Panel implements View {
                 try {
                     //on instancie l'objet stokant le layout des fait marquants
                     HorizontalLayout categorieLayout = new HorizontalLayout();
+                    HorizontalLayout categorieLayout2 = new HorizontalLayout();
 
                     CategorieLayoutMainFact mainFactComponent = new CategorieLayoutMainFact(baby);
                     //on ajoute le layout fait marquant au layout de la page
@@ -110,11 +111,11 @@ public class BabyboardView extends Panel implements View {
                     categorieLayout.addComponent(activitieComponent.getLayout());
 
                     CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
-                    categorieLayout.addComponent(siesteComponent.getLayout());
+                    categorieLayout2.addComponent(siesteComponent.getLayout());
                     categorieLayout.setSpacing(true);
                     
                     CategorieLayoutRepas repasComponent = new CategorieLayoutRepas(baby);
-                    categorieLayout.addComponent(repasComponent.getLayout());
+                    categorieLayout2.addComponent(repasComponent.getLayout());
                     
                     VerticalLayout calendarAndNumeroUtile = new VerticalLayout();
                     calendarAndNumeroUtile.addComponent(calendar);
@@ -123,6 +124,7 @@ public class BabyboardView extends Panel implements View {
                     
                     categorieLayout.addComponent(calendarAndNumeroUtile);
                     layout.addComponent(categorieLayout);
+                    layout.addComponent(categorieLayout2);
                 } catch (Exception e) {
                     System.out.println("pas de d'infos");
                 }
