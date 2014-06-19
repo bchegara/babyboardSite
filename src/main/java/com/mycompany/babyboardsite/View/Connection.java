@@ -89,17 +89,26 @@ public class Connection extends Panel implements View {
             layout.addComponent(linkBabyView);
 
             Button deconnectionButton = new Button("Déconnexion");
-
             deconnectionButton.addClickListener(new Button.ClickListener() {
                 public void buttonClick(Button.ClickEvent event) {
-                    VaadinSession.getCurrent().close();
-                    navigator.navigateTo(Connection.NAME);
 
+                    logout();
                 }
             });
             layout.addComponent(deconnectionButton);
             setContent(layout);
         }
+    }
+
+    private void logout() {
+        // Close the VaadinServiceSession
+        getUI().getSession().close();
+
+        // Invalidate underlying session instead if login info is stored there
+        // VaadinService.getCurrentRequest().getWrappedSession().invalidate();
+        // Redirect to avoid keeping the removed UI open in the browser
+        getUI().getPage().setLocation(Connection.NAME);
+
     }
 
     @Override
