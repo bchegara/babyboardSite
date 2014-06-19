@@ -51,7 +51,6 @@ public class MyVaadinUI extends UI {
         //utilise une nouvelle vue à chaque fois
         //Vue principale lorsque l'utilisateur accède au site
 //        navigator.addView(MainView.NAME, MainView.class);
-
         //utilise la même vue à chaque appel
         //Vue pour la connexion des utilisateurs
         navigator.addView(Connection.NAME, Connection.class); // no fragment
