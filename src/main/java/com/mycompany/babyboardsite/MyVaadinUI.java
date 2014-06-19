@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebServlet;
 
 @Title("Babyboard")
 //@Theme("ourtheme")
-@Theme("mytheme")
+@Theme("ourtheme")
 @SuppressWarnings("serial")
 @PreserveOnRefresh
 public class MyVaadinUI extends UI {
