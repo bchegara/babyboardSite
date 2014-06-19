@@ -34,11 +34,12 @@ public class CategorieLayoutRepas extends CategorieLayout {
     @Override
     public VerticalLayout contenu(Baby baby) {
         final VerticalLayout repasComponent = new VerticalLayout();
+        repasComponent.addStyleName("box-element");
         try {
 
             for (Repas repas : baby.repasCategorie.returnListCategorie()) {
                 Label title = new Label("" + repas.getType() + " à " + repas.getTime());
-                Label description = new Label(repas.getContenu() + " note: " + repas.getNote());
+                Label description = new Label(repas.getContenu() + " Note: " + repas.getNote());
                 repasComponent.addComponent(title);
                 repasComponent.addComponent(description);
             }

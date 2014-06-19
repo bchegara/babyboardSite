@@ -48,14 +48,27 @@ font-family: 'menu', url('Amandine.ttf');
 
 
 span.v-captiontext {
-color: red;
+background: rgb(164,123,185);
+padding: 5px;
+text-transform: uppercase;
+color: white;
 cursor: pointer;
 }
 div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
 text-align: center;
 }
 
-tbody {
+.box-element {
+    background-color: rgb(138, 188, 188);
+    padding: 20px;
+    color: white;
+}
+
+div.v-label.v-widget.v-label-undef-w {
+background: rgb(164,123,185);
+padding: 5px;
+text-transform: uppercase;
+color: white;
 }
 /*@font-face {
 	font-family: "menu";

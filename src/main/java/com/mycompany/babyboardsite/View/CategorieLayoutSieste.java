@@ -32,11 +32,12 @@ public class CategorieLayoutSieste extends CategorieLayout {
     @Override
     public VerticalLayout contenu(Baby baby) {
         final VerticalLayout activitieComponent = new VerticalLayout();
+        activitieComponent.addStyleName("box-element");
         try {
 
             for (Sieste sieste : baby.siesteCategorie.returnListCategorie()) {
-                Label title = new Label("début: " + sieste.getHour() + "h" + sieste.getMinute());
-                Label description = new Label("Durée: " + sieste.getDuree() + " note: " + sieste.getNote());
+                Label title = new Label("Début: " + sieste.getHour() + "h" + sieste.getMinute());
+                Label description = new Label("Durée: " + sieste.getDuree() + " Note: " + sieste.getNote());
                 activitieComponent.addComponent(title);
                 activitieComponent.addComponent(description);
             }

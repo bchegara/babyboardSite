@@ -7292,10 +7292,26 @@ body .ourtheme.v-app .v-app-loading {
 }
 
 .ourtheme span.v-captiontext {
-	color: red;
+	background: rgb(164, 123, 185);
+	padding: 5px;
+	text-transform: uppercase;
+	color: white;
 	cursor: pointer;
 }
 
 .ourtheme div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
 	text-align: center;
+}
+
+.ourtheme .box-element {
+	background-color: rgb(138, 188, 188);
+	padding: 20px;
+	color: white;
+}
+
+.ourtheme div.v-label.v-widget.v-label-undef-w {
+	background: rgb(164, 123, 185);
+	padding: 5px;
+	text-transform: uppercase;
+	color: white;
 }
