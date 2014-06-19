@@ -31,5 +31,9 @@ public abstract class CategorieBabyboard {
     public String returnCurrentDate(){
         return date;
     }
+    
+//    public void deleteItem(Object obj){
+//        categorieTable.remove
+//    }
 
 }

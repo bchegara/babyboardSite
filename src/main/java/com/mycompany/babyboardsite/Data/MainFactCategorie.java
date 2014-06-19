@@ -10,9 +10,12 @@ import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,7 +54,9 @@ public class MainFactCategorie extends CategorieBabyboard {
                         infoJonctionTable.getItemProperty("title").getValue().toString(),
                         infoJonctionTable.getItemProperty("description").getValue().toString(),
                         infoJonctionTable.getItemProperty("date").getValue().toString(),
-                        infoJonctionTable.getItemProperty("hours").getValue().toString());
+                        infoJonctionTable.getItemProperty("hours").getValue().toString(),
+                infoJonctionTable);
+                
                 listMainFact.add(mainFact);
             }
         } catch (Exception e) {
@@ -76,6 +81,19 @@ public class MainFactCategorie extends CategorieBabyboard {
             categorieTable.commit();
         } catch (Exception e) {
             System.out.println("e");
+        }
+    }
+    
+    public void removeMainFact(Item item){
+        categorieTable.removeAllContainerFilters();
+        categorieTable.removeItem(item);
+        try {
+            categorieTable.commit();
+            System.out.println("GOOOD");
+        } catch (UnsupportedOperationException ex) {
+            Logger.getLogger(MainFactCategorie.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFactCategorie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

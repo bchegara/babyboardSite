@@ -37,9 +37,10 @@ public class BabyLayout {
         Panel panel = new Panel();
         panel.setHeight(25, Sizeable.Unit.EM);
         panel.setWidth(30, Sizeable.Unit.EM);
-        panel.addStyleName("baby-title");
+        
 
         Label babyNameL = new Label(baby.getName() + " " + baby.getFirstname());
+        babyNameL.addStyleName("baby-title");
         Label contentBabyLayout = new Label(baby.getOld());
         VerticalLayout layoutContenu = new VerticalLayout();
         layoutContenu.addComponent(babyNameL);

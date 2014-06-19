@@ -39,6 +39,7 @@ public abstract class CategorieLayout {
         setTitle();
         layout = new VerticalLayout();
         layout.setMargin(true);
+//        layout.addStyleName("box-element");
         final HorizontalLayout titleLayout = new HorizontalLayout();
         titleLayout.addComponent(new Label(title));
         final Button open = new Button("+");
@@ -54,6 +55,7 @@ public abstract class CategorieLayout {
         panelItem.setHeight(25, Sizeable.Unit.EM);
         panelItem.setWidth(30, Sizeable.Unit.EM);
         panelItem.setContent(contenuLayout);
+        
         layout.addComponent(panelItem);
         
     }

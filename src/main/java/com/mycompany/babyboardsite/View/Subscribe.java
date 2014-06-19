@@ -17,6 +17,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
@@ -37,13 +38,16 @@ public class Subscribe extends Panel implements View {
     private TextField textFieldLast = new TextField("Nom:");
     private PasswordField textFieldPassword = new PasswordField("Password:");
     private PasswordField textFieldPasswordCheck = new PasswordField("Verification Password:");
+    private ComboBox rightLevel = new ComboBox("Type d'utilisateur: ");
 
     public FormLayout subscribeLayout;
     private User user;
     private int errorSubscribing;
 
     public Subscribe() {
-
+        rightLevel.addItem("USER");
+        rightLevel.addItem("NURSE");
+        rightLevel.select("USER");
         user = VaadinSession.getCurrent().getAttribute(User.class);
         errorSubscribing = 1;
         //layout contenant le formulaire d'inscription
@@ -51,6 +55,7 @@ public class Subscribe extends Panel implements View {
         subscribeLayout.setSizeUndefined();
         subscribeLayout.addComponent(textFieldFirst);
         subscribeLayout.addComponent(textFieldLast);
+        subscribeLayout.addComponent(rightLevel);
         subscribeLayout.addComponent(textFieldEmail);
         subscribeLayout.addComponent(textFieldEmailCheck);
 
@@ -77,7 +82,7 @@ public class Subscribe extends Panel implements View {
         // press enter to validate form
         subscribeButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         //Lien pour le retour à la page d'accueil
-        Link lnk = new Link("Accueil", new ExternalResource("#!"+ Connection.NAME));
+        Link lnk = new Link("Accueil", new ExternalResource("#!" + Connection.NAME));
         subscribeLayout.addComponent(lnk);
         subscribeButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
@@ -91,7 +96,7 @@ public class Subscribe extends Panel implements View {
 
                         if (user.checkEmail(textFieldEmail.getValue())) {
                             //insert dans la base de données
-                            user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue());
+                            user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue(), rightLevel.getValue().toString());
                             navigator.navigateTo(Connection.NAME);
                             errorSubscribing = 0;
 

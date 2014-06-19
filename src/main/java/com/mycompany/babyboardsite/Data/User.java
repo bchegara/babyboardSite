@@ -160,7 +160,7 @@ public class User {
         }
     }
 
-    public void addUser(String first, String last, String email, String password) {
+    public void addUser(String first, String last, String email, String password, String rightLevel) {
         SQLContainer userContainer;
 
         userContainer = oracle.queryTable("users");
@@ -176,7 +176,7 @@ public class User {
             rowItem.getItemProperty("city").setValue("default");
             rowItem.getItemProperty("tel").setValue(666);
             rowItem.getItemProperty("firstName").setValue(first);
-            rowItem.getItemProperty("rightLevel").setValue("ADMIN");
+            rowItem.getItemProperty("rightLevel").setValue(rightLevel);
             userContainer.commit();
             System.err.println("commit réussi");
         } catch (UnsupportedOperationException e) {
