@@ -20,8 +20,8 @@ import com.vaadin.ui.VerticalLayout;
  */
 public class CategorieLayoutSieste extends CategorieLayout {
 
-    TextField hour;
-    TextField minute;
+    ComboBox hour;
+    ComboBox minute;
     TextField duree;
     ComboBox note;
 
@@ -59,13 +59,22 @@ public class CategorieLayoutSieste extends CategorieLayout {
         VerticalLayout popUpContent = new VerticalLayout();
         FormLayout formulaire = new FormLayout();
         formulaire.setSizeUndefined();
+
         HorizontalLayout heureInline = new HorizontalLayout();
 
-        hour = new TextField("Début: ");
-        minute = new TextField("");
+        hour = new ComboBox("heure");
+        for (int i = 0; i < 24; i++) {
+            hour.addItem(i);
+        }
+        minute = new ComboBox("minute");
+
+        for (int i = 0; i < 60; i++) {
+            minute.addItem(i);
+        }
         heureInline.addComponent(hour);
-        heureInline.addComponent(new Label("h:"));
         heureInline.addComponent(minute);
+        formulaire.addComponent(heureInline);
+
         formulaire.addComponent(heureInline);
 
         duree = new TextField("durée: ");

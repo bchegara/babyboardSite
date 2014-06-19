@@ -21,7 +21,7 @@ import com.vaadin.ui.VerticalLayout;
 
 public class CategorieLayoutRepas extends CategorieLayout {
 
-    TextField kind;
+    ComboBox kind;
     ComboBox hour;
     ComboBox minute;
     TextArea contenu;
@@ -61,7 +61,12 @@ public class CategorieLayoutRepas extends CategorieLayout {
         VerticalLayout popUpContent = new VerticalLayout();
         FormLayout formulaire = new FormLayout();
         formulaire.setSizeUndefined();
-        kind = new TextField("Type de repas: ");
+        kind = new ComboBox("Type de repas:");
+        kind.addItem("Petit-déjeunner");
+        kind.addItem("Déjeunner");
+        kind.addItem("Gouter");
+        kind.addItem("Diner");
+        kind.select("Petit-déjeunner");
         formulaire.addComponent(kind);
 
 

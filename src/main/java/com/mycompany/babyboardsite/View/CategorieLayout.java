@@ -81,7 +81,7 @@ public abstract class CategorieLayout {
         subWindow.setClosable(true);
 
         // Trivial logic for closing the sub-window
-        Button ok = new Button("OK");
+        Button ok = new Button("Ajouter");
         ok.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
                 addElement();

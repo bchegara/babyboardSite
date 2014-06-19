@@ -76,7 +76,6 @@ public class CategorieLayoutActivitie extends CategorieLayout {
             minute.addItem(i);
         }
         heureInline.addComponent(hour);
-//        heureInline.addComponent(new Label("h:"));
         heureInline.addComponent(minute);
         formulaire.addComponent(heureInline);
 

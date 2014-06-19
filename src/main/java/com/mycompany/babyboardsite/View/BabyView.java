@@ -67,7 +67,7 @@ public class BabyView extends Panel implements View {
             
         }
         if(user.isUser() || user.isAdmin()){
-            Baby newBaby = new Baby();
+            Baby newBaby = new Baby(); 
 //                AddCarnetDeBordLayout addCarnetBord = new AddCarnetDeBordLayout(newBaby);
 //                layout.addComponent(addCarnetBord.getLayoutHorizontal());
 //                Button addBaby = new Button("Créez un nouveau carnet de bord");

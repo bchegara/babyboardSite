@@ -9,6 +9,7 @@ import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.MainFact;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
@@ -62,22 +63,26 @@ public class CategorieLayoutMainFact extends CategorieLayout {
         formulaire.setSizeUndefined();
         titleTextField = new TextField("Titre: ");
         description = new TextArea("Description: ");
+
+        HorizontalLayout heureInline = new HorizontalLayout();
         hour = new ComboBox("heure");
-        for(int i=0; i<24; i++){
+        for (int i = 0; i < 24; i++) {
             hour.addItem(i);
         }
         minute = new ComboBox("minute");
 
-        for(int i=0; i<60; i++){
+        for (int i = 0; i < 60; i++) {
             minute.addItem(i);
         }
+        hour.setRequired(true);
+        minute.setRequired(true);
+        heureInline.addComponent(hour);
+        heureInline.addComponent(minute);
+
         formulaire.addComponent(titleTextField);
         formulaire.addComponent(description);
-        formulaire.addComponent(hour);
-        hour.setRequired(true);
+        formulaire.addComponent(heureInline);
 
-        formulaire.addComponent(minute);
-        minute.setRequired(true);
         popUpContent.addComponent(formulaire);
         return popUpContent;
     }
