@@ -54,15 +54,12 @@ public class MyVaadinUI extends UI {
 
         //utilise la même vue à chaque appel
         //Vue pour la connexion des utilisateurs
-//        Connection connectionView = new Connection();
         navigator.addView(Connection.NAME, Connection.class); // no fragment
 
         //Vue affichant le cotnenue de la table utilisateur dans un tableau permettant de modifier la bdd
-        TableUser tableUserView = new TableUser();
-        navigator.addView(tableUserView.NAME, new TableUser());
+        navigator.addView(TableUser.NAME, TableUser.class);
 
         //Vue 
-        BabyView babyView = new BabyView();
         navigator.addView(BabyView.NAME, BabyView.class);
 
         BabyboardView bordView = new BabyboardView();

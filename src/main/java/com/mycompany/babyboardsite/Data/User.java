@@ -261,22 +261,13 @@ public class User {
     }
     
     public Boolean isUser(){
-        if(rightLvl == USER){
-            return true;
-        }
-        return false;
+        return rightLvl == USER;
     }
     public Boolean isNurse(){
-        if(rightLvl == NURSE){
-            return true;
-        }
-        return false;
+        return rightLvl == NURSE;
     }
     public Boolean isAdmin(){
-        if(rightLvl == ADMIN){
-            return true;
-        }
-        return false;
+        return rightLvl == ADMIN;
     }
     
     

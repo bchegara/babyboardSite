@@ -29,5 +29,7 @@ parent et nourrice dans la bdd sont stockés dans la table user (USER & NURSE)
 donner la possibilité à un parent de d'ajouter a un enfant une nourrice (ajout d'une ligne dans la table jonctiontable avec id de l'enfant    
 et de la nourrice). La nourrice ne dispose pas de cette fonction.
 
+Pour les boutons la gestions de l'utilisateur est faite, mais les boutons ne sont pas fonctionnels
+
 
 

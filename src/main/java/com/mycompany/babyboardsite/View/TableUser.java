@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.babyboardsite.View;
 
 /**
@@ -11,6 +10,7 @@ package com.mycompany.babyboardsite.View;
  * @author baptman
  */
 import com.mycompany.babyboardsite.Data.*;
+import static com.mycompany.babyboardsite.Data.User.RightLevel.ADMIN;
 import com.mycompany.babyboardsite.MyVaadinUI;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
@@ -18,6 +18,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
@@ -28,15 +29,18 @@ import java.util.logging.Logger;
 public class TableUser extends Panel implements View {
 
     public static final String NAME = "tableUser";
-    
+
     private Table table;
     private SQLContainer parent;
     private User user;
+    private Oracle oracle;
+
     public TableUser() {
 
-        
         user = VaadinSession.getCurrent().getAttribute(User.class);
-        Oracle oracle = new Oracle();
+
+        if(user.isAdmin()){
+        oracle = new Oracle();
         parent = oracle.queryTable("users");
         table = new Table("Parents", parent);
         table = new Table("Inscription Parent", parent);
@@ -75,16 +79,16 @@ public class TableUser extends Panel implements View {
 
         addContact.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                
-               // On récupère la dernière ligne de la table parent
+
+                // On récupère la dernière ligne de la table parent
                 Object lastentry = parent.lastItemId();
                 // On cherche la valeur de la colonne idUser de cette derniere entrée
                 Object lastidvalue = table.getContainerProperty(lastentry, "idUser").getValue();
-                
+
                 //on transforme cette valeur en int
-                int idsup = Integer.parseInt(lastidvalue.toString())+1;
+                int idsup = Integer.parseInt(lastidvalue.toString()) + 1;
                 //on retransforme cet int en objet pour l'afficher
-                Object idnewparent = (int)idsup;
+                Object idnewparent = (int) idsup;
 
                 parent.removeAllContainerFilters();
                 Object contactId = table.addItem();
@@ -96,7 +100,6 @@ public class TableUser extends Panel implements View {
                 //On incrémente automatiquement l'idUser
                 table.getContainerProperty(contactId, "idUser").setValue(
                         idnewparent);
-
 
                 table.select(contactId);
 
@@ -122,8 +125,12 @@ public class TableUser extends Panel implements View {
         }
         );
         layout.addComponent(deleteBt);
-        
+
         setContent(layout);
+        }else{
+            VerticalLayout layout = new VerticalLayout();
+            layout.addComponent(new Label("Vous n'avez pas les droits pour accéder à cette page"));
+        }
     }
 
     @Override
