@@ -10,6 +10,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
 import com.vaadin.ui.FormLayout;
@@ -26,7 +27,8 @@ import com.vaadin.ui.VerticalLayout;
 public class Connection extends Panel implements View {
 
     public static final String NAME = "";
-
+    
+    
     private TextField textFieldEmail = new TextField("Email:");
     private PasswordField textFieldPassword = new PasswordField("Password:");
     public FormLayout formLayout;
@@ -34,7 +36,9 @@ public class Connection extends Panel implements View {
     public VerticalLayout layout;
 
     public Connection() {
-
+        
+        final CssLayout box = new CssLayout();
+        box.addStyleName("connexion");
         user = VaadinSession.getCurrent().getAttribute(User.class);
         layout = new VerticalLayout();
         layout.addComponent(new HeaderHome());
@@ -89,7 +93,8 @@ public class Connection extends Panel implements View {
             formLayout.addComponent(connectionButton);
             formLayout.addComponent(linkSubcribe);
             layout.addComponent(formLayout);
-            setContent(layout);
+            box.addComponent(layout);
+            setContent(box);
         } else {//Si il est connecté
 //            layout = new VerticalLayout();
 //            layout.addComponent(header);
@@ -110,7 +115,8 @@ public class Connection extends Panel implements View {
                 }
             });
             layout.addComponent(deconnectionButton);
-            setContent(layout);
+            box.addComponent(layout);
+            setContent(box);
         }
     }
 

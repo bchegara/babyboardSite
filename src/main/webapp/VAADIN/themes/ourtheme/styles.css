@@ -7315,3 +7315,9 @@ body .ourtheme.v-app .v-app-loading {
 	text-transform: uppercase;
 	color: white;
 }
+
+.ourtheme .connexion {
+	display: block;
+	text-align: center;
+	background: rgb(164, 123, 185);
+}
