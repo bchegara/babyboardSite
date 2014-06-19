@@ -1,6 +1,7 @@
 package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.*;
+import static com.mycompany.babyboardsite.MyVaadinUI.header;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -41,6 +42,8 @@ public class BabyboardView extends Panel implements View {
         user = VaadinSession.getCurrent().getAttribute(User.class);
 
         final VerticalLayout layout = new VerticalLayout();
+        
+        layout.addComponent(header);
         layout.setMargin(true);
         //Si l'utilisateur a une liste d'enfant vide
         if (user.babyList.isEmpty()) {

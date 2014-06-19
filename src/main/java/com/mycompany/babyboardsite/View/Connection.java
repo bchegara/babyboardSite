@@ -33,15 +33,20 @@ public class Connection extends Panel implements View {
     private User user;
 
     public Connection() {
+        
         user = VaadinSession.getCurrent().getAttribute(User.class);
 
         if (!user.isConnected()) {
+          
+            
             Link linkSubcribe = new Link("Page d'inscription", new ExternalResource("#!"
                     + Subscribe.NAME));
 
             //layout contenant le formulaire de connexion
             formLayout = new FormLayout();
-            formLayout.setSizeUndefined();
+              
+              formLayout.addComponent(header);
+            formLayout.setSizeFull();
             formLayout.addComponent(textFieldEmail);
             // Mark field as required
             textFieldEmail.setRequired(true);

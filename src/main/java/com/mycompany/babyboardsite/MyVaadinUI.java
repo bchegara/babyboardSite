@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 public class MyVaadinUI extends UI {
 
     public static Navigator navigator;
+    public static HeaderView header = new HeaderView();
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "com.mycompany.babyboardsite.AppWidgetSet")
