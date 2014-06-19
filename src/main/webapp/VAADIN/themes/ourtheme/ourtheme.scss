@@ -6,7 +6,7 @@
 /* If somebody wants to extend the theme she will include this mixin. */
 @mixin ourtheme {
     /* Include all the styles from the reindeer theme */
-/*    @include reindeer;*/
+    @include reindeer;
 
     /* Insert your theme rules here */
     @font-face { 	font-family: "menu";  src: url('Amandine.ttf'); }
