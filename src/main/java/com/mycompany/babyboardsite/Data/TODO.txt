@@ -10,9 +10,7 @@ A faire:
 
 -Gestion des heures (stockage bdd +saisie à améliorer)
 
--Associer compte parent à une nourrice
 
--Asscoier un enfant à une nourrice
 
 -Categorie santé
 
@@ -25,4 +23,11 @@ A faire:
 -push pour les notifs nourrice (association de bébé)
 
 -post-it
+
+-Relation parent nourrice:
+parent et nourrice dans la bdd sont stockés dans la table user (USER & NURSE)
+donner la possibilité à un parent de d'ajouter a un enfant une nourrice (ajout d'une ligne dans la table jonctiontable avec id de l'enfant    
+et de la nourrice). La nourrice ne dispose pas de cette fonction.
+
+
 

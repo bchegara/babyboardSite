@@ -1,5 +1,8 @@
 package com.mycompany.babyboardsite.Data;
 
+import static com.mycompany.babyboardsite.Data.User.RightLevel.ADMIN;
+import static com.mycompany.babyboardsite.Data.User.RightLevel.NURSE;
+import static com.mycompany.babyboardsite.Data.User.RightLevel.USER;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.filter.And;
@@ -253,5 +256,29 @@ public class User {
     public String getName() {
         return name;
     }
+    public int getId(){
+        return idUser;
+    }
+    
+    public Boolean isUser(){
+        if(rightLvl == USER){
+            return true;
+        }
+        return false;
+    }
+    public Boolean isNurse(){
+        if(rightLvl == NURSE){
+            return true;
+        }
+        return false;
+    }
+    public Boolean isAdmin(){
+        if(rightLvl == ADMIN){
+            return true;
+        }
+        return false;
+    }
+    
+    
 
 }

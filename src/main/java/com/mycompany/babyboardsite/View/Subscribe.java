@@ -77,7 +77,7 @@ public class Subscribe extends Panel implements View {
         // press enter to validate form
         subscribeButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         //Lien pour le retour à la page d'accueil
-        Link lnk = new Link("Accueil", new ExternalResource("#!"));
+        Link lnk = new Link("Accueil", new ExternalResource("#!"+ Connection.NAME));
         subscribeLayout.addComponent(lnk);
         subscribeButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {

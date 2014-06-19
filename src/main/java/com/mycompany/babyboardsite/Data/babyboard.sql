@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Jeu 19 Juin 2014 à 00:57
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Client: localhost
+-- Généré le: Jeu 19 Juin 2014 à 03:09
+-- Version du serveur: 5.5.37-0ubuntu0.14.04.1
+-- Version de PHP: 5.5.9-1ubuntu4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `babyboard`
+-- Base de données: `babyboard`
 --
 
 -- --------------------------------------------------------
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `babies` (
   `age` date NOT NULL,
   `sex` int(10) NOT NULL,
   `firstName` varchar(200) NOT NULL,
+  `idParent` int(11) NOT NULL,
   PRIMARY KEY (`idBaby`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -75,10 +76,10 @@ CREATE TABLE IF NOT EXISTS `babies` (
 -- Contenu de la table `babies`
 --
 
-INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`) VALUES
-(1, 'Gaetan', '2002-02-14', 1, 'Rouaix'),
-(2, 'ToscanJunior', '2014-06-16', 0, 'Vertanessian'),
-(3, 'Test', '2014-06-10', 1, 'testtttt');
+INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`, `idParent`) VALUES
+(1, 'Gaetan', '2002-02-14', 1, 'Rouaix', 2),
+(2, 'ToscanJunior', '2014-06-16', 0, 'Vertanessian', 2),
+(3, 'Test', '2014-06-10', 1, 'testtttt', 2);
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,9 @@ INSERT INTO `jonction` (`idJonction`, `idUser`, `idBaby`) VALUES
 (0, 0, 0),
 (1, 2, 1),
 (2, 2, 2),
-(3, 2, 3);
+(3, 2, 3),
+(4, 5, 1),
+(5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -162,14 +165,14 @@ CREATE TABLE IF NOT EXISTS `numeroutile` (
   `numero` int(11) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   PRIMARY KEY (`idNumeroUtile`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `numeroutile`
 --
 
 INSERT INTO `numeroutile` (`idNumeroUtile`, `idBaby`, `role`, `nom`, `numero`, `adresse`) VALUES
-(1, 1, 'MédecinA', 'Doc', 6060606, '89 rue ');
+(1, 1, 'MédecinA', 'Docteur', 6060606, '89 rue ');
 
 -- --------------------------------------------------------
 
@@ -187,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `repas` (
   `note` int(11) NOT NULL,
   `date` varchar(50) NOT NULL,
   PRIMARY KEY (`idRepas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `repas`
@@ -195,7 +198,9 @@ CREATE TABLE IF NOT EXISTS `repas` (
 
 INSERT INTO `repas` (`idRepas`, `idBaby`, `type`, `heure`, `minute`, `contenu`, `note`, `date`) VALUES
 (1, 1, 'dejeuner', 12, 10, 'Purée', 1, 'Wed Jun 04 CEST 2014'),
-(2, 1, 'Dejeuner', 12, 10, 'purée', 1, 'Wed Jun 18  CEST 2014');
+(2, 1, 'Dejeuner', 12, 10, 'purée', 1, 'Wed Jun 18  CEST 2014'),
+(3, 1, 'petit dejeuner', 9, 30, 'repas', 3, 'Thu Jun 19  CEST 2014'),
+(4, 1, 'testajout nourrice', 10, 10, 'zjdizjid', 2, 'Thu Jun 19  CEST 2014');
 
 -- --------------------------------------------------------
 
@@ -241,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstName` varchar(200) NOT NULL,
   `rightLevel` varchar(10) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `users`
@@ -250,8 +255,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`idUser`, `name`, `email`, `password`, `adress`, `zip`, `city`, `tel`, `firstName`, `rightLevel`) VALUES
 (1, 'Geoffroy', 'Rouaix', 'tata', '57 rue michel ange', 75016, 'Paris', 618275025, 'Rouaix', 'ADMIN'),
 (2, 'Cheg', 'b', 'a', 'adresse', 75018, 'Paris', 0, 'Baptiste', 'ADMIN'),
-(3, 'name', 'a', 'a', 'add', 0, 'city', 0, 'fname', 'ADMIN'),
-(4, 'namez', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', 88888, 'DEDED', 'ADMIN');
+(3, 'name', 'a', 'a', 'add', 0, 'city', 0, 'fname', 'NURSE'),
+(4, 'name', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', 88888, 'DEDED', 'ADMIN'),
+(5, 'user pas admin', 'u', 'u', 'k,sckl,sklc,skl,c', 33333, 'klz,fklz,fkzl,flkz', 33333333, 'aaaaaaaaaa', 'USER');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

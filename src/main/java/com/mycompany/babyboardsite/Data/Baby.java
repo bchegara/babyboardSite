@@ -19,12 +19,14 @@ public class Baby {
     private String old;
     private int sex;
     private String firstname;
+    private int idParent;
     //objet contenant les item pour les catégories du babyboard
     public MainFactCategorie mainFactCategorie;
     public ActivitieCategorie activitieCategorie;
     public SiesteCategorie siesteCategorie;
     public NumeroUtileCategorie numeroUtileCategorie;
     public RepasCategorie repasCategorie;
+    
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
@@ -49,6 +51,9 @@ public class Baby {
     public String getFisrtname() {
         return firstname;
     }
+    public int getIdParent(){
+        return idParent;
+    }
 
     //Constructeur pour récupérer un bébé avec son idBay
     public Baby(int idB) {
@@ -61,6 +66,7 @@ public class Baby {
         old = infoUser.getItemProperty("age").getValue().toString();
         sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
         firstname = infoUser.getItemProperty("firstName").getValue().toString();
+        idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
     }
 
     //TEST: pour afficher quelques infos du bébé

@@ -50,12 +50,12 @@ public class MyVaadinUI extends UI {
         //Dans ce cas la page sera actualisé à chaque fois que le navigator l'appel
         //utilise une nouvelle vue à chaque fois
         //Vue principale lorsque l'utilisateur accède au site
-        navigator.addView(MainView.NAME, MainView.class);
+//        navigator.addView(MainView.NAME, MainView.class);
 
         //utilise la même vue à chaque appel
         //Vue pour la connexion des utilisateurs
-        Connection connectionView = new Connection();
-        navigator.addView(Connection.NAME, connectionView); // no fragment
+//        Connection connectionView = new Connection();
+        navigator.addView(Connection.NAME, Connection.class); // no fragment
 
         //Vue affichant le cotnenue de la table utilisateur dans un tableau permettant de modifier la bdd
         TableUser tableUserView = new TableUser();
