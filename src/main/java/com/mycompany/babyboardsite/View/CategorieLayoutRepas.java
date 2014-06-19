@@ -34,6 +34,7 @@ public class CategorieLayoutRepas extends CategorieLayout {
     @Override
     public VerticalLayout contenu(Baby baby) {
         final VerticalLayout repasComponent = new VerticalLayout();
+        repasComponent.setSizeFull();
         repasComponent.addStyleName("box-element");
         try {
 

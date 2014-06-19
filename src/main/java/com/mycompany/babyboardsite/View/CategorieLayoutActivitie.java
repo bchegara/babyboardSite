@@ -35,6 +35,7 @@ public class CategorieLayoutActivitie extends CategorieLayout {
     public VerticalLayout contenu(Baby baby) {
 
         final VerticalLayout activitieComponent = new VerticalLayout();
+        activitieComponent.setSizeFull();
         activitieComponent.addStyleName("box-element");
         try {
 

@@ -37,6 +37,7 @@ public class CategorieLayoutMainFact extends CategorieLayout {
 
         final VerticalLayout factComponent = new VerticalLayout();
         factComponent.addStyleName("box-element");
+        factComponent.setSizeFull();
         try {
 
             for (MainFact fact : baby.mainFactCategorie.returnListCategorie()) {
