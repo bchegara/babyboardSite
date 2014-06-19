@@ -11,6 +11,7 @@ package com.mycompany.babyboardsite.View;
  */
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.Repas;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -19,12 +20,12 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 public class CategorieLayoutRepas extends CategorieLayout {
+
     TextField kind;
-    TextField hour;
-    TextField minute;
+    ComboBox hour;
+    ComboBox minute;
     TextArea contenu;
-    TextField note;
-    
+    ComboBox note;
 
     public CategorieLayoutRepas(Baby baby) {
         super(baby);
@@ -63,19 +64,31 @@ public class CategorieLayoutRepas extends CategorieLayout {
         kind = new TextField("Type de repas: ");
         formulaire.addComponent(kind);
 
+
+
         HorizontalLayout heureInline = new HorizontalLayout();
 
-        hour = new TextField("heure: ");
-        minute = new TextField("");
+        hour = new ComboBox("heure");
+        for (int i = 0; i < 24; i++) {
+            hour.addItem(i);
+        }
+        minute = new ComboBox("minute");
+
+        for (int i = 0; i < 60; i++) {
+            minute.addItem(i);
+        }
         heureInline.addComponent(hour);
-        heureInline.addComponent(new Label("h:"));
+//        heureInline.addComponent(new Label("h:"));
         heureInline.addComponent(minute);
         formulaire.addComponent(heureInline);
 
         contenu = new TextArea("Contenu: ");
         formulaire.addComponent(contenu);
 
-        note = new TextField("Note: ");
+        note = new ComboBox("Note: ");
+        for (int i = 0; i <= 5; i++) {
+            note.addItem(i);
+        }
         formulaire.addComponent(note);
         popUpContent.addComponent(formulaire);
         return popUpContent;

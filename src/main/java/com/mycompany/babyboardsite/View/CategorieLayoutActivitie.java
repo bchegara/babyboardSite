@@ -7,6 +7,7 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Activitie;
 import com.mycompany.babyboardsite.Data.Baby;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -18,11 +19,11 @@ import com.vaadin.ui.VerticalLayout;
  * @author baptman
  */
 public class CategorieLayoutActivitie extends CategorieLayout {
-    
-    TextField hour;
-    TextField minute;
+
+    ComboBox hour;
+    ComboBox minute;
     TextField duree;
-    TextField note;
+    ComboBox note;
     TextField kind;
 
     public CategorieLayoutActivitie(Baby baby) {
@@ -38,7 +39,7 @@ public class CategorieLayoutActivitie extends CategorieLayout {
 
             for (Activitie activitie : baby.activitieCategorie.returnListCategorie()) {
                 Label title = new Label("début: " + activitie.getTime() + " note: " + activitie.getNote());
-                Label description = new Label(activitie.getTitle() + " durée: " + activitie.getDuree()+"h");
+                Label description = new Label(activitie.getTitle() + " durée: " + activitie.getDuree() + "h");
                 activitieComponent.addComponent(title);
                 activitieComponent.addComponent(description);
             }
@@ -62,20 +63,30 @@ public class CategorieLayoutActivitie extends CategorieLayout {
         formulaire.setSizeUndefined();
         kind = new TextField("Type d'activité: ");
         formulaire.addComponent(kind);
-        
+
         HorizontalLayout heureInline = new HorizontalLayout();
-        
-        hour = new TextField("Début: ");
-        minute = new TextField("");
+
+        hour = new ComboBox("heure");
+        for (int i = 0; i < 24; i++) {
+            hour.addItem(i);
+        }
+        minute = new ComboBox("minute");
+
+        for (int i = 0; i < 60; i++) {
+            minute.addItem(i);
+        }
         heureInline.addComponent(hour);
-        heureInline.addComponent(new Label("h:"));
+//        heureInline.addComponent(new Label("h:"));
         heureInline.addComponent(minute);
         formulaire.addComponent(heureInline);
-        
+
         duree = new TextField("durée: ");
         formulaire.addComponent(duree);
-        
-        note = new TextField("Note: ");
+
+        note = new ComboBox("Note: ");
+        for(int i=0; i<=5; i++){
+            note.addItem(i);
+        }
         formulaire.addComponent(note);
         popUpContent.addComponent(formulaire);
         return popUpContent;
@@ -83,10 +94,8 @@ public class CategorieLayoutActivitie extends CategorieLayout {
 
     @Override
     public void addElement() {
-        baby.activitieCategorie.addActivitie(kind.getValue().toString() ,Integer.parseInt(duree.getValue().toString()), Integer.parseInt(note.getValue().toString()),
+        baby.activitieCategorie.addActivitie(kind.getValue().toString(), Integer.parseInt(duree.getValue().toString()), Integer.parseInt(note.getValue().toString()),
                 Integer.parseInt(hour.getValue().toString()), Integer.parseInt(minute.getValue().toString()));
     }
-    
-    
 
 }

@@ -65,23 +65,19 @@ public class CategorieLayoutMainFact extends CategorieLayout {
         hour = new ComboBox("heure");
         for(int i=0; i<24; i++){
             hour.addItem(i);
-            i++;
         }
         minute = new ComboBox("minute");
 
         for(int i=0; i<60; i++){
             minute.addItem(i);
-            i++;
         }
         formulaire.addComponent(titleTextField);
         formulaire.addComponent(description);
         formulaire.addComponent(hour);
         hour.setRequired(true);
-        hour.setRequiredError("Chiffre requis");
 
         formulaire.addComponent(minute);
         minute.setRequired(true);
-        minute.setRequiredError("Chiffre requis");
         popUpContent.addComponent(formulaire);
         return popUpContent;
     }
