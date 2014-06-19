@@ -7293,13 +7293,9 @@ body .ourtheme.v-app .v-app-loading {
 
 .ourtheme span.v-captiontext {
 	color: red;
+	cursor: pointer;
 }
 
 .ourtheme div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
 	text-align: center;
-}
-
-.ourtheme tbody {
-	right: 50px;
-	position: fixed;
 }

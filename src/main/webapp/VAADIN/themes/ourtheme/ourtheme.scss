@@ -49,14 +49,13 @@ font-family: 'menu', url('Amandine.ttf');
 
 span.v-captiontext {
 color: red;
+cursor: pointer;
 }
 div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
 text-align: center;
 }
 
 tbody {
-right: 50px;
-position: fixed;
 }
 /*@font-face {
 	font-family: "menu";
