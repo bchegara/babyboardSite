@@ -6,14 +6,12 @@
 
 package com.mycompany.babyboardsite.View;
 
-import com.mycompany.babyboardsite.Data.Activitie;
 import com.mycompany.babyboardsite.Data.Baby;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.mycompany.babyboardsite.Data.Sieste;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 /**

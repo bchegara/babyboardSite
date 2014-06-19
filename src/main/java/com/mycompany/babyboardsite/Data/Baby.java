@@ -26,7 +26,6 @@ public class Baby {
     public SiesteCategorie siesteCategorie;
     public NumeroUtileCategorie numeroUtileCategorie;
     public RepasCategorie repasCategorie;
-    
 
     Oracle oracle = new Oracle();
     private SQLContainer babyTable;
@@ -51,7 +50,8 @@ public class Baby {
     public String getFisrtname() {
         return firstname;
     }
-    public int getIdParent(){
+
+    public int getIdParent() {
         return idParent;
     }
 
@@ -69,8 +69,17 @@ public class Baby {
         idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
     }
 
-    //TEST: pour afficher quelques infos du bébé
-    public Component printBabyInfo() {
+    public Baby() {
+    this.idBaby= idBaby;
+    this.name = name;
+    this.old = old;
+    this.sex = sex;
+    this.firstname = firstname;
+    this.idParent = idParent;
+}
+
+//TEST: pour afficher quelques infos du bébé
+public Component printBabyInfo() {
         Label infoB = new Label("name " + name + " firstname: " + firstname);
         return infoB;
     }

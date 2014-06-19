@@ -5,10 +5,15 @@
  */
 package com.mycompany.babyboardsite.View;
 
+import com.mycompany.babyboardsite.Data.Baby;
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -17,27 +22,44 @@ import com.vaadin.ui.Window;
  * @author kiago
  */
 public class PopUp extends Window {
-
-    public PopUp() {
-//        super("Subs on Sale"); // Set window caption
-//        center();
+//    public Window subWindow;
+//    public VerticalLayout layout;
+//    public String title ;
+//    public Baby baby;
+//    public String validation;
+//    public PopUp() {
+//    }
 //
-//        // Some basic content for the window
+//            public void popup() {
+////        PopUp sub = new PopUp();
+//        subWindow = new Window();
 //        VerticalLayout content = new VerticalLayout();
-//        content.addComponent(new Label("YEAH BITCH"));
+//        content.addComponent(popUpContent());
+//        
 //        content.setMargin(true);
-//        setContent(content);
+//        subWindow.setContent(content);
+//        subWindow.center();
+//        subWindow.setCaption("Ajouter "+title);
 //
 //        // Disable the close button
-//        setClosable(true);
+//        subWindow.setClosable(true);
 //
 //        // Trivial logic for closing the sub-window
 //        Button ok = new Button("OK");
 //        ok.addClickListener(new ClickListener() {
 //            public void buttonClick(ClickEvent event) {
-//                close(); // Close the sub-window
+//                addElement();
+//                Notification.show(validation,
+//                                Notification.Type.TRAY_NOTIFICATION);
+//                subWindow.close();
+//                navigator.navigateTo(BabyboardView.NAME);
 //            }
 //        });
+//        ok.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 //        content.addComponent(ok);
-    }
+//        // Add it to the root component
+//        UI.getCurrent().addWindow(subWindow);
+//
+//    }
+//    
 }

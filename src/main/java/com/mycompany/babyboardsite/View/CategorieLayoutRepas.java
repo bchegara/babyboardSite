@@ -11,7 +11,6 @@ package com.mycompany.babyboardsite.View;
  */
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.Repas;
-import com.vaadin.server.Sizeable;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
