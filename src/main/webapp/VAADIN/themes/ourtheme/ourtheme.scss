@@ -9,7 +9,7 @@
     @include reindeer;
 
     /* Insert your theme rules here */
-    @font-face { 	font-family: "menu";  src: url('Amandine.ttf'); }
+    /*@font-face { 	font-family: "menu";  src: url('Amandine.ttf'); }*/
 
 a{
     text-decoration: none;
@@ -43,6 +43,11 @@ display: inline-block;
 margin: 3px 10px;
 font-size: 21px;
 color: white;
-font-family: 'menu', arial;
+font-family: 'menu', url('Amandine.ttf');
 }
+
+/*	@font-face {
+	font-family: "menu";
+	src: url('Amandine.ttf');
+}*/
 }

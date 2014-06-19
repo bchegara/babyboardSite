@@ -142,7 +142,6 @@
 	margin: 0;
 	line-height: 1.5em;
 	background-color: #fff;
-        
 	color: #666;
 }
 
@@ -352,13 +351,6 @@
 
 .v-generated-body {
 	background: #f5f5f5;
-}
-
-.ourtheme {
-	@font-face {
-	font-family: "menu";
-	src: url('Amandine.ttf');
-}
 }
 
 .ourtheme .v-widget {
@@ -7296,5 +7288,5 @@ body .ourtheme.v-app .v-app-loading {
 	margin: 3px 10px;
 	font-size: 21px;
 	color: white;
-	font-family: "menu", arial;
+	font-family: "menu", url('Amandine.ttf');
 }
