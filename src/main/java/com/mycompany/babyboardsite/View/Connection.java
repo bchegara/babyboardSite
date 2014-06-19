@@ -43,7 +43,7 @@ public class Connection extends Panel implements View {
 
             //layout contenant le formulaire de connexion
             formLayout = new FormLayout();
-            formLayout.addComponent(header);
+//            formLayout.addComponent(header);
 
             formLayout.setSizeFull();
             formLayout.addComponent(textFieldEmail);
@@ -65,16 +65,21 @@ public class Connection extends Panel implements View {
                 public void buttonClick(ClickEvent event) {
                     //On vérifie que  le couple email et mot de passe de passe de l'utilisateur
                     //corresponde à un utilsateur dans la table user
-                    if (user.checkEmailPassword(textFieldEmail.getValue(), textFieldPassword.getValue())) {
-                        //Si le mot de passe et le mail sont bon, on instancie l'utilisateur avec le
-                        //constructeur utilisant l'email et le mot de passe
-                        user = new User(textFieldEmail.getValue(), textFieldPassword.getValue());
-                        //TEST: affiche certaine valeur de l'utilisateur
-                        formLayout.addComponent(user.printUserInfo());
-                        //On stocke l'utilisateur récupérer dans les variables de session Vaadin
-                        VaadinSession.getCurrent().setAttribute(User.class, user);
-                        //On rédirige ensuite l'utilisateur dans le menu
-                        navigator.navigateTo(BabyView.NAME);
+                    if (textFieldEmail.getValue() != null & textFieldPassword.getValue() != null) {
+                        if (user.checkEmailPassword(textFieldEmail.getValue(), textFieldPassword.getValue())) {
+                            //Si le mot de passe et le mail sont bon, on instancie l'utilisateur avec le
+                            //constructeur utilisant l'email et le mot de passe
+                            user = new User(textFieldEmail.getValue(), textFieldPassword.getValue());
+                            //TEST: affiche certaine valeur de l'utilisateur
+                            formLayout.addComponent(user.printUserInfo());
+                            //On stocke l'utilisateur récupérer dans les variables de session Vaadin
+                            VaadinSession.getCurrent().setAttribute(User.class, user);
+                            //On rédirige ensuite l'utilisateur dans le menu
+                            navigator.navigateTo(BabyView.NAME);
+                        } else {
+                            System.out.println("test");
+                            navigator.navigateTo(BabyView.NAME);
+                        }
                     }
                 }
             });
@@ -84,7 +89,7 @@ public class Connection extends Panel implements View {
             setContent(formLayout);
         } else {//Si il est connecté
             VerticalLayout layout = new VerticalLayout();
-            layout.addComponent(header);
+//            layout.addComponent(header);
             layout.addComponent(user.printUserInfo());
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
                     + TableUser.NAME));
@@ -108,8 +113,8 @@ public class Connection extends Panel implements View {
 
     private void logout() {
         // Close the VaadinServiceSession
-        getUI().getSession().close();
-
+//        getUI().getSession().close();
+        VaadinSession.getCurrent().close();
         // Invalidate underlying session instead if login info is stored there
         // VaadinService.getCurrentRequest().getWrappedSession().invalidate();
         // Redirect to avoid keeping the removed UI open in the browser
