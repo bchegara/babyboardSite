@@ -4,12 +4,14 @@ import com.mycompany.babyboardsite.Data.Baby;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.event.LayoutEvents;
 import com.vaadin.event.ShortcutAction;
+import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -32,12 +34,23 @@ public class BabyLayout {
     BabyLayout(int i, Baby baby, Boolean canModify) {
         id = i;
         verticalLayout = new VerticalLayout();
-        TextArea area1 = new TextArea(baby.getName() + " " + baby.getFirstname());
-        area1.addStyleName("baby-title");
-        area1.setWordwrap(true); // The default
-        area1.setValue(baby.getOld());
+        Panel panel = new Panel();
+        panel.setHeight(25, Sizeable.Unit.EM);
+        panel.setWidth(30, Sizeable.Unit.EM);
+        panel.addStyleName("baby-title");
 
-        verticalLayout.addComponent(area1);
+        Label babyNameL = new Label(baby.getName() + " " + baby.getFirstname());
+        Label contentBabyLayout = new Label(baby.getOld());
+        VerticalLayout layoutContenu = new VerticalLayout();
+        layoutContenu.addComponent(babyNameL);
+        layoutContenu.addComponent(contentBabyLayout);
+
+
+//        TextArea area1 = new TextArea(baby.getName() + " " + baby.getFirstname());
+//        area1.addStyleName("baby-title");
+//        area1.setWordwrap(true); // The default
+//        area1.setValue(baby.getOld());
+
         if (canModify) {
             Button addNurse = new Button("Ajoutez une nourrice");
             addNurse.addClickListener(new Button.ClickListener() {
@@ -47,7 +60,7 @@ public class BabyLayout {
                     openNurses();
                 }
             });
-            verticalLayout.addComponent(addNurse);
+            layoutContenu.addComponent(addNurse);
         }
         verticalLayout.addListener(new LayoutEvents.LayoutClickListener() {
             @Override
@@ -57,6 +70,8 @@ public class BabyLayout {
                 navigator.navigateTo(BabyboardView.NAME);
             }
         });
+                panel.setContent(layoutContenu);
+                verticalLayout.addComponent(panel);
     }
 
     public void openNurses() {
