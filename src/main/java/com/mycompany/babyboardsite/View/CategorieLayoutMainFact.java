@@ -7,6 +7,7 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.MainFact;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
@@ -21,8 +22,9 @@ public class CategorieLayoutMainFact extends CategorieLayout {
 
     private TextField titleTextField;
     private TextArea description;
-    private TextField hour;
-    private TextField minute;
+    private ComboBox hour;
+
+    private ComboBox minute;
 
     public CategorieLayoutMainFact(Baby baby) {
         super(baby);
@@ -60,10 +62,17 @@ public class CategorieLayoutMainFact extends CategorieLayout {
         formulaire.setSizeUndefined();
         titleTextField = new TextField("Titre: ");
         description = new TextArea("Description: ");
-        hour = new TextField("heure");
+        hour = new ComboBox("heure");
+        for(int i=0; i<24; i++){
+            hour.addItem(i);
+            i++;
+        }
+        minute = new ComboBox("minute");
 
-        minute = new TextField("minute");
-
+        for(int i=0; i<60; i++){
+            minute.addItem(i);
+            i++;
+        }
         formulaire.addComponent(titleTextField);
         formulaire.addComponent(description);
         formulaire.addComponent(hour);

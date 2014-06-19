@@ -17,7 +17,7 @@ public class MainFact {
     private SQLContainer factTable;
 
     //Classe représentant un fait marquant
-    MainFact(int idF, int idB, String titleF, String descriptionF, String hourF, String dateF) {
+    MainFact(int idF, int idB, String titleF, String descriptionF, String dateF, String hourF) {
         idFact = idF;
         idBaby = idB;
         title = titleF;
