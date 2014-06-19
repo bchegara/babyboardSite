@@ -32,7 +32,8 @@ public class BabyLayout {
     BabyLayout(int i, Baby baby, Boolean canModify) {
         id = i;
         verticalLayout = new VerticalLayout();
-        TextArea area1 = new TextArea(baby.getFisrtname() + " " + baby.getName());
+        TextArea area1 = new TextArea(baby.getName() + " " + baby.getFirstname());
+        area1.addStyleName("baby-title");
         area1.setWordwrap(true); // The default
         area1.setValue(baby.getOld());
 
@@ -113,5 +114,9 @@ public class BabyLayout {
 
     public VerticalLayout getLayout() {
         return verticalLayout;
+    }
+
+    void addStyleName(String babytitle) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

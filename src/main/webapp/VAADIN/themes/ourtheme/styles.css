@@ -7257,7 +7257,7 @@ body .ourtheme.v-app .v-app-loading {
 
 .ourtheme a {
 	text-decoration: none;
-	color: white;
+	color: white !important;
 }
 
 .ourtheme .header {
@@ -7289,4 +7289,17 @@ body .ourtheme.v-app .v-app-loading {
 	font-size: 21px;
 	color: white;
 	font-family: "menu", url('Amandine.ttf');
+}
+
+.ourtheme span.v-captiontext {
+	color: red;
+}
+
+.ourtheme div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
+	text-align: center;
+}
+
+.ourtheme tbody {
+	right: 50px;
+	position: fixed;
 }

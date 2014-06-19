@@ -13,7 +13,7 @@
 
 a{
     text-decoration: none;
-    color: white;
+    color: white !important;
 }
 
 .header {
@@ -46,7 +46,19 @@ color: white;
 font-family: 'menu', url('Amandine.ttf');
 }
 
-/*	@font-face {
+
+span.v-captiontext {
+color: red;
+}
+div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
+text-align: center;
+}
+
+tbody {
+right: 50px;
+position: fixed;
+}
+/*@font-face {
 	font-family: "menu";
 	src: url('Amandine.ttf');
 }*/

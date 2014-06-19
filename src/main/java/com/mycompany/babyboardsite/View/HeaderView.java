@@ -33,8 +33,8 @@ public class HeaderView extends Panel implements View {
         CssLayout menu = new CssLayout();
         menu.addStyleName("menu");
         Link lnk = new Link("Accueil", new ExternalResource("#!"));
-        Link lnk2 = new Link("Mon bébé", new ExternalResource("#!" + BabyView.NAME));
-        Link lnk3 = new Link("Agenda", new ExternalResource("#!" + BabyView.NAME));
+        Link lnk2 = new Link("Mes enfants", new ExternalResource("#!" + BabyView.NAME));
+        Link lnk3 = new Link("Les utilisateurs", new ExternalResource("#!" + TableUser.NAME));
         lnk.addStyleName("menu-link");
         lnk2.addStyleName("menu-link");
         lnk3.addStyleName("menu-link");

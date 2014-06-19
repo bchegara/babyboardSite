@@ -47,7 +47,7 @@ public class Baby {
         return sex;
     }
 
-    public String getFisrtname() {
+    public String getFirstname() {
         return firstname;
     }
 
