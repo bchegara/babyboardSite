@@ -31,13 +31,15 @@ public class Connection extends Panel implements View {
     private PasswordField textFieldPassword = new PasswordField("Password:");
     public FormLayout formLayout;
     private User user;
+    public VerticalLayout layout;
 
     public Connection() {
 
         user = VaadinSession.getCurrent().getAttribute(User.class);
-
+        layout = new VerticalLayout();
+        layout.addComponent(new HeaderHome());
         if (!user.isConnected()) {
-
+//            layout = new VerticalLayout();
             Link linkSubcribe = new Link("Page d'inscription", new ExternalResource("#!"
                     + Subscribe.NAME));
 
@@ -86,9 +88,10 @@ public class Connection extends Panel implements View {
 
             formLayout.addComponent(connectionButton);
             formLayout.addComponent(linkSubcribe);
-            setContent(formLayout);
+            layout.addComponent(formLayout);
+            setContent(layout);
         } else {//Si il est connecté
-            VerticalLayout layout = new VerticalLayout();
+//            layout = new VerticalLayout();
 //            layout.addComponent(header);
             layout.addComponent(user.printUserInfo());
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
