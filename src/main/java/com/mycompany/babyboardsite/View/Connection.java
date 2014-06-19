@@ -33,19 +33,18 @@ public class Connection extends Panel implements View {
     private User user;
 
     public Connection() {
-        
+
         user = VaadinSession.getCurrent().getAttribute(User.class);
 
         if (!user.isConnected()) {
-          
-            
+
             Link linkSubcribe = new Link("Page d'inscription", new ExternalResource("#!"
                     + Subscribe.NAME));
 
             //layout contenant le formulaire de connexion
             formLayout = new FormLayout();
-              
-              formLayout.addComponent(header);
+            formLayout.addComponent(header);
+
             formLayout.setSizeFull();
             formLayout.addComponent(textFieldEmail);
             // Mark field as required
@@ -85,7 +84,7 @@ public class Connection extends Panel implements View {
             setContent(formLayout);
         } else {//Si il est connecté
             VerticalLayout layout = new VerticalLayout();
-            layout.setMargin(true);
+            layout.addComponent(header);
             layout.addComponent(user.printUserInfo());
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
                     + TableUser.NAME));

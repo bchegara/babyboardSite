@@ -34,7 +34,6 @@ public class BabyView extends Panel implements View {
         user = VaadinSession.getCurrent().getAttribute(User.class);
 
         final VerticalLayout layout = new VerticalLayout();
-        layout.setMargin(true);
         
         layout.addComponent(header);
         //affiche le lien vers le tableau des utilisateur que si l'utilsateur à le rightLevel admin
