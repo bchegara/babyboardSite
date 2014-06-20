@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -217,16 +219,23 @@ public class Baby {
     }
     
     public void updatePostit(String s){
-        babyTable = oracle.queryTable("babies");
-        babyTable.addContainerFilter(new Compare.Equal("idBaby", this.idBaby));// WHERE idBaby=idBaby
-        Item infoUser = babyTable.getItem(new RowId(new Object[]{this.idBaby}));
-        
-        name = infoUser.getItemProperty("name").getValue().toString();
-        old = infoUser.getItemProperty("age").getValue().toString();
-        sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
-        firstname = infoUser.getItemProperty("firstName").getValue().toString();
-        idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
-        postIt = infoUser.getItemProperty("postit").getValue().toString();
+        try {
+            babyTable = oracle.queryTable("babies");
+            babyTable.addContainerFilter(new Compare.Equal("idBaby", this.idBaby));// WHERE idBaby=idBaby
+            Item infoUser = babyTable.getItem(new RowId(new Object[]{this.idBaby}));
+            infoUser.getItemProperty("postit").setValue(s);
+            babyTable.commit();
+//        name = infoUser.getItemProperty("name").getValue().toString();
+//        old = infoUser.getItemProperty("age").getValue().toString();
+//        sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
+//        firstname = infoUser.getItemProperty("firstName").getValue().toString();
+//        idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
+//        postIt = infoUser.getItemProperty("postit").getValue().toString();
+        } catch (UnsupportedOperationException ex) {
+            Logger.getLogger(Baby.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Baby.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }

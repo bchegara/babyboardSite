@@ -45,6 +45,7 @@ public class BabyboardView extends Panel implements View {
 
     private Date date;
     private InlineDateField calendar;
+    private TextArea textArea;
 
     //Vue répresentant une page du carnet de bord d'un enfant
     public BabyboardView() {
@@ -179,17 +180,19 @@ public class BabyboardView extends Panel implements View {
 
     public void popup(String postit) {
         subWindow = new Window();
+        subWindow.setClosable(true);
         VerticalLayout content = new VerticalLayout();
-        TextArea textArea = new TextArea();
+        textArea = new TextArea();
         textArea.setValue(postit);
 
         content.addComponent(textArea);
 
         content.setMargin(true);
+        
         subWindow.setContent(content);
         subWindow.center();
         //Set position windows
-        subWindow.setPositionX(1200);
+        subWindow.setPositionX(800);
         subWindow.setPositionY(400);
         subWindow.setCaption("POST-IT");
 
@@ -200,6 +203,7 @@ public class BabyboardView extends Panel implements View {
         Button ok = new Button("Sauvegarder");
         ok.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
+                baby.updatePostit(textArea.getValue());
                 //modifier post it dans bdd
                 //UI.getCurrent().removeWindow(subWindow);
             }
