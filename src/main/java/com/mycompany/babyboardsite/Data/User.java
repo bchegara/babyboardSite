@@ -11,6 +11,7 @@ import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -160,7 +161,7 @@ public class User {
         }
     }
 
-    public void addUser(String first, String last, String email, String password, String rightLevel) {
+    public void addUser(String first, String last, String email, String password, String rightLevel, String tel, String adresse, String city, int zip) {
         SQLContainer userContainer;
 
         userContainer = oracle.queryTable("users");
@@ -170,10 +171,10 @@ public class User {
             rowItem.getItemProperty("name").setValue(last);
             rowItem.getItemProperty("email").setValue(email);
             rowItem.getItemProperty("password").setValue(password);
-            rowItem.getItemProperty("adress").setValue("default");
-            rowItem.getItemProperty("zip").setValue(000);
-            rowItem.getItemProperty("city").setValue("default");
-            rowItem.getItemProperty("tel").setValue(666);
+            rowItem.getItemProperty("adress").setValue(adresse);
+            rowItem.getItemProperty("zip").setValue(zip);
+            rowItem.getItemProperty("city").setValue(city);
+            rowItem.getItemProperty("tel").setValue(tel);
             rowItem.getItemProperty("firstName").setValue(first);
             rowItem.getItemProperty("rightLevel").setValue(rightLevel);
             userContainer.commit();
@@ -284,6 +285,13 @@ public class User {
             System.out.println("e");
         }
         return userTable;
+    }
+    public VerticalLayout welcomLayout(){
+        VerticalLayout welcomeL = new VerticalLayout();
+        welcomeL.addComponent(new Label("Bienvenue "+firstname+" "+name+"!"));
+        welcomeL.addComponent(new Label("Compte de type: "+this.getRightLevel()));
+        welcomeL.addComponent(new Label("Vous avez "+babyList.size()+" enfants asscoié(s) à votre compte"));
+        return welcomeL;
     }
     
 

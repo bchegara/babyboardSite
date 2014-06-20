@@ -95,7 +95,8 @@ public class Connection extends Panel implements View {
             box.addComponent(layout);
             setContent(box);
         } else {//Si il est connecté
-            layout.addComponent(user.printUserInfo());
+            layout.addComponent(user.welcomLayout());
+            
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
                     + TableUser.NAME));
             layout.addComponent(linkTableUser);

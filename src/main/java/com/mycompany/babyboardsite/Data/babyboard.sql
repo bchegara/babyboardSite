@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 20 Juin 2014 à 05:11
+-- Généré le: Ven 20 Juin 2014 à 15:26
 -- Version du serveur: 5.5.37-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `babies` (
   `firstName` varchar(200) NOT NULL,
   `idParent` int(11) NOT NULL,
   PRIMARY KEY (`idBaby`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `babies`
@@ -81,7 +81,8 @@ INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`, `idParent`) V
 (2, 'ToscanJunior', '2014-06-16', 0, 'Vertanessian', 2),
 (3, 'Test', '2014-06-10', 1, 'testtttt', 2),
 (6, 'test créa autot', 'Tue Jun 03 05:03:25 CEST 2014', 1, 'test créa autot', 2),
-(7, 'testest', 'Mon May 26 05:09:47 CEST 2014', 2, 'testest', 2);
+(7, 'testest', 'Mon May 26 05:09:47 CEST 2014', 2, 'testest', 2),
+(8, 'TEST', 'Fri Jun 20 15:13:55 CEST 2014', 1, 'TEST', 7);
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `jonction` (
   `idUser` int(10) NOT NULL,
   `idBaby` int(10) NOT NULL,
   PRIMARY KEY (`idJonction`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `jonction`
@@ -110,7 +111,9 @@ INSERT INTO `jonction` (`idJonction`, `idUser`, `idBaby`) VALUES
 (7, 3, 2),
 (8, 3, 2),
 (9, 2, 6),
-(10, 2, 7);
+(10, 2, 7),
+(11, 3, 7),
+(12, 7, 8);
 
 -- --------------------------------------------------------
 
@@ -248,23 +251,25 @@ CREATE TABLE IF NOT EXISTS `users` (
   `adress` varchar(200) NOT NULL,
   `zip` int(10) NOT NULL,
   `city` varchar(200) NOT NULL,
-  `tel` int(10) NOT NULL,
+  `tel` varchar(15) NOT NULL,
   `firstName` varchar(200) NOT NULL,
   `rightLevel` varchar(10) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`idUser`, `name`, `email`, `password`, `adress`, `zip`, `city`, `tel`, `firstName`, `rightLevel`) VALUES
-(1, 'Geoffroy', 'Rouaix', 'tata', '57 rue michel ange', 75016, 'Paris', 618275025, 'Rouaix', 'ADMIN'),
-(2, 'Cheg', 'b', 'a', 'adresse', 75018, 'Paris', 0, 'Baptiste', 'ADMIN'),
-(3, 'name', 'a', 'a', 'add', 0, 'city', 0, 'fname', 'NURSE'),
-(4, 'name', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', 88888, 'DEDED', 'ADMIN'),
-(5, 'user pas admin', 'u', 'u', 'k,sckl,sklc,skl,c', 33333, 'klz,fklz,fkzl,flkz', 33333333, 'aaaaaaaaaa', 'USER'),
-(6, 'ueus', 'z', 'z', 'default', 0, 'default', 666, 'usertest', 'USER');
+(1, 'Geoffroy', 'Rouaix', 'tata', '57 rue michel ange', 75016, 'Paris', '618275025', 'Rouaix', 'ADMIN'),
+(2, 'Cheg', 'b', 'a', 'adresse', 75018, 'Paris', '0', 'Baptiste', 'ADMIN'),
+(3, 'name', 'a', 'a', 'add', 0, 'city', '0', 'fname', 'NURSE'),
+(4, 'name', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', '88888', 'DEDED', 'ADMIN'),
+(5, 'user pas admin', 'u', 'u', 'k,sckl,sklc,skl,c', 33333, 'klz,fklz,fkzl,flkz', '33333333', 'aaaaaaaaaa', 'USER'),
+(6, 'ueus', 'z', 'z', 'default', 0, 'default', '666', 'usertest', 'USER'),
+(7, 'tetstststt', 'aze', 'aze', 'default', 0, 'default', '0606060606', 'testtett', 'USER'),
+(8, 'testotot', 'po', 'po', 'dzadad', 756363, 'po', '06060606', 'testtotot', 'USER');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

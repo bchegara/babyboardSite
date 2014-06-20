@@ -34,40 +34,41 @@ public class BabyView extends Panel implements View {
         user = VaadinSession.getCurrent().getAttribute(User.class);
 
         final VerticalLayout layout = new VerticalLayout();
-        
+
         layout.addComponent(new HeaderView());
         //affiche le lien vers le tableau des utilisateur que si l'utilsateur à le rightLevel admin
-        if(user.isAdmin()){
-        Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
+        if (user.isAdmin()) {
+            Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
                     + TableUser.NAME));
             layout.addComponent(linkTableUser);
             layout.addComponent(linkTableUser);
+        }
+        if (user.isUser() || user.isAdmin()) {
+            AddCarnetDeBordLayout addCarnetBord = new AddCarnetDeBordLayout(user.getId());
+            layout.addComponent(addCarnetBord.getLayoutHorizontal());
+
         }
         //Si l'utilisateur n'a pas de bébé associé à son compte
         if (user.babyList.isEmpty()) {
             Label noChildMsg = new Label("Vous n'aver pas d'enfant associé à votre compte!");
             layout.addComponent(noChildMsg);
         } else {
-            if(user.isUser() || user.isAdmin()){
-                AddCarnetDeBordLayout addCarnetBord = new AddCarnetDeBordLayout(user.getId());
-                layout.addComponent(addCarnetBord.getLayoutHorizontal());
-                
-            }
+
             Label enfantTitle = new Label("Vos enfants: ");
             layout.addComponent(enfantTitle);
-            try{
+            try {
                 VaadinSession.getCurrent().setAttribute("date", null);
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("erreur reset date");
             }
             try {
                 babyNumber = 0;
                 //On parcourt la list des bébé associer à l'utilisateur
-                ligneBaby= new HorizontalLayout();
+                ligneBaby = new HorizontalLayout();
                 for (Baby baby : user.babyList) {
-                    if(babyNumber % 3 == 0){
+                    if (babyNumber % 3 == 0) {
                         layout.addComponent(ligneBaby);
-                        ligneBaby= new HorizontalLayout();
+                        ligneBaby = new HorizontalLayout();
                     }
                     BabyLayout babyLayout = new BabyLayout(babyNumber, baby, (user.getId() == baby.getIdParent()));
                     VerticalLayout babyVL = babyLayout.getLayout();
@@ -79,10 +80,9 @@ public class BabyView extends Panel implements View {
                 System.out.println("erreur lors du parcourt de la liste des enfants");
             }
             layout.addComponent(ligneBaby);
-            
-            
+
         }
-        
+
         setContent(layout);
     }
 

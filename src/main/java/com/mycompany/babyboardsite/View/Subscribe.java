@@ -7,6 +7,7 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.*;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.sun.jmx.snmp.BerDecoder;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.event.ShortcutAction;
@@ -38,6 +39,10 @@ public class Subscribe extends Panel implements View {
     private PasswordField textFieldPassword = new PasswordField("Password:");
     private PasswordField textFieldPasswordCheck = new PasswordField("Verification Password:");
     private ComboBox rightLevel = new ComboBox("Type d'utilisateur: ");
+    private TextField textFieldtel = new TextField("Téléphone: ");
+    private TextField textFieldCity = new TextField("Ville: ");
+    private TextField textFieldZip = new TextField("Code postal: ");
+    private TextField textFieldAdresse = new TextField("Adresse: ");
 
     public FormLayout subscribeLayout;
     private User user;
@@ -55,10 +60,24 @@ public class Subscribe extends Panel implements View {
         subscribeLayout.addComponent(textFieldFirst);
         subscribeLayout.addComponent(textFieldLast);
         subscribeLayout.addComponent(rightLevel);
+        subscribeLayout.addComponent(textFieldtel);
         subscribeLayout.addComponent(textFieldEmail);
         subscribeLayout.addComponent(textFieldEmailCheck);
+        subscribeLayout.addComponent(textFieldCity);
+        subscribeLayout.addComponent(textFieldZip);
+        subscribeLayout.addComponent(textFieldAdresse);
 
         // Mark field as required
+        rightLevel.setRequired(true);
+        rightLevel.setRequiredError("requis!");
+        textFieldAdresse.setRequired(true);
+        textFieldAdresse.setRequiredError("requis!");
+        textFieldZip.setRequired(true);
+        textFieldZip.setRequiredError("requis!");
+        textFieldCity.setRequired(true);
+        textFieldCity.setRequiredError("requis!");
+        textFieldtel.setRequired(true);
+        textFieldtel.setRequiredError("requis!");
         textFieldEmailCheck.setRequired(true);
         textFieldEmailCheck.setRequiredError("requis!");
         textFieldFirst.setRequired(true);
@@ -95,7 +114,8 @@ public class Subscribe extends Panel implements View {
 
                         if (user.checkEmail(textFieldEmail.getValue())) {
                             //insert dans la base de données
-                            user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue(), rightLevel.getValue().toString());
+                            user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue(), rightLevel.getValue().toString(),
+                                    textFieldtel.getValue(), textFieldAdresse.getValue(), textFieldCity.getValue(), Integer.parseInt(textFieldZip.getValue()));
                             navigator.navigateTo(Connection.NAME);
                             errorSubscribing = 0;
 
