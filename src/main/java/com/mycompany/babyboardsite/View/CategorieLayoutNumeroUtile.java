@@ -28,6 +28,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//Classe pour la partie graphique du composant sieste du babyboard
+//l'ajout de numéro ne fonctionne pas
 public class CategorieLayoutNumeroUtile extends CategorieLayout {
 
     HorizontalLayout horizontalLayout;

@@ -18,9 +18,9 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+//Classe pour la partie graphique du composant repas du babyboard
 public class CategorieLayoutRepas extends CategorieLayout {
 
     ComboBox kind;

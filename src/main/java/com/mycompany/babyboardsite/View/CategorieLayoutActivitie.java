@@ -20,6 +20,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author baptman
  */
+//Classe pour la partie graphique du composant activité du babyboard
 public class CategorieLayoutActivitie extends CategorieLayout {
 
     ComboBox hour;

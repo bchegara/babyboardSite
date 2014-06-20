@@ -24,6 +24,7 @@ import com.vaadin.ui.Window;
  *
  * @author baptman
  */
+//Classe abstraite utiliser pour les catégorie bu babyboard
 public abstract class CategorieLayout {
 
     public Window subWindow;

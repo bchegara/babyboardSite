@@ -20,6 +20,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author baptman
  */
+//Classe pour la partie graphique du composant sieste du babyboard
 public class CategorieLayoutSieste extends CategorieLayout {
 
     ComboBox hour;

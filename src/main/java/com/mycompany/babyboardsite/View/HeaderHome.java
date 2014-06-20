@@ -19,6 +19,7 @@ import java.io.File;
 public class HeaderHome extends Panel implements View {
 
     private CssLayout layout;
+    //Classe pour le header visiteur
     public HeaderHome() {
 
         layout = new CssLayout();

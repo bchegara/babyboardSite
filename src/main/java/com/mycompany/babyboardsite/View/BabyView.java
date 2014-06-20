@@ -20,6 +20,7 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+//Vue présenter les enfants associés à un compte utilisateur
 public class BabyView extends Panel implements View {
 
     public static final String NAME = "Baby";
@@ -29,6 +30,7 @@ public class BabyView extends Panel implements View {
     private int babyNumber = 0;
     private HorizontalLayout ligneBaby;
 
+    
     public BabyView() {
         user = VaadinSession.getCurrent().getAttribute(User.class);
 

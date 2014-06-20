@@ -24,6 +24,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author geoffroyrouaix
  */
+//Vue d'accueil et aussi page de connexion
 public class Connection extends Panel implements View {
 
     public static final String NAME = "";

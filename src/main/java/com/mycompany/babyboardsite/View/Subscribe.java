@@ -27,6 +27,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author geoffroyrouaix
  */
+//Vue d'inscription
 public class Subscribe extends Panel implements View {
 
     public static final String NAME = "Subscribe";

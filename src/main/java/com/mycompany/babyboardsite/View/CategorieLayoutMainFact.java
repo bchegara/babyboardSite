@@ -23,6 +23,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author baptman
  */
+//Classe pour la partie graphique du composant faitmarquant du babyboard
 public class CategorieLayoutMainFact extends CategorieLayout {
 
     private TextField titleTextField;

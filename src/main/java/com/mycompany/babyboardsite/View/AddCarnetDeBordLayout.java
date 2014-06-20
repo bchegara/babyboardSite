@@ -25,6 +25,7 @@ import java.util.Locale;
  *
  * @author baptman
  */
+//Vue pour ajouter un carnet de bord
 public class AddCarnetDeBordLayout {
 
     public VerticalLayout layout;

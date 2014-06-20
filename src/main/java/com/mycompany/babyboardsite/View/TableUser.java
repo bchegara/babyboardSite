@@ -35,6 +35,8 @@ public class TableUser extends Panel implements View {
     private User user;
     private Oracle oracle;
 
+    //Vue pour gérer les utilisateurs
+    //Bug sur l'ajout depuis des modifs sur la bdd
     public TableUser() {
 
         user = VaadinSession.getCurrent().getAttribute(User.class);
