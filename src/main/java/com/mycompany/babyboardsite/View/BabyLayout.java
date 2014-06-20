@@ -49,21 +49,18 @@ public class BabyLayout {
         VerticalLayout layoutContenu = new VerticalLayout();
         layoutContenu.addComponent(babyNameL);
         layoutContenu.addComponent(contentBabyLayout);
-
-//        TextArea area1 = new TextArea(baby.getName() + " " + baby.getFirstname());
-//        area1.addStyleName("baby-title");
-//        area1.setWordwrap(true); // The default
-//        area1.setValue(baby.getOld());
         if (canModify) {
             Button addNurse = new Button("Ajoutez une nourrice");
             addNurse.addClickListener(new Button.ClickListener() {
                 public void buttonClick(Button.ClickEvent event) {
-
-                    //fonction affichage des nurse disponibles
-//                    openNurses();
                     popup();
                 }
             });
+            layoutContenu.addComponent(new Label("Utilisateur associé au bébés:"));
+            for (String userName : baby.getUserAssociated()) {
+                layoutContenu.addComponent(new Label(userName));
+            }
+            
             layoutContenu.addComponent(addNurse);
         }
         verticalLayout.addListener(new LayoutEvents.LayoutClickListener() {
@@ -78,25 +75,24 @@ public class BabyLayout {
         verticalLayout.addComponent(panel);
     }
 
-    public void openNurses() {
-        //ouvrir une pop
-        int i = 1;
-        //appel bdd pour check nurses dispo
-        //gérer le contenu de la pop up
-        if (i == 1) {
-            //afficher la liste des nurses dispo
-            //display nurses dispo
-            V1 = new VerticalLayout();
-        } else if (i == 2) {
-            //pas de nurses dispo
-
-        } else {
-            //error       
-        }
-//        popup(V1);
-
-    }
-    //le vertical layout va servir a contenir les différentes possiblités
+//    public void openNurses() {
+//        //ouvrir une pop
+//        int i = 1;
+//        //appel bdd pour check nurses dispo
+//        //gérer le contenu de la pop up
+//        if (i == 1) {
+//            //afficher la liste des nurses dispo
+//            //display nurses dispo
+//            V1 = new VerticalLayout();
+//        } else if (i == 2) {
+//            //pas de nurses dispo
+//
+//        } else {
+//            //error       
+//        }
+////        popup(V1);
+//
+//    }
 
 //    public void popup(VerticalLayout Vlayout) {
     public void popup() {
@@ -156,7 +152,5 @@ public class BabyLayout {
         return verticalLayout;
     }
 
-    void addStyleName(String babytitle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }
