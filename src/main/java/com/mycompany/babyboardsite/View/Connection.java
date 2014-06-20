@@ -39,10 +39,12 @@ public class Connection extends Panel implements View {
         final CssLayout box = new CssLayout();
         box.addStyleName("connexion");
         user = VaadinSession.getCurrent().getAttribute(User.class);
+//        layout.addComponent(user.getHeader());
         layout = new VerticalLayout();
         layout.setSizeFull();
-        layout.addComponent(new HeaderView());
+        
         if (!user.isConnected()) {
+            layout.addComponent(new HeaderHome().getLayout());
 //            layout = new VerticalLayout();
             Link linkSubcribe = new Link("Page d'inscription", new ExternalResource("#!"
                     + Subscribe.NAME));
@@ -98,6 +100,7 @@ public class Connection extends Panel implements View {
             box.addComponent(layout);
             setContent(box);
         } else {//Si il est connecté
+            layout.addComponent(user.getHeader());  
             layout.addComponent(user.welcomLayout());
 
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"

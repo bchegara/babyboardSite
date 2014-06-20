@@ -18,21 +18,34 @@ import java.io.File;
  */
 public class HeaderHome extends Panel implements View {
 
+    private CssLayout layout;
     public HeaderHome() {
 
-        final CssLayout layout = new CssLayout();
+        layout = new CssLayout();
         layout.addStyleName("header");
-        layout.addComponent(new Label("test"));
         //logo
-//        String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-//        FileResource resource = new FileResource(new File(basepath + "/WEB-INF/images/logo.png"));
-//        Image image = new Image(null, resource);
-//        image.addStyleName("logo");
-//        layout.addComponent(image);
+        String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+        FileResource resource = new FileResource(new File(basepath + "/WEB-INF/images/logo.png"));
+        Image image = new Image(null, resource);
+        image.addStyleName("logo");
+        layout.addComponent(image);
+        CssLayout menu = new CssLayout();
+        menu.addStyleName("menu");
+        Link lnk = new Link("Accueil", new ExternalResource("#!"));
+        Link lnk2 = new Link("Inscription", new ExternalResource("#!" + Subscribe.NAME));
+        lnk.addStyleName("menu-link");
+        lnk2.addStyleName("menu-link");
+        menu.addComponent(lnk);
+        menu.addComponent(lnk2);
+        layout.addComponent(menu);
 
         
-        setContent(layout);
+//        setContent(layout);
+//        return layout;
 
+    }
+    public CssLayout getLayout(){
+        return layout;
     }
 
     @Override

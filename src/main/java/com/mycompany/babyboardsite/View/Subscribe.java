@@ -7,9 +7,6 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.*;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
-import com.sun.jmx.snmp.BerDecoder;
-import com.vaadin.data.fieldgroup.BeanFieldGroup;
-import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -19,13 +16,12 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  *
@@ -45,6 +41,7 @@ public class Subscribe extends Panel implements View {
     private TextField textFieldCity = new TextField("Ville: ");
     private TextField textFieldZip = new TextField("Code postal: ");
     private TextField textFieldAdresse = new TextField("Adresse: ");
+    public VerticalLayout layout;
     public FormLayout subscribeLayout;
     private User user;
     public int i = 0;
@@ -55,6 +52,7 @@ public class Subscribe extends Panel implements View {
         rightLevel.select("USER");
         user = VaadinSession.getCurrent().getAttribute(User.class);
         //layout contenant le formulaire d'inscription
+        layout = new VerticalLayout();
         subscribeLayout = new FormLayout();
         subscribeLayout.setSizeUndefined();
         subscribeLayout.addComponent(textFieldFirst);
@@ -66,6 +64,8 @@ public class Subscribe extends Panel implements View {
         subscribeLayout.addComponent(textFieldCity);
         subscribeLayout.addComponent(textFieldZip);
         subscribeLayout.addComponent(textFieldAdresse);
+        
+        layout.addComponent(new HeaderHome());
 
         // Mark field as required
         rightLevel.setRequired(true);
@@ -156,7 +156,8 @@ public class Subscribe extends Panel implements View {
         subscribeLayout.addComponent(user.printErrorSubscribe(i));
 
         subscribeLayout.addComponent(subscribeButton);
-        setContent(subscribeLayout);
+        layout.addComponent(subscribeLayout);
+        setContent(layout);
 
     }
 
