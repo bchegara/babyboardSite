@@ -67,7 +67,7 @@ public class Baby {
         return postIt;
     }
 
-    //Constructeur pour récupérer un bébé avec son idBay
+    //Constructeur pour récupérer un bébé avec son idBaby
     public Baby(int idB) {
 
         babyTable = oracle.queryTable("babies");
