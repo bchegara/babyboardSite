@@ -97,31 +97,36 @@ public class BabyboardView extends Panel implements View {
                 });
                 try {
                     //on instancie l'objet stokant le layout des fait marquants
-                    HorizontalLayout categorieLayout = new HorizontalLayout();
-                    HorizontalLayout categorieLayout2 = new HorizontalLayout();
+                    HorizontalLayout layoutL = new HorizontalLayout();
+                    VerticalLayout categorieLayout = new VerticalLayout();
+                    VerticalLayout categorieLayout2 = new VerticalLayout();
+                    VerticalLayout calendarAndNumeroUtile = new VerticalLayout();
 
                     CategorieLayoutMainFact mainFactComponent = new CategorieLayoutMainFact(baby);
                     //on ajoute le layout fait marquant au layout de la page
                     categorieLayout.addComponent(mainFactComponent.getLayout());
                     //On ajoute le calendrier
                     CategorieLayoutActivitie activitieComponent = new CategorieLayoutActivitie(baby);
-                    categorieLayout.addComponent(activitieComponent.getLayout());
+                    categorieLayout2.addComponent(activitieComponent.getLayout());
 
                     CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
-                    categorieLayout2.addComponent(siesteComponent.getLayout());
+                    categorieLayout.addComponent(siesteComponent.getLayout());
                     categorieLayout.setSpacing(true);
                     
                     CategorieLayoutRepas repasComponent = new CategorieLayoutRepas(baby);
                     categorieLayout2.addComponent(repasComponent.getLayout());
                     
-                    VerticalLayout calendarAndNumeroUtile = new VerticalLayout();
+//                    VerticalLayout calendarAndNumeroUtile = new VerticalLayout();
                     calendarAndNumeroUtile.addComponent(calendar);
                     CategorieLayoutNumeroUtile numeroUtileComponent = new CategorieLayoutNumeroUtile(baby);
                     calendarAndNumeroUtile.addComponent(numeroUtileComponent.getLayoutHorizontal());
                     
-                    categorieLayout.addComponent(calendarAndNumeroUtile);
-                    layout.addComponent(categorieLayout);
-                    layout.addComponent(categorieLayout2);
+                    
+                    layoutL.addComponent(categorieLayout);
+                    layoutL.addComponent(categorieLayout2);
+                    layoutL.addComponent(calendarAndNumeroUtile);
+                    layout.addComponent(layoutL);
+                    
                 } catch (Exception e) {
                     System.out.println("pas de d'infos");
                 }

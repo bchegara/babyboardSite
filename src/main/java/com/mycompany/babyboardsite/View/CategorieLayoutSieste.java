@@ -33,7 +33,7 @@ public class CategorieLayoutSieste extends CategorieLayout {
     public VerticalLayout contenu(Baby baby) {
         final VerticalLayout siesteComponent = new VerticalLayout();
         siesteComponent.setSizeFull();
-        siesteComponent.addStyleName("box-element");
+//        siesteComponent.addStyleName("box-element");
         try {
 
             for (Sieste sieste : baby.siesteCategorie.returnListCategorie()) {

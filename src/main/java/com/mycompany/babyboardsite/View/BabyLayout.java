@@ -38,6 +38,7 @@ public class BabyLayout {
         Panel panel = new Panel();
         panel.setHeight(25, Sizeable.Unit.EM);
         panel.setWidth(30, Sizeable.Unit.EM);
+        
 
         Label babyNameL = new Label(baby.getName() + " " + baby.getFirstname());
         babyNameL.addStyleName("baby-title");
@@ -125,7 +126,6 @@ public class BabyLayout {
         ok.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
                 //association bébé à nourice
-//                tableNurse.getId();
                 try{
                 System.out.println(tableNurse.getValue().toString());
                     

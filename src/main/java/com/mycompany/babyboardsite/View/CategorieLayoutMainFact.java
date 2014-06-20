@@ -36,7 +36,7 @@ public class CategorieLayoutMainFact extends CategorieLayout {
     public VerticalLayout contenu(Baby baby) {
 
         final VerticalLayout factComponent = new VerticalLayout();
-        factComponent.addStyleName("box-element");
+//        factComponent.addStyleName("box-element");
         factComponent.setSizeFull();
         try {
 
