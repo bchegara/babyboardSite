@@ -26,6 +26,7 @@ public class HeaderView extends Panel implements View {
     private CssLayout layout;
     public static boolean closeSession = false;
 
+    //Classe pour le header utilisateur
     public HeaderView() {
 
         layout = new CssLayout();
