@@ -38,11 +38,12 @@ public class Connection extends Panel implements View {
 
         final CssLayout box = new CssLayout();
         box.addStyleName("connexion");
+
         user = VaadinSession.getCurrent().getAttribute(User.class);
 //        layout.addComponent(user.getHeader());
         layout = new VerticalLayout();
         layout.setSizeFull();
-        
+
         if (!user.isConnected()) {
             layout.addComponent(new HeaderHome().getLayout());
 //            layout = new VerticalLayout();
@@ -74,7 +75,7 @@ public class Connection extends Panel implements View {
                     try {
                         if (textFieldEmail.getValue() != null & textFieldPassword.getValue() != null) {
                             if (user.checkEmailPassword(textFieldEmail.getValue(), textFieldPassword.getValue())) {
-                            //Si le mot de passe et le mail sont bon, on instancie l'utilisateur avec le
+                                //Si le mot de passe et le mail sont bon, on instancie l'utilisateur avec le
                                 //constructeur utilisant l'email et le mot de passe
                                 user = new User(textFieldEmail.getValue(), textFieldPassword.getValue());
                                 //TEST: affiche certaine valeur de l'utilisateur
@@ -88,7 +89,7 @@ public class Connection extends Panel implements View {
                                 navigator.navigateTo(Connection.NAME);
                             }
                         }
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         navigator.navigateTo(Connection.NAME);
                     }
                 }
@@ -100,7 +101,9 @@ public class Connection extends Panel implements View {
             box.addComponent(layout);
             setContent(box);
         } else {//Si il est connecté
-            layout.addComponent(user.getHeader());  
+
+            layout.addComponent(user.getHeader());
+
             layout.addComponent(user.welcomLayout());
 
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
@@ -116,11 +119,13 @@ public class Connection extends Panel implements View {
                 public void buttonClick(Button.ClickEvent event) {
 
                     logout();
+
                 }
             });
             layout.addComponent(deconnectionButton);
             box.addComponent(layout);
             setContent(box);
+
         }
     }
 

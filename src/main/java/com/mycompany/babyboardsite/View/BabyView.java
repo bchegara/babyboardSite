@@ -20,7 +20,6 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 public class BabyView extends Panel implements View {
 
     public static final String NAME = "Baby";
@@ -50,7 +49,7 @@ public class BabyView extends Panel implements View {
         }
         //Si l'utilisateur n'a pas de bébé associé à son compte
         if (user.babyList.isEmpty()) {
-            Label noChildMsg = new Label("Vous n'aver pas d'enfant associé à votre compte!");
+            Label noChildMsg = new Label("Vous n'avez pas d'enfant associés à votre compte!");
             layout.addComponent(noChildMsg);
         } else {
 

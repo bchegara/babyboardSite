@@ -77,7 +77,7 @@ public class Baby {
         sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
         firstname = infoUser.getItemProperty("firstName").getValue().toString();
         idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
-        postIt = infoUser.getItemProperty("postit").getValue().toString();
+        //postIt = infoUser.getItemProperty("postit").getValue().toString();
 
     }
 
@@ -149,6 +149,7 @@ public class Baby {
             rowItem.getItemProperty("sex").setValue(sex);
             rowItem.getItemProperty("firstName").setValue(name);
             rowItem.getItemProperty("idParent").setValue(idParent);
+            rowItem.getItemProperty("postit").setValue("nouveau post it");
 
             babyTable.commit();
             idBaby = Integer.parseInt(babyTable.lastItemId().toString());

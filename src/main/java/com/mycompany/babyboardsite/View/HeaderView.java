@@ -1,5 +1,8 @@
 package com.mycompany.babyboardsite.View;
 
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.event.LayoutEvents;
+import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -19,9 +22,11 @@ import java.io.File;
  * @author geoffroyrouaix
  */
 public class HeaderView extends Panel implements View {
-private CssLayout layout;
+
+    private CssLayout layout;
+    public static boolean closeSession = false;
+
     public HeaderView() {
-        
 
         layout = new CssLayout();
         layout.addStyleName("header");
@@ -40,21 +45,20 @@ private CssLayout layout;
         Link lnk2 = new Link("Mes enfants", new ExternalResource("#!" + BabyView.NAME));
         lnk.addStyleName("menu-link");
         lnk2.addStyleName("menu-link");
+
         Button deconnectionButton = new Button("Déconnexion");
         deconnectionButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                
-                VaadinSession.getCurrent().close();
-                try{
-                    getUI().getPage().setLocation(Connection.NAME);
-                }catch(Exception e){
-                    System.out.println("erreur redirection");
-                }
-                
+
+                closeSession = true;
+                navigator.navigateTo(Connection.NAME);
+
             }
         });
+
         menu.addComponent(lnk);
         menu.addComponent(lnk2);
+
         menu.addComponent(deconnectionButton);
         layout.addComponent(menu);
 //        setContent(layout);
