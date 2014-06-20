@@ -49,8 +49,6 @@ public class Connection extends Panel implements View {
 
             //layout contenant le formulaire de connexion
             formLayout = new FormLayout();
-//            formLayout.addComponent(header);
-
             formLayout.setSizeFull();
             formLayout.addComponent(textFieldEmail);
             // Mark field as required
@@ -96,8 +94,6 @@ public class Connection extends Panel implements View {
             box.addComponent(layout);
             setContent(box);
         } else {//Si il est connecté
-//            layout = new VerticalLayout();
-//            layout.addComponent(header);
             layout.addComponent(user.printUserInfo());
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
                     + TableUser.NAME));

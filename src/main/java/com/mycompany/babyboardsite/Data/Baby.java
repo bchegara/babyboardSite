@@ -2,7 +2,6 @@ package com.mycompany.babyboardsite.Data;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
-import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
@@ -74,6 +73,15 @@ public class Baby {
         firstname = infoUser.getItemProperty("firstName").getValue().toString();
         idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
     }
+    
+
+    public Baby(String name, String age, int sex, String firstname, int idParent){
+        this.name = name;
+        this.old = age;
+        this.sex = sex;
+        this.firstname = firstname;
+        this.idParent = idParent;
+    }
 
     public Baby() {
         this.idBaby = idBaby;
@@ -122,8 +130,33 @@ public class Baby {
         repasCategorie.setDate(date);
     }
 
+        public void addBaby(){
+            oracle = new Oracle();
+        babyTable = oracle.queryTable("babies");
+        babyTable.removeAllContainerFilters();
+        try {
+            Item rowItem = babyTable.getItem(babyTable.addItem());
+            
+            rowItem.getItemProperty("name").setValue(name);
+            rowItem.getItemProperty("age").setValue(old);
+            rowItem.getItemProperty("sex").setValue(sex);
+            rowItem.getItemProperty("firstName").setValue(name);
+            rowItem.getItemProperty("idParent").setValue(idParent);
+            
+            babyTable.commit();
+            idBaby = Integer.parseInt(babyTable.lastItemId().toString());
+        } catch (UnsupportedOperationException e) {
+            System.out.println("erreur ajout enfant 1");
+        } catch (Property.ReadOnlyException e) {
+            System.out.println("erreur ajout enfant 2");
+        } catch (SQLException e) {
+            System.out.println("erreur ajout enfant 3");
+            System.out.println(e.getMessage());
+        }
+    }
     public void addNurse(int idNurse, int idBaby) {
         oracle = new Oracle();
+        
 
         SQLContainer jonctionTable = oracle.queryTable("jonction");
 

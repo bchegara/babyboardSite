@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 19 Juin 2014 à 03:41
+-- Généré le: Ven 20 Juin 2014 à 05:11
 -- Version du serveur: 5.5.37-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4
 
@@ -65,12 +65,12 @@ INSERT INTO `activities` (`idActivitie`, `idBaby`, `date`, `kind`, `duree`, `not
 CREATE TABLE IF NOT EXISTS `babies` (
   `idBaby` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
-  `age` date NOT NULL,
+  `age` varchar(100) NOT NULL,
   `sex` int(10) NOT NULL,
   `firstName` varchar(200) NOT NULL,
   `idParent` int(11) NOT NULL,
   PRIMARY KEY (`idBaby`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `babies`
@@ -79,7 +79,9 @@ CREATE TABLE IF NOT EXISTS `babies` (
 INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`, `idParent`) VALUES
 (1, 'Gaetan', '2002-02-14', 1, 'Rouaix', 2),
 (2, 'ToscanJunior', '2014-06-16', 0, 'Vertanessian', 2),
-(3, 'Test', '2014-06-10', 1, 'testtttt', 2);
+(3, 'Test', '2014-06-10', 1, 'testtttt', 2),
+(6, 'test créa autot', 'Tue Jun 03 05:03:25 CEST 2014', 1, 'test créa autot', 2),
+(7, 'testest', 'Mon May 26 05:09:47 CEST 2014', 2, 'testest', 2);
 
 -- --------------------------------------------------------
 
@@ -88,23 +90,27 @@ INSERT INTO `babies` (`idBaby`, `name`, `age`, `sex`, `firstName`, `idParent`) V
 --
 
 CREATE TABLE IF NOT EXISTS `jonction` (
-  `idJonction` int(10) NOT NULL,
+  `idJonction` int(10) NOT NULL AUTO_INCREMENT,
   `idUser` int(10) NOT NULL,
   `idBaby` int(10) NOT NULL,
   PRIMARY KEY (`idJonction`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `jonction`
 --
 
 INSERT INTO `jonction` (`idJonction`, `idUser`, `idBaby`) VALUES
-(0, 0, 0),
 (1, 2, 1),
 (2, 2, 2),
 (3, 2, 3),
 (4, 5, 1),
-(5, 1, 1);
+(5, 1, 1),
+(6, 3, 1),
+(7, 3, 2),
+(8, 3, 2),
+(9, 2, 6),
+(10, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -165,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `numeroutile` (
   `numero` int(11) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   PRIMARY KEY (`idNumeroUtile`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `numeroutile`
@@ -246,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstName` varchar(200) NOT NULL,
   `rightLevel` varchar(10) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `users`
@@ -257,7 +263,8 @@ INSERT INTO `users` (`idUser`, `name`, `email`, `password`, `adress`, `zip`, `ci
 (2, 'Cheg', 'b', 'a', 'adresse', 75018, 'Paris', 0, 'Baptiste', 'ADMIN'),
 (3, 'name', 'a', 'a', 'add', 0, 'city', 0, 'fname', 'NURSE'),
 (4, 'name', 'azdzadad', 'zdzd', 'zeedzdz', 6666, 'PPDPDP', 88888, 'DEDED', 'ADMIN'),
-(5, 'user pas admin', 'u', 'u', 'k,sckl,sklc,skl,c', 33333, 'klz,fklz,fkzl,flkz', 33333333, 'aaaaaaaaaa', 'USER');
+(5, 'user pas admin', 'u', 'u', 'k,sckl,sklc,skl,c', 33333, 'klz,fklz,fkzl,flkz', 33333333, 'aaaaaaaaaa', 'USER'),
+(6, 'ueus', 'z', 'z', 'default', 0, 'default', 666, 'usertest', 'USER');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

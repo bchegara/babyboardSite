@@ -6,38 +6,44 @@
 package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
-import com.mycompany.babyboardsite.Data.User;
-import com.mycompany.babyboardsite.MyVaadinUI;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
-import com.vaadin.data.util.sqlcontainer.RowId;
-import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import com.vaadin.event.LayoutEvents;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.Table;
+import com.vaadin.ui.PopupDateField;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  *
  * @author baptman
  */
-public class AddCarnetDeBordLayout extends CategorieLayout {
+public class AddCarnetDeBordLayout {
 
+    public VerticalLayout layout;
+    public Window subWindow;
     HorizontalLayout horizontalLayout;
+    public String title;
+    public String validation;
+    
+    public TextField name;
+    public TextField firstName;
+    public ComboBox sex;
+    public PopupDateField date;
+    public int idUser;
+    
+    
 
-    public AddCarnetDeBordLayout(Baby baby) {
-        super(baby);
+    public AddCarnetDeBordLayout(int idUser){
+        this.idUser = idUser;
     }
-
     public HorizontalLayout getLayoutHorizontal() {
         horizontalLayout = new HorizontalLayout();
 
@@ -49,58 +55,71 @@ public class AddCarnetDeBordLayout extends CategorieLayout {
             }
         });
         horizontalLayout.addComponent(addCarnetDeBord);
-//        horizontalLayout.addListener(new LayoutEvents.LayoutClickListener() {
-//            @Override
-//            public void layoutClick(LayoutEvents.LayoutClickEvent event) {
-//                popup();
-//            }
-//        });
+        setTitle();
         return horizontalLayout;
     }
 
-    @Override
-    public VerticalLayout contenu(Baby baby) {
-        layout = new VerticalLayout();
-        VerticalLayout layoutNumeroUtile = new VerticalLayout();
-        Label numeroUtile = new Label("Numéros utiles");
-        layoutNumeroUtile.addComponent(numeroUtile);
-        return layoutNumeroUtile;
-    }
-
-    @Override
     public void setTitle() {
         title = "Ajoutez un carnet de bord";
         validation = "Carnet de bord ajouté";
     }
 
-    @Override
-    public VerticalLayout popUpContent() {
-        VerticalLayout contenuPopUp = new VerticalLayout();
-        return contenuPopUp;
-
-    }
-
-    @Override
-    public void addElement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void popup() {
-        subWindow = new Window();
-        subWindow.center();
-        subWindow.setCaption(title);
 
+//        PopUp sub = new PopUp();
+        subWindow = new Window();
         VerticalLayout content = new VerticalLayout();
         content.addComponent(popUpContent());
 
         content.setMargin(true);
         subWindow.setContent(content);
+        subWindow.center();
+        subWindow.setCaption("Ajouter " + title);
+
         // Disable the close button
         subWindow.setClosable(true);
 
-        
+        // Trivial logic for closing the sub-window
+        Button ok = new Button("Ajouter");
+        ok.addClickListener(new Button.ClickListener() {
+            public void buttonClick(Button.ClickEvent event) {
+//                addElement();
+                Baby baby = new Baby(name.getValue(),date.getValue().toString(), Integer.parseInt(sex.getValue().toString()),
+                        firstName.getValue(), idUser);
+                baby.addBaby();
+                baby.addNurse(idUser, baby.getId());
+                System.out.println("bébé crée");
+                Notification.show(validation,
+                        Notification.Type.TRAY_NOTIFICATION);
+                subWindow.close();
+                navigator.navigateTo(BabyView.NAME);
+            }
+        });
+        ok.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        content.addComponent(ok);
+        // Add it to the root component
         UI.getCurrent().addWindow(subWindow);
 
+    }
+    public FormLayout popUpContent(){
+        FormLayout formulaire = new FormLayout();
+        name = new TextField("Nom: ");
+        firstName = new TextField("prénom: ");
+        sex = new ComboBox("sexe: ");  
+        sex.select("1");
+        sex.addItem("1");
+        sex.addItem("2");
+        
+        formulaire.addComponent(name);
+        formulaire.addComponent(firstName);
+        formulaire.addComponent(sex);
+                date = new PopupDateField();
+        date.setValue(new Date());
+        date.setImmediate(true);
+//        date.setTimeZone(TimeZone.getTimeZone("UTC"));
+        date.setLocale(Locale.FRENCH);
+//        date.setResolution(Resolution.MINUTE);
+        formulaire.addComponent(date);
+        return formulaire;
     }
 }

@@ -14,7 +14,6 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
@@ -77,11 +76,8 @@ public class BabyView extends Panel implements View {
             
         }
         if(user.isUser() || user.isAdmin()){
-            Baby newBaby = new Baby(); 
-//                AddCarnetDeBordLayout addCarnetBord = new AddCarnetDeBordLayout(newBaby);
-//                layout.addComponent(addCarnetBord.getLayoutHorizontal());
-//                Button addBaby = new Button("Créez un nouveau carnet de bord");
-//                layout.addComponent(addBaby);
+                AddCarnetDeBordLayout addCarnetBord = new AddCarnetDeBordLayout(user.getId());
+                layout.addComponent(addCarnetBord.getLayoutHorizontal());
                 
             }
         setContent(layout);
