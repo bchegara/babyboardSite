@@ -180,7 +180,6 @@ public class BabyboardView extends Panel implements View {
 
     public void popup(String postit) {
         subWindow = new Window();
-        subWindow.setClosable(true);
         VerticalLayout content = new VerticalLayout();
         textArea = new TextArea();
         textArea.setValue(postit);
@@ -188,7 +187,7 @@ public class BabyboardView extends Panel implements View {
         content.addComponent(textArea);
 
         content.setMargin(true);
-        
+
         subWindow.setContent(content);
         subWindow.center();
         //Set position windows
@@ -197,7 +196,7 @@ public class BabyboardView extends Panel implements View {
         subWindow.setCaption("POST-IT");
 
         // Disable the close button
-        subWindow.setClosable(false);
+        subWindow.setClosable(true);
 
         // Trivial logic for closing the sub-window
         Button ok = new Button("Sauvegarder");

@@ -48,12 +48,14 @@ public class Subscribe extends Panel implements View {
     public int i = 0;
 
     public Subscribe() {
-        rightLevel.addItem("USER");
-        rightLevel.addItem("NURSE");
-        rightLevel.select("USER");
+        rightLevel.addItem("Parent");
+        rightLevel.addItem("Nounou");
+        rightLevel.select("Parent");
         user = VaadinSession.getCurrent().getAttribute(User.class);
         //layout contenant le formulaire d'inscription
         layout = new VerticalLayout();
+        layout.addComponent(new HeaderHome().getLayout());
+
         subscribeLayout = new FormLayout();
         subscribeLayout.setSizeUndefined();
         subscribeLayout.addComponent(textFieldFirst);
@@ -65,7 +67,7 @@ public class Subscribe extends Panel implements View {
         subscribeLayout.addComponent(textFieldCity);
         subscribeLayout.addComponent(textFieldZip);
         subscribeLayout.addComponent(textFieldAdresse);
-        
+
         layout.addComponent(new HeaderHome());
 
         // Mark field as required

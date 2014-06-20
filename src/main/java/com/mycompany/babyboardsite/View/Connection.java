@@ -14,6 +14,7 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
@@ -34,6 +35,7 @@ public class Connection extends Panel implements View {
     public FormLayout formLayout;
     private User user;
     public VerticalLayout layout;
+    public int i = 0;
 
     public Connection() {
 
@@ -80,22 +82,34 @@ public class Connection extends Panel implements View {
                                 //constructeur utilisant l'email et le mot de passe
                                 user = new User(textFieldEmail.getValue(), textFieldPassword.getValue());
                                 //TEST: affiche certaine valeur de l'utilisateur
-                                formLayout.addComponent(user.printUserInfo());
+                                //formLayout.addComponent(user.printUserInfo());
                                 //On stocke l'utilisateur récupérer dans les variables de session Vaadin
                                 VaadinSession.getCurrent().setAttribute(User.class, user);
                                 //On rédirige ensuite l'utilisateur dans le menu
                                 navigator.navigateTo(BabyView.NAME);
                             } else {
-                                System.out.println("test");
+
+                                VaadinSession.getCurrent().setAttribute("errorLogin", 2);
                                 navigator.navigateTo(Connection.NAME);
                             }
+                        } else {
+                            VaadinSession.getCurrent().setAttribute("errorLogin", 1);
+                            navigator.navigateTo(Connection.NAME);
                         }
                     } catch (Exception e) {
+                        VaadinSession.getCurrent().setAttribute("errorLogin", 2);
+
                         navigator.navigateTo(Connection.NAME);
                     }
                 }
             });
-
+            if (VaadinSession.getCurrent().getAttribute("errorLogin") != null) {
+                i = Integer.parseInt(VaadinSession.getCurrent().getAttribute("errorLogin").toString());
+            } else {
+                i = 1;
+            }
+            System.out.println(i);
+            formLayout.addComponent(user.printErrorLogin(i));
             formLayout.addComponent(connectionButton);
             formLayout.addComponent(linkSubcribe);
             layout.addComponent(formLayout);

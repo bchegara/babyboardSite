@@ -48,6 +48,8 @@ public class User {
         ADMIN,
         USER,
         NURSE,
+        PARENT,
+        NOUNOU,
         VISITOR;
     }
     //Variable contenant le droit de l'utilsateur
@@ -88,6 +90,22 @@ public class User {
         }
 
         return errorSubscribe;
+
+    }
+
+    public Component printErrorLogin(int num) {
+        Label errorLogin;
+        if (num == 1) {
+            errorLogin = new Label("Champs vides");
+        } else if (num == 2) {
+            errorLogin = new Label("Mot de passe et/ou nom d'utilisateur incorrects");
+
+        } else {
+            errorLogin = new Label("fatal error");
+
+        }
+
+        return errorLogin;
 
     }
 
@@ -196,7 +214,16 @@ public class User {
             rowItem.getItemProperty("city").setValue(city);
             rowItem.getItemProperty("tel").setValue(tel);
             rowItem.getItemProperty("firstName").setValue(first);
-            rowItem.getItemProperty("rightLevel").setValue(rightLevel);
+            if (rightLevel == "Parent") {
+                rowItem.getItemProperty("rightLevel").setValue("USER");
+            } else if (rightLevel == "Nounou") {
+                rowItem.getItemProperty("rightLevel").setValue("NURSE");
+
+            } else {
+                // par defaut parent mais ce cas ne devrait jamais se produire
+                rowItem.getItemProperty("rightLevel").setValue("USER");
+
+            }
             userContainer.commit();
             System.err.println("commit réussi");
         } catch (UnsupportedOperationException e) {
@@ -319,10 +346,11 @@ public class User {
             return header.getLayout();
         }
         HeaderHome header2 = new HeaderHome();
-        
+
         return header2.getLayout();
     }
-    public void refreshUser(){
+
+    public void refreshUser() {
         User user = new User(this.email, this.password);
         this.babyList = user.babyList;
     }
