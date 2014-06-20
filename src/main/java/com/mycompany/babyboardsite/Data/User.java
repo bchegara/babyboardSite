@@ -65,9 +65,24 @@ public class User {
 
     }
 
-    public Component printErrorSubscribe() {
+    public Component printErrorSubscribe(int num) {
         Label errorSubscribe;
-        errorSubscribe = new Label("verifiez email / verifiez password / utilisateur deja existant");
+        if (num == 1) {
+            errorSubscribe = new Label("verifiez email");
+        } else if (num == 2) {
+            errorSubscribe = new Label("verifiez mot de passe");
+
+        } else if (num == 3) {
+            errorSubscribe = new Label("utilisateur déjà existant");
+        } else if (num == 4) {
+            errorSubscribe = new Label("contactez l'administrateur");
+        } else if (num == 0) {
+            errorSubscribe = new Label("remplissez tous les champs");
+        } else {
+            errorSubscribe = new Label("fatal error");
+
+        }
+
         return errorSubscribe;
 
     }
@@ -253,7 +268,6 @@ public class User {
         return listBaby;
     }
 
-
     public String getName() {
         return name;
     }
@@ -286,13 +300,13 @@ public class User {
         }
         return userTable;
     }
-    public VerticalLayout welcomLayout(){
+
+    public VerticalLayout welcomLayout() {
         VerticalLayout welcomeL = new VerticalLayout();
-        welcomeL.addComponent(new Label("Bienvenue "+firstname+" "+name+"!"));
-        welcomeL.addComponent(new Label("Compte de type: "+this.getRightLevel()));
-        welcomeL.addComponent(new Label("Vous avez "+babyList.size()+" enfants asscoié(s) à votre compte"));
+        welcomeL.addComponent(new Label("Bienvenue " + firstname + " " + name + "!"));
+        welcomeL.addComponent(new Label("Compte de type: " + this.getRightLevel()));
+        welcomeL.addComponent(new Label("Vous avez " + babyList.size() + " enfants asscoié(s) à votre compte"));
         return welcomeL;
     }
-    
 
 }

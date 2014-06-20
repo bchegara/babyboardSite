@@ -19,7 +19,9 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
@@ -43,17 +45,15 @@ public class Subscribe extends Panel implements View {
     private TextField textFieldCity = new TextField("Ville: ");
     private TextField textFieldZip = new TextField("Code postal: ");
     private TextField textFieldAdresse = new TextField("Adresse: ");
-
     public FormLayout subscribeLayout;
     private User user;
-    private int errorSubscribing;
+    public int i = 0;
 
     public Subscribe() {
         rightLevel.addItem("USER");
         rightLevel.addItem("NURSE");
         rightLevel.select("USER");
         user = VaadinSession.getCurrent().getAttribute(User.class);
-        errorSubscribing = 1;
         //layout contenant le formulaire d'inscription
         subscribeLayout = new FormLayout();
         subscribeLayout.setSizeUndefined();
@@ -103,27 +103,36 @@ public class Subscribe extends Panel implements View {
         Link lnk = new Link("Accueil", new ExternalResource("#!" + Connection.NAME));
         subscribeLayout.addComponent(lnk);
         subscribeButton.addClickListener(new ClickListener() {
+            @Override
             public void buttonClick(ClickEvent event) {
                 //check champs non vides
-                if (user.checkNotEmpty(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue())) {
+                if (user.checkNotEmpty(textFieldFirst.getValue(), textFieldLast.getValue(),
+                        textFieldPassword.getValue(), textFieldEmail.getValue())) {
 
-//On vérifie que  le couple email et mot de passe de passe de l'utilisateur
+                    //On vérifie que  le couple email et mot de passe de passe de l'utilisateur
                     //corresponde à un utilsateur dans la table user
-                    if (textFieldPassword.getValue().equals(textFieldPasswordCheck.getValue())
-                            && textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())) {
+                    if (textFieldPassword.getValue().equals(textFieldPasswordCheck.getValue())) {
+                        if (textFieldEmail.getValue().equals(textFieldEmailCheck.getValue())) {
 
-                        if (user.checkEmail(textFieldEmail.getValue())) {
-                            //insert dans la base de données
-                            user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue(), rightLevel.getValue().toString(),
-                                    textFieldtel.getValue(), textFieldAdresse.getValue(), textFieldCity.getValue(), Integer.parseInt(textFieldZip.getValue()));
-                            navigator.navigateTo(Connection.NAME);
-                            errorSubscribing = 0;
+                            if (user.checkEmail(textFieldEmail.getValue())) {
+                                //insert dans la base de données
+                                user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue(), rightLevel.getValue().toString(),
+                                        textFieldtel.getValue(), textFieldAdresse.getValue(), textFieldCity.getValue(), Integer.parseInt(textFieldZip.getValue()));
+                                navigator.navigateTo(Connection.NAME);
 
+                            } else {
+                                VaadinSession.getCurrent().setAttribute("num", 3);
+                                navigator.navigateTo(Subscribe.NAME);
+                                //un utilisateur possède deja cette adresse email
+                            }
                         } else {
+                            VaadinSession.getCurrent().setAttribute("num", 1);
                             navigator.navigateTo(Subscribe.NAME);
-                            //un utilisateur possède deja cette adresse email
+
+                            //return erreur password ou email verification
                         }
                     } else {
+                        VaadinSession.getCurrent().setAttribute("num", 2);
                         navigator.navigateTo(Subscribe.NAME);
 
                         //return erreur password ou email verification
@@ -131,13 +140,21 @@ public class Subscribe extends Panel implements View {
 
                     VaadinSession.getCurrent().setAttribute(User.class, user);
 
+                } else {
+                    VaadinSession.getCurrent().setAttribute("num", 0);
+                    navigator.navigateTo(Subscribe.NAME);
                 }
-            }
-        });
 
-        if (errorSubscribing == 1) {
-            subscribeLayout.addComponent(user.printErrorSubscribe());
+            }
+
+        });
+        if (VaadinSession.getCurrent().getAttribute("num") != null) {
+            i = Integer.parseInt(VaadinSession.getCurrent().getAttribute("num").toString());
+        } else {
+            i = 0;
         }
+        subscribeLayout.addComponent(user.printErrorSubscribe(i));
+
         subscribeLayout.addComponent(subscribeButton);
         setContent(subscribeLayout);
 
