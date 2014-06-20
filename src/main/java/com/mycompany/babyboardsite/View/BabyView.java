@@ -10,7 +10,6 @@ package com.mycompany.babyboardsite.View;
  * @author baptman
  */
 import com.mycompany.babyboardsite.Data.*;
-import static com.mycompany.babyboardsite.MyVaadinUI.header;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -37,7 +36,7 @@ public class BabyView extends Panel implements View {
 
         final VerticalLayout layout = new VerticalLayout();
         
-        layout.addComponent(header);
+        layout.addComponent(new HeaderView());
         //affiche le lien vers le tableau des utilisateur que si l'utilsateur à le rightLevel admin
         if(user.isAdmin()){
         Link linkTableUser = new Link("TableUser", new ExternalResource("#!"

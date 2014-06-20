@@ -1,7 +1,6 @@
 package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.*;
-import static com.mycompany.babyboardsite.MyVaadinUI.header;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -43,7 +42,7 @@ public class BabyboardView extends Panel implements View {
 
         final VerticalLayout layout = new VerticalLayout();
         
-        layout.addComponent(header);
+        layout.addComponent(new HeaderView());
 //        layout.setMargin(true);
         //Si l'utilisateur a une liste d'enfant vide
         if (user.babyList.isEmpty()) {
@@ -72,8 +71,7 @@ public class BabyboardView extends Panel implements View {
                     //Permet de changer la date pour les catégorie de l'enfant 
                     baby.changeDateBabyCategorie(formatDateToString(date));
                 }
-                //TEST on affiche les infos du bébé
-                layout.addComponent(baby.printBabyInfo());
+                layout.addComponent(baby.getPresentation());
 
                 //Création du calendrier
                 calendar = new InlineDateField();

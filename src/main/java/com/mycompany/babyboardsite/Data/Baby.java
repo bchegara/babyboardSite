@@ -89,6 +89,10 @@ public class Baby {
         Label infoB = new Label("name " + name + " firstname: " + firstname);
         return infoB;
     }
+    public Component getPresentation(){
+        Label presentationL = new Label("Enfant: " + name + " " + firstname);
+        return presentationL;
+    }
 
     //pour récupérer les données des catégories du carnet de bord (instancie les objets et récupère les table de données
     //correspondantes

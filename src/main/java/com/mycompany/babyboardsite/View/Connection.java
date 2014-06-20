@@ -41,7 +41,7 @@ public class Connection extends Panel implements View {
         box.addStyleName("connexion");
         user = VaadinSession.getCurrent().getAttribute(User.class);
         layout = new VerticalLayout();
-        layout.addComponent(new HeaderHome());
+        layout.addComponent(new HeaderView());
         if (!user.isConnected()) {
 //            layout = new VerticalLayout();
             Link linkSubcribe = new Link("Page d'inscription", new ExternalResource("#!"
