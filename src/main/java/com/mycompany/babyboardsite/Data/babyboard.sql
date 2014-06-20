@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2014 at 11:59 PM
+-- Generation Time: Jun 21, 2014 at 12:01 AM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -186,7 +186,7 @@ CREATE TABLE `users` (
   `firstName` varchar(200) NOT NULL,
   `rightLevel` varchar(10) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
@@ -194,4 +194,5 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`idUser`, `name`, `email`, `password`, `adress`, `zip`, `city`, `tel`, `firstName`, `rightLevel`) VALUES
 (1, 'Agostinho', 'kikiago@gmail.Com', 'password', 'rue de rennes', 75006, 'Paris', '09876553', 'Kevin', 'USER'),
-(2, 'AngeGardien', 'jo@paradis.org', 'password', 'rue des anges', 666666, 'Le paradis', '0666666666', 'Josephine', 'NURSE');
+(2, 'AngeGardien', 'jo@paradis.org', 'password', 'rue des anges', 666666, 'Le paradis', '0666666666', 'Josephine', 'NURSE'),
+(3, 'admin', 'admin', 'admin', 'paris', 75007, 'paris', '88888', 'admin', 'ADMIN');
