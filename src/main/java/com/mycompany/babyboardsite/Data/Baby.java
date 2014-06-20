@@ -25,6 +25,7 @@ public class Baby {
     private int sex;
     private String firstname;
     private int idParent;
+    private String postIt;
     //objet contenant les item pour les catégories du babyboard
     public MainFactCategorie mainFactCategorie;
     public ActivitieCategorie activitieCategorie;
@@ -60,6 +61,10 @@ public class Baby {
         return idParent;
     }
 
+    public String getPostIt() {
+        return postIt;
+    }
+
     //Constructeur pour récupérer un bébé avec son idBay
     public Baby(int idB) {
 
@@ -72,10 +77,11 @@ public class Baby {
         sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
         firstname = infoUser.getItemProperty("firstName").getValue().toString();
         idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
-    }
-    
+        postIt = infoUser.getItemProperty("postit").getValue().toString();
 
-    public Baby(String name, String age, int sex, String firstname, int idParent){
+    }
+
+    public Baby(String name, String age, int sex, String firstname, int idParent) {
         this.name = name;
         this.old = age;
         this.sex = sex;
@@ -97,7 +103,8 @@ public class Baby {
         Label infoB = new Label("name " + name + " firstname: " + firstname);
         return infoB;
     }
-    public Component getPresentation(){
+
+    public Component getPresentation() {
         Label presentationL = new Label("Enfant: " + name + " " + firstname);
         return presentationL;
     }
@@ -130,19 +137,19 @@ public class Baby {
         repasCategorie.setDate(date);
     }
 
-        public void addBaby(){
-            oracle = new Oracle();
+    public void addBaby() {
+        oracle = new Oracle();
         babyTable = oracle.queryTable("babies");
         babyTable.removeAllContainerFilters();
         try {
             Item rowItem = babyTable.getItem(babyTable.addItem());
-            
+
             rowItem.getItemProperty("name").setValue(name);
             rowItem.getItemProperty("age").setValue(old);
             rowItem.getItemProperty("sex").setValue(sex);
             rowItem.getItemProperty("firstName").setValue(name);
             rowItem.getItemProperty("idParent").setValue(idParent);
-            
+
             babyTable.commit();
             idBaby = Integer.parseInt(babyTable.lastItemId().toString());
         } catch (UnsupportedOperationException e) {
@@ -154,9 +161,9 @@ public class Baby {
             System.out.println(e.getMessage());
         }
     }
+
     public void addNurse(int idNurse, int idBaby) {
         oracle = new Oracle();
-        
 
         SQLContainer jonctionTable = oracle.queryTable("jonction");
 
@@ -190,13 +197,13 @@ public class Baby {
                 int i = Integer.parseInt(item.toString());
                 Item infoJonctionTable = jonctionTable.getItem(new RowId(new Object[]{i}));
                 int userId = Integer.parseInt(infoJonctionTable.getItemProperty("idUser").getValue().toString());
-                
+
                 userTable.removeAllContainerFilters();
-                 userTable.addContainerFilter(
-                    new Compare.Equal("idUser", userId));// WHERE name=emailToTest AND password=passwordToTest
-                 userId = Integer.parseInt(userTable.firstItemId().toString());
-            Item infoUser = userTable.getItem(new RowId(new Object[]{userId}));
-            userList.add("Statut: "+infoUser.getItemProperty("rightLevel").getValue().toString() +" utilisteur: "+infoUser.getItemProperty("name").getValue().toString() + " " + infoUser.getItemProperty("firstName").getValue().toString());
+                userTable.addContainerFilter(
+                        new Compare.Equal("idUser", userId));// WHERE name=emailToTest AND password=passwordToTest
+                userId = Integer.parseInt(userTable.firstItemId().toString());
+                Item infoUser = userTable.getItem(new RowId(new Object[]{userId}));
+                userList.add("Statut: " + infoUser.getItemProperty("rightLevel").getValue().toString() + " utilisteur: " + infoUser.getItemProperty("name").getValue().toString() + " " + infoUser.getItemProperty("firstName").getValue().toString());
             }
 
         } catch (Exception e) {

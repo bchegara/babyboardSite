@@ -4,20 +4,30 @@ import com.mycompany.babyboardsite.Data.*;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.InlineDateField;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.TextArea;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -31,6 +41,7 @@ public class BabyboardView extends Panel implements View {
     //permet d'identifier l'enfant dans la list d'enfant associé à l'utilisateur
     private int babyNumber = 0;
     private Baby baby;
+    public Window subWindow;
 
     private Date date;
     private InlineDateField calendar;
@@ -39,9 +50,8 @@ public class BabyboardView extends Panel implements View {
     public BabyboardView() {
 
         user = VaadinSession.getCurrent().getAttribute(User.class);
-
         final VerticalLayout layout = new VerticalLayout();
-        
+
         layout.addComponent(new HeaderView());
         //Si l'utilisateur a une liste d'enfant vide
         if (user.babyList.isEmpty()) {
@@ -71,7 +81,7 @@ public class BabyboardView extends Panel implements View {
                     baby.changeDateBabyCategorie(formatDateToString(date));
                 }
                 layout.addComponent(baby.getPresentation());
-
+                popup(baby.getPostIt());
                 //Création du calendrier
                 calendar = new InlineDateField();
                 calendar.setValue(date);
@@ -112,21 +122,20 @@ public class BabyboardView extends Panel implements View {
                     CategorieLayoutSieste siesteComponent = new CategorieLayoutSieste(baby);
                     categorieLayout.addComponent(siesteComponent.getLayout());
                     categorieLayout.setSpacing(true);
-                    
+
                     CategorieLayoutRepas repasComponent = new CategorieLayoutRepas(baby);
                     categorieLayout2.addComponent(repasComponent.getLayout());
-                    
+
 //                    VerticalLayout calendarAndNumeroUtile = new VerticalLayout();
                     calendarAndNumeroUtile.addComponent(calendar);
                     CategorieLayoutNumeroUtile numeroUtileComponent = new CategorieLayoutNumeroUtile(baby);
                     calendarAndNumeroUtile.addComponent(numeroUtileComponent.getLayoutHorizontal());
-                    
-                    
+
                     layoutL.addComponent(categorieLayout);
                     layoutL.addComponent(categorieLayout2);
                     layoutL.addComponent(calendarAndNumeroUtile);
                     layout.addComponent(layoutL);
-                    
+
                 } catch (Exception e) {
                     System.out.println("pas de d'infos");
                 }
@@ -146,7 +155,6 @@ public class BabyboardView extends Panel implements View {
     }
 
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
     }
 
     //Pour formater la date en String pour la récupération dans la bdd
@@ -169,4 +177,36 @@ public class BabyboardView extends Panel implements View {
         return isDate;
     }
 
+    public void popup(String postit) {
+        subWindow = new Window();
+        VerticalLayout content = new VerticalLayout();
+        TextArea textArea = new TextArea();
+        textArea.setValue(postit);
+
+        content.addComponent(textArea);
+
+        content.setMargin(true);
+        subWindow.setContent(content);
+        subWindow.center();
+        //Set position windows
+        subWindow.setPositionX(1200);
+        subWindow.setPositionY(400);
+        subWindow.setCaption("POST-IT");
+
+        // Disable the close button
+        subWindow.setClosable(false);
+
+        // Trivial logic for closing the sub-window
+        Button ok = new Button("Sauvegarder");
+        ok.addClickListener(new Button.ClickListener() {
+            public void buttonClick(Button.ClickEvent event) {
+                //modifier post it dans bdd
+                //UI.getCurrent().removeWindow(subWindow);
+            }
+        });
+        content.addComponent(ok);
+        // Add it to the root component
+        UI.getCurrent().addWindow(subWindow);
+
+    }
 }
