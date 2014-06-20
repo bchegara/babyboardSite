@@ -77,7 +77,7 @@ public class Baby {
         sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
         firstname = infoUser.getItemProperty("firstName").getValue().toString();
         idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
-        //postIt = infoUser.getItemProperty("postit").getValue().toString();
+        postIt = infoUser.getItemProperty("postit").getValue().toString();
 
     }
 
@@ -96,6 +96,7 @@ public class Baby {
         this.sex = sex;
         this.firstname = firstname;
         this.idParent = idParent;
+        this.postIt = postIt;
     }
 
 //TEST: pour afficher quelques infos du bébé

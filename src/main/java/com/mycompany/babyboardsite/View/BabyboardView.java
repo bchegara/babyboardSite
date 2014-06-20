@@ -55,7 +55,7 @@ public class BabyboardView extends Panel implements View {
         layout.addComponent(user.getHeader());
         //Si l'utilisateur a une liste d'enfant vide
         if (user.babyList.isEmpty()) {
-            Label noChildLabel = new Label("Vous n'aver pas d'enfant associé à votre compte!");
+            Label noChildLabel = new Label("Vous n'avez pas d'enfant associés à votre compte!");
             layout.addComponent(noChildLabel);
         } else {
 
