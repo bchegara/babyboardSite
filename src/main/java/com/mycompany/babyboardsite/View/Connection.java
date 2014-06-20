@@ -41,6 +41,7 @@ public class Connection extends Panel implements View {
         box.addStyleName("connexion");
         user = VaadinSession.getCurrent().getAttribute(User.class);
         layout = new VerticalLayout();
+        layout.setSizeFull();
         layout.addComponent(new HeaderView());
         if (!user.isConnected()) {
 //            layout = new VerticalLayout();

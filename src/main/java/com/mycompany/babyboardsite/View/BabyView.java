@@ -48,6 +48,8 @@ public class BabyView extends Panel implements View {
             Label noChildMsg = new Label("Vous n'aver pas d'enfant associé à votre compte!");
             layout.addComponent(noChildMsg);
         } else {
+            Label enfantTitle = new Label("Vos enfants: ");
+            layout.addComponent(enfantTitle);
             try{
                 VaadinSession.getCurrent().setAttribute("date", null);
             }catch(Exception e){

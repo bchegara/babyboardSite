@@ -109,7 +109,7 @@ public class BabyLayout {
         User user;
         user = VaadinSession.getCurrent().getAttribute(User.class);
         
-        tableNurse = new Table("Inscription Parent", user.getSQLContainerNurse());
+        tableNurse = new Table("Associer une nourrice à "+baby.getName() + " " + baby.getFirstname(), user.getSQLContainerNurse());
         tableNurse.setPageLength(20); // the number of rows per page
         tableNurse.setImmediate(true); // the server is notify each time I select a row or modify values
         tableNurse.setSelectable(true); // the user is allowed to select rows
