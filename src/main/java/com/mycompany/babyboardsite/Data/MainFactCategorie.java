@@ -10,12 +10,9 @@ import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -77,24 +74,9 @@ public class MainFactCategorie extends CategorieBabyboard {
             rowItem.getItemProperty("description").setValue(descriptionMF);
             rowItem.getItemProperty("date").setValue(date);
             rowItem.getItemProperty("hours").setValue(hour+":"+minute+":00");// On récupère la dernière ligne de la table parent
-//            rowItem.getItemProperty("hours").setValue("00:00:00");
             categorieTable.commit();
         } catch (Exception e) {
             System.out.println("e");
         }
     }
-    
-    public void removeMainFact(Item item){
-        categorieTable.removeAllContainerFilters();
-        categorieTable.removeItem(item);
-        try {
-            categorieTable.commit();
-            System.out.println("GOOOD");
-        } catch (UnsupportedOperationException ex) {
-            Logger.getLogger(MainFactCategorie.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainFactCategorie.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
 }

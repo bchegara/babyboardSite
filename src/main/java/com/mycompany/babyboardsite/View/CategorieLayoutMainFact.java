@@ -7,6 +7,10 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.MainFact;
+import com.mycompany.babyboardsite.Data.User;
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.server.VaadinSession;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -26,6 +30,7 @@ public class CategorieLayoutMainFact extends CategorieLayout {
     private ComboBox hour;
 
     private ComboBox minute;
+    private int IdElem;
 
     public CategorieLayoutMainFact(Baby baby) {
         super(baby);
@@ -33,7 +38,7 @@ public class CategorieLayoutMainFact extends CategorieLayout {
     }
 
     @Override
-    public VerticalLayout contenu(Baby baby) {
+    public VerticalLayout contenu(final Baby baby) {
 
         final VerticalLayout factComponent = new VerticalLayout();
 //        factComponent.addStyleName("box-element");
@@ -41,6 +46,15 @@ public class CategorieLayoutMainFact extends CategorieLayout {
         try {
 
             for (MainFact fact : baby.mainFactCategorie.returnListCategorie()) {
+                IdElem = fact.getId();
+                Button deleteElem = new Button("Delete");
+                deleteElem.addClickListener(new Button.ClickListener() {
+                public void buttonClick(Button.ClickEvent event) {
+                    baby.mainFactCategorie.removeItem(IdElem);
+                    navigator.navigateTo(BabyboardView.NAME);
+                }
+            });
+                factComponent.addComponent(deleteElem);
                 Label title = new Label(fact.getTitle() + " à " + fact.getHour());
                 Label description = new Label(fact.getDescription());
                 factComponent.addComponent(title);
