@@ -1,11 +1,13 @@
 package com.mycompany.babyboardsite.Data;
 
 import com.vaadin.data.Item;
+import com.vaadin.data.Property;
 import com.vaadin.data.util.filter.Compare;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
+import java.sql.SQLException;
 
 /**
  *
@@ -112,5 +114,25 @@ public Component printBabyInfo() {
         activitieCategorie.setDate(date);
         siesteCategorie.setDate(date);
         repasCategorie.setDate(date);
-    }        
+    }     
+    
+         public void addNurse(int idNurse, int idBaby) {
+        oracle = new Oracle();
+
+         SQLContainer jonctionTable = oracle.queryTable("jonction");
+
+        try {
+            Item rowItem = jonctionTable.getItem(jonctionTable.addItem());
+            rowItem.getItemProperty("idUser").setValue(idNurse);
+            rowItem.getItemProperty("idBaby").setValue(idBaby);
+            jonctionTable.commit();
+        } catch (UnsupportedOperationException e) {
+            System.out.println("erreur ajout enfantede");
+        } catch (Property.ReadOnlyException e) {
+            System.out.println("erreur ajout enfant000");
+        } catch (SQLException e) {
+            System.out.println("erreur ajout enfantLLL");
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
+import com.mycompany.babyboardsite.Data.User;
 import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
 import com.vaadin.event.LayoutEvents;
 import com.vaadin.event.ShortcutAction;
@@ -12,6 +13,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -30,14 +32,16 @@ public class BabyLayout {
     private VerticalLayout verticalLayout;
     public Window subWindow;
     private VerticalLayout V1;
+    private Table tableNurse;
+    private Baby baby;
 
     BabyLayout(int i, Baby baby, Boolean canModify) {
+        this.baby = baby;
         id = i;
         verticalLayout = new VerticalLayout();
         Panel panel = new Panel();
         panel.setHeight(25, Sizeable.Unit.EM);
         panel.setWidth(30, Sizeable.Unit.EM);
-        
 
         Label babyNameL = new Label(baby.getName() + " " + baby.getFirstname());
         babyNameL.addStyleName("baby-title");
@@ -46,19 +50,18 @@ public class BabyLayout {
         layoutContenu.addComponent(babyNameL);
         layoutContenu.addComponent(contentBabyLayout);
 
-
 //        TextArea area1 = new TextArea(baby.getName() + " " + baby.getFirstname());
 //        area1.addStyleName("baby-title");
 //        area1.setWordwrap(true); // The default
 //        area1.setValue(baby.getOld());
-
         if (canModify) {
             Button addNurse = new Button("Ajoutez une nourrice");
             addNurse.addClickListener(new Button.ClickListener() {
                 public void buttonClick(Button.ClickEvent event) {
 
                     //fonction affichage des nurse disponibles
-                    openNurses();
+//                    openNurses();
+                    popup();
                 }
             });
             layoutContenu.addComponent(addNurse);
@@ -71,8 +74,8 @@ public class BabyLayout {
                 navigator.navigateTo(BabyboardView.NAME);
             }
         });
-                panel.setContent(layoutContenu);
-                verticalLayout.addComponent(panel);
+        panel.setContent(layoutContenu);
+        verticalLayout.addComponent(panel);
     }
 
     public void openNurses() {
@@ -90,19 +93,19 @@ public class BabyLayout {
         } else {
             //error       
         }
-        popup(V1);
+//        popup(V1);
 
     }
     //le vertical layout va servir a contenir les différentes possiblités
 
-    public void popup(VerticalLayout Vlayout) {
+//    public void popup(VerticalLayout Vlayout) {
+    public void popup() {
 //        PopUp sub = new PopUp();
         subWindow = new Window();
         VerticalLayout content = new VerticalLayout();
         //contenu de la pop up
 
-        content.addComponent(Vlayout);
-
+//        content.addComponent(Vlayout);
         content.setMargin(true);
         subWindow.setContent(content);
         subWindow.center();
@@ -110,15 +113,36 @@ public class BabyLayout {
 
         // Disable the close button
         subWindow.setClosable(true);
-
+        User user;
+        user = VaadinSession.getCurrent().getAttribute(User.class);
+        
+        tableNurse = new Table("Inscription Parent", user.getSQLContainerNurse());
+        tableNurse.setPageLength(20); // the number of rows per page
+        tableNurse.setImmediate(true); // the server is notify each time I select a row or modify values
+        tableNurse.setSelectable(true); // the user is allowed to select rows
+        tableNurse.setMultiSelect(false); // the user is not allowed to select more than one row
+        tableNurse.setEditable(false); // the user is allowed to modify values in the selected row
         // Trivial logic for closing the sub-window
-        Button ok = new Button("+ 1");
+        
+                tableNurse.setColumnCollapsingAllowed(true);
+        tableNurse.setColumnCollapsed("rightLevel", true);
+        tableNurse.setColumnCollapsed("idUser", true);
+        tableNurse.setColumnCollapsed("password", true);
+        content.addComponent(tableNurse);
+        Button ok = new Button("Ajouter");
         ok.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
                 //association bébé à nourice
-
+//                tableNurse.getId();
+                try{
+                System.out.println(tableNurse.getValue().toString());
+                    
+                baby.addNurse(Integer.parseInt(tableNurse.getValue().toString()), baby.getId());
                 subWindow.close();
                 navigator.navigateTo(BabyView.NAME);
+                }catch (Exception e){
+                    System.out.println("erreur ajout nourrice");
+                }
             }
         });
         ok.setClickShortcut(ShortcutAction.KeyCode.ENTER);

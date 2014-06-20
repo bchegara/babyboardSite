@@ -62,15 +62,16 @@ public class NumeroUtileCategorie extends CategorieBabyboard {
             System.out.println("erreur création liste pour numéro utile");
         }
     }
-    
+
     @Override
-        public void setSQLContainer() {
+    public void setSQLContainer() {
         categorieTable = oracle.queryTable(tableName);
         categorieTable.addContainerFilter((new Compare.Equal("idBaby", baby.getId())));
     }
-        public SQLContainer getSQLContainer(){
-            return categorieTable;
-        }
+
+    public SQLContainer getSQLContainer() {
+        return categorieTable;
+    }
 
     public List<String> getListRole() {
         return role;

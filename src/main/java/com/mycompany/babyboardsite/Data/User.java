@@ -167,7 +167,6 @@ public class User {
 
         try {
             Item rowItem = userContainer.getItem(userContainer.addItem());
-            //rowItem.getItemProperty("idUser").setValue(13);
             rowItem.getItemProperty("name").setValue(last);
             rowItem.getItemProperty("email").setValue(email);
             rowItem.getItemProperty("password").setValue(password);
@@ -253,23 +252,38 @@ public class User {
         return listBaby;
     }
 
+
     public String getName() {
         return name;
     }
-    public int getId(){
+
+    public int getId() {
         return idUser;
     }
-    
-    public Boolean isUser(){
+
+    public Boolean isUser() {
         return rightLvl == USER;
     }
-    public Boolean isNurse(){
+
+    public Boolean isNurse() {
         return rightLvl == NURSE;
     }
-    public Boolean isAdmin(){
+
+    public Boolean isAdmin() {
         return rightLvl == ADMIN;
     }
-    
-    
+
+    public SQLContainer getSQLContainerNurse() {
+        userTable = oracle.queryTable("users");
+        //Ajout du container pour filtrer les résultats
+        try {
+            userTable.addContainerFilter(
+                    new Equal("rightLevel", "NURSE"));// WHERE name=emailToTest AND password=passwordToTest
+
+        } catch (Exception e) {
+            System.out.println("e");
+        }
+        return userTable;
+    }
 
 }
