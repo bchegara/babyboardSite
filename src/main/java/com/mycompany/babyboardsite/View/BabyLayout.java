@@ -39,11 +39,10 @@ public class BabyLayout {
         panel.setHeight(25, Sizeable.Unit.EM);
         panel.setWidth(30, Sizeable.Unit.EM);
         panel.addStyleName("pointerLink");
-        
 
         Label babyNameL = new Label(baby.getName() + " " + baby.getFirstname());
         babyNameL.addStyleName("baby-title");
-        Label contentBabyLayout = new Label("Date de naissance: "+baby.getOld());
+        Label contentBabyLayout = new Label("Date de naissance: " + baby.getOld());
         contentBabyLayout.addStyleName("pointerLink");
         VerticalLayout layoutContenu = new VerticalLayout();
         layoutContenu.addComponent(babyNameL);
@@ -63,7 +62,7 @@ public class BabyLayout {
                 userNameL.addStyleName("pointerLink");
                 layoutContenu.addComponent(userNameL);
             }
-            
+
             layoutContenu.addComponent(addNurse);
         }
         verticalLayout.addListener(new LayoutEvents.LayoutClickListener() {
@@ -77,25 +76,6 @@ public class BabyLayout {
         panel.setContent(layoutContenu);
         verticalLayout.addComponent(panel);
     }
-
-//    public void openNurses() {
-//        //ouvrir une pop
-//        int i = 1;
-//        //appel bdd pour check nurses dispo
-//        //gérer le contenu de la pop up
-//        if (i == 1) {
-//            //afficher la liste des nurses dispo
-//            //display nurses dispo
-//            V1 = new VerticalLayout();
-//        } else if (i == 2) {
-//            //pas de nurses dispo
-//
-//        } else {
-//            //error       
-//        }
-////        popup(V1);
-//
-//    }
 
 //    public void popup(VerticalLayout Vlayout) {
     public void popup() {
@@ -114,16 +94,16 @@ public class BabyLayout {
         subWindow.setClosable(true);
         User user;
         user = VaadinSession.getCurrent().getAttribute(User.class);
-        
-        tableNurse = new Table("Associer une nourrice à "+baby.getName() + " " + baby.getFirstname(), user.getSQLContainerNurse());
+
+        tableNurse = new Table("Associer une nourrice à " + baby.getName() + " " + baby.getFirstname(), user.getSQLContainerNurse());
         tableNurse.setPageLength(20); // the number of rows per page
         tableNurse.setImmediate(true); // the server is notify each time I select a row or modify values
         tableNurse.setSelectable(true); // the user is allowed to select rows
         tableNurse.setMultiSelect(false); // the user is not allowed to select more than one row
         tableNurse.setEditable(false); // the user is allowed to modify values in the selected row
         // Trivial logic for closing the sub-window
-        
-                tableNurse.setColumnCollapsingAllowed(true);
+
+        tableNurse.setColumnCollapsingAllowed(true);
         tableNurse.setColumnCollapsed("rightLevel", true);
         tableNurse.setColumnCollapsed("idUser", true);
         tableNurse.setColumnCollapsed("password", true);
@@ -132,13 +112,13 @@ public class BabyLayout {
         ok.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
                 //association bébé à nourice
-                try{
-                System.out.println(tableNurse.getValue().toString());
-                    
-                baby.addNurse(Integer.parseInt(tableNurse.getValue().toString()), baby.getId());
-                subWindow.close();
-                navigator.navigateTo(BabyView.NAME);
-                }catch (Exception e){
+                try {
+                    System.out.println(tableNurse.getValue().toString());
+
+                    baby.addNurse(Integer.parseInt(tableNurse.getValue().toString()), baby.getId());
+                    subWindow.close();
+                    navigator.navigateTo(BabyView.NAME);
+                } catch (Exception e) {
                     System.out.println("erreur ajout nourrice");
                 }
             }
@@ -153,6 +133,5 @@ public class BabyLayout {
     public VerticalLayout getLayout() {
         return verticalLayout;
     }
-
 
 }
