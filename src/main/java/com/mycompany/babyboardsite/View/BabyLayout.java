@@ -38,11 +38,13 @@ public class BabyLayout {
         Panel panel = new Panel();
         panel.setHeight(25, Sizeable.Unit.EM);
         panel.setWidth(30, Sizeable.Unit.EM);
+        panel.addStyleName("pointerLink");
         
 
         Label babyNameL = new Label(baby.getName() + " " + baby.getFirstname());
         babyNameL.addStyleName("baby-title");
-        Label contentBabyLayout = new Label(baby.getOld());
+        Label contentBabyLayout = new Label("Date de naissance: "+baby.getOld());
+        contentBabyLayout.addStyleName("pointerLink");
         VerticalLayout layoutContenu = new VerticalLayout();
         layoutContenu.addComponent(babyNameL);
         layoutContenu.addComponent(contentBabyLayout);
@@ -53,9 +55,13 @@ public class BabyLayout {
                     popup();
                 }
             });
-            layoutContenu.addComponent(new Label("Utilisateur associé au bébés:"));
+            Label desc = new Label("Utilisateur(s) associé(s) au bébé:");
+            desc.addStyleName("pointerLink");
+            layoutContenu.addComponent(desc);
             for (String userName : baby.getUserAssociated()) {
-                layoutContenu.addComponent(new Label(userName));
+                Label userNameL = new Label(userName);
+                userNameL.addStyleName("pointerLink");
+                layoutContenu.addComponent(userNameL);
             }
             
             layoutContenu.addComponent(addNurse);
