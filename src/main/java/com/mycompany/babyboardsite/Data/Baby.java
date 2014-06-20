@@ -215,4 +215,19 @@ public class Baby {
 
         return userList;
     }
+    
+    public void updatePostit(String s){
+        babyTable = oracle.queryTable("babies");
+        babyTable.addContainerFilter(new Compare.Equal("idBaby", this.idBaby));// WHERE idBaby=idBaby
+        Item infoUser = babyTable.getItem(new RowId(new Object[]{this.idBaby}));
+        
+        name = infoUser.getItemProperty("name").getValue().toString();
+        old = infoUser.getItemProperty("age").getValue().toString();
+        sex = Integer.parseInt(infoUser.getItemProperty("sex").getValue().toString());
+        firstname = infoUser.getItemProperty("firstName").getValue().toString();
+        idParent = Integer.parseInt(infoUser.getItemProperty("idParent").getValue().toString());
+        postIt = infoUser.getItemProperty("postit").getValue().toString();
+        
+        
+    }
 }

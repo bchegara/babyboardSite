@@ -33,7 +33,7 @@ public class BabyView extends Panel implements View {
     
     public BabyView() {
         user = VaadinSession.getCurrent().getAttribute(User.class);
-
+        user.refreshUser();
         final VerticalLayout layout = new VerticalLayout();
 
         layout.addComponent(user.getHeader());

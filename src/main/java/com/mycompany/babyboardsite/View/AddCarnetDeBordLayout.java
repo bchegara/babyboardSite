@@ -93,6 +93,7 @@ public class AddCarnetDeBordLayout {
                 Notification.show(validation,
                         Notification.Type.TRAY_NOTIFICATION);
                 subWindow.close();
+                
                 navigator.navigateTo(BabyView.NAME);
             }
         });

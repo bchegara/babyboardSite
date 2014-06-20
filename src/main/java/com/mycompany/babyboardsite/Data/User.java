@@ -322,5 +322,9 @@ public class User {
         
         return header2.getLayout();
     }
+    public void refreshUser(){
+        User user = new User(this.email, this.password);
+        this.babyList = user.babyList;
+    }
 
 }
