@@ -82,7 +82,15 @@ public class BabyboardView extends Panel implements View {
                     baby.changeDateBabyCategorie(formatDateToString(date));
                 }
                 layout.addComponent(baby.getPresentation());
-                popup(baby.getPostIt());
+
+                final Button open = new Button("Ouvrir Post-It");
+                open.addClickListener(new Button.ClickListener() {
+                    public void buttonClick(Button.ClickEvent event) {
+                        popup(baby.getPostIt());
+                    }
+                });
+                layout.addComponent(open);
+
                 //Création du calendrier
                 calendar = new InlineDateField();
                 calendar.setValue(date);

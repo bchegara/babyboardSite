@@ -119,7 +119,7 @@ public class Subscribe extends Panel implements View {
 
                             if (user.checkEmail(textFieldEmail.getValue())) {
                                 //insert dans la base de données
-                                user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldPassword.getValue(), textFieldEmail.getValue(), rightLevel.getValue().toString(),
+                                user.addUser(textFieldFirst.getValue(), textFieldLast.getValue(), textFieldEmail.getValue(), textFieldPassword.getValue(), rightLevel.getValue().toString(),
                                         textFieldtel.getValue(), textFieldAdresse.getValue(), textFieldCity.getValue(), Integer.parseInt(textFieldZip.getValue()));
                                 navigator.navigateTo(Connection.NAME);
 

@@ -151,7 +151,7 @@ public class Baby {
             rowItem.getItemProperty("name").setValue(name);
             rowItem.getItemProperty("age").setValue(old);
             rowItem.getItemProperty("sex").setValue(sex);
-            rowItem.getItemProperty("firstName").setValue(name);
+            rowItem.getItemProperty("firstName").setValue(firstname);
             rowItem.getItemProperty("idParent").setValue(idParent);
             rowItem.getItemProperty("postit").setValue("nouveau post it");
 
@@ -217,8 +217,8 @@ public class Baby {
 
         return userList;
     }
-    
-    public void updatePostit(String s){
+
+    public void updatePostit(String s) {
         try {
             babyTable = oracle.queryTable("babies");
             babyTable.addContainerFilter(new Compare.Equal("idBaby", this.idBaby));// WHERE idBaby=idBaby
@@ -236,7 +236,6 @@ public class Baby {
         } catch (SQLException ex) {
             Logger.getLogger(Baby.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 }

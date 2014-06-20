@@ -47,7 +47,7 @@ public class HeaderView extends Panel implements View {
         lnk.addStyleName("menu-link");
         lnk2.addStyleName("menu-link");
 
-        Button deconnectionButton = new Button("Déconnexion");
+        Button deconnectionButton = new Button("Vers la Déconnexion");
         deconnectionButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
 
