@@ -3,6 +3,8 @@ package com.mycompany.babyboardsite.Data;
 import static com.mycompany.babyboardsite.Data.User.RightLevel.ADMIN;
 import static com.mycompany.babyboardsite.Data.User.RightLevel.NURSE;
 import static com.mycompany.babyboardsite.Data.User.RightLevel.USER;
+import com.mycompany.babyboardsite.View.HeaderHome;
+import com.mycompany.babyboardsite.View.HeaderView;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.filter.And;
@@ -10,6 +12,7 @@ import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.sqlcontainer.RowId;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import java.sql.SQLException;
@@ -35,6 +38,7 @@ public class User {
     private String firstname;
     public List<Baby> babyList;
     private SQLContainer userTable;
+    private HeaderView header;
 
     final Oracle oracle = new Oracle();
 //contruction des niveaux de droits de l'utilsateur
@@ -133,6 +137,7 @@ public class User {
 
             babyList = new ArrayList<Baby>();
             babyList = getBabyByUser();
+            header = new HeaderView();
 
         } catch (Exception e) {
             System.out.println("e");
@@ -307,6 +312,15 @@ public class User {
         welcomeL.addComponent(new Label("Compte de type: " + this.getRightLevel()));
         welcomeL.addComponent(new Label("Vous avez " + babyList.size() + " enfants asscoié(s) à votre compte"));
         return welcomeL;
+    }
+
+    public CssLayout getHeader() {
+        if (isConnected()) {
+            return header.getLayout();
+        }
+        HeaderHome header2 = new HeaderHome();
+        
+        return header2.getLayout();
     }
 
 }

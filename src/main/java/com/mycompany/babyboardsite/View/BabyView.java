@@ -20,6 +20,7 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+
 public class BabyView extends Panel implements View {
 
     public static final String NAME = "Baby";
@@ -35,7 +36,7 @@ public class BabyView extends Panel implements View {
 
         final VerticalLayout layout = new VerticalLayout();
 
-        layout.addComponent(new HeaderView());
+        layout.addComponent(user.getHeader());
         //affiche le lien vers le tableau des utilisateur que si l'utilsateur à le rightLevel admin
         if (user.isAdmin()) {
             Link linkTableUser = new Link("TableUser", new ExternalResource("#!"
