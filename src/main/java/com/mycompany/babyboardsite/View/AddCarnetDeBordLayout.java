@@ -85,7 +85,7 @@ public class AddCarnetDeBordLayout {
             public void buttonClick(Button.ClickEvent event) {
 //                addElement();
                 Baby baby = new Baby(name.getValue(),date.getValue().toString(), Integer.parseInt(sex.getValue().toString()),
-                        firstName.getValue(), idUser);
+                        firstName.getValue(), idUser, "Postit");
                 baby.addBaby();
                 baby.addNurse(idUser, baby.getId());
                 System.out.println("bébé crée");

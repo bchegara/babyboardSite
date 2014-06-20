@@ -81,12 +81,13 @@ public class Baby {
 
     }
 
-    public Baby(String name, String age, int sex, String firstname, int idParent) {
+    public Baby(String name, String age, int sex, String firstname, int idParent, String postit) {
         this.name = name;
         this.old = age;
         this.sex = sex;
         this.firstname = firstname;
         this.idParent = idParent;
+        this.postIt = postit;
     }
 
     public Baby() {
