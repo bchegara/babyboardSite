@@ -7,6 +7,8 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.Sieste;
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -30,17 +32,27 @@ public class CategorieLayoutSieste extends CategorieLayout {
     }
 
     @Override
-    public VerticalLayout contenu(Baby baby) {
+    public VerticalLayout contenu(final Baby baby) {
         final VerticalLayout siesteComponent = new VerticalLayout();
-        siesteComponent.setSizeFull();
+//        siesteComponent.setSizeFull();
 //        siesteComponent.addStyleName("box-element");
         try {
 
             for (Sieste sieste : baby.siesteCategorie.returnListCategorie()) {
+
+                IdElem = sieste.getId();
+                Button deleteElem = new Button("Delete");
+                deleteElem.addClickListener(new Button.ClickListener() {
+                    public void buttonClick(Button.ClickEvent event) {
+                        baby.siesteCategorie.removeItem(IdElem);
+                        navigator.navigateTo(BabyboardView.NAME);
+                    }
+                });
                 Label title = new Label("Début: " + sieste.getHour() + "h" + sieste.getMinute());
                 Label description = new Label("Durée: " + sieste.getDuree() + " Note: " + sieste.getNote());
                 siesteComponent.addComponent(title);
                 siesteComponent.addComponent(description);
+                siesteComponent.addComponent(deleteElem);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -43,5 +43,8 @@ public class Repas {
     public String getContenu(){
         return contenu;
     }
+    public int getId(){
+        return idRepas;
+    }
 
 }

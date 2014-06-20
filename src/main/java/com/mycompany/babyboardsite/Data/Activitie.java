@@ -46,5 +46,7 @@ public class Activitie {
     public int getDuree(){
         return duree;
     }
-
+    public int getId(){
+        return idActivitie;
+    }
 }

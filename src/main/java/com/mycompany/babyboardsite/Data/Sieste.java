@@ -44,6 +44,8 @@ public int getNote(){
 public int getDuree(){
     return duree;
 }
-
+public int getId(){
+    return idSieste;
+}
 
 }

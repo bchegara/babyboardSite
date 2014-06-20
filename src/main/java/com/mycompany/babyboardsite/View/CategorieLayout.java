@@ -31,6 +31,7 @@ public abstract class CategorieLayout {
     public String title;
     public Baby baby;
     public String validation;
+    public int IdElem;
     
 
     //Constructeur

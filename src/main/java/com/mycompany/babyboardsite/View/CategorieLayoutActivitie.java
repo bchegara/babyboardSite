@@ -7,6 +7,8 @@ package com.mycompany.babyboardsite.View;
 
 import com.mycompany.babyboardsite.Data.Activitie;
 import com.mycompany.babyboardsite.Data.Baby;
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -32,18 +34,27 @@ public class CategorieLayoutActivitie extends CategorieLayout {
     }
 
     @Override
-    public VerticalLayout contenu(Baby baby) {
+    public VerticalLayout contenu(final Baby baby) {
 
         final VerticalLayout activitieComponent = new VerticalLayout();
-        activitieComponent.setSizeFull();
+//        activitieComponent.setSizeFull();
 //        activitieComponent.addStyleName("box-element");
         try {
 
             for (Activitie activitie : baby.activitieCategorie.returnListCategorie()) {
+                IdElem = activitie.getId();
+                Button deleteElem = new Button("Delete");
+                deleteElem.addClickListener(new Button.ClickListener() {
+                    public void buttonClick(Button.ClickEvent event) {
+                        baby.activitieCategorie.removeItem(IdElem);
+                        navigator.navigateTo(BabyboardView.NAME);
+                    }
+                });
                 Label title = new Label("début: " + activitie.getTime() + " note: " + activitie.getNote());
                 Label description = new Label(activitie.getTitle() + " durée: " + activitie.getDuree() + "h");
                 activitieComponent.addComponent(title);
                 activitieComponent.addComponent(description);
+                activitieComponent.addComponent(deleteElem);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -85,7 +96,7 @@ public class CategorieLayoutActivitie extends CategorieLayout {
         formulaire.addComponent(duree);
 
         note = new ComboBox("Note: ");
-        for(int i=0; i<=5; i++){
+        for (int i = 0; i <= 5; i++) {
             note.addItem(i);
         }
         formulaire.addComponent(note);

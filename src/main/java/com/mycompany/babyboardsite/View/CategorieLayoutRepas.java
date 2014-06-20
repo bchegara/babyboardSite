@@ -11,6 +11,8 @@ package com.mycompany.babyboardsite.View;
  */
 import com.mycompany.babyboardsite.Data.Baby;
 import com.mycompany.babyboardsite.Data.Repas;
+import static com.mycompany.babyboardsite.MyVaadinUI.navigator;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -32,17 +34,26 @@ public class CategorieLayoutRepas extends CategorieLayout {
     }
 
     @Override
-    public VerticalLayout contenu(Baby baby) {
+    public VerticalLayout contenu(final Baby baby) {
         final VerticalLayout repasComponent = new VerticalLayout();
-        repasComponent.setSizeFull();
+//        repasComponent.setSizeFull();
 //        repasComponent.addStyleName("box-element");
         try {
 
             for (Repas repas : baby.repasCategorie.returnListCategorie()) {
+                IdElem = repas.getId();
+                Button deleteElem = new Button("Delete");
+                deleteElem.addClickListener(new Button.ClickListener() {
+                    public void buttonClick(Button.ClickEvent event) {
+                        baby.repasCategorie.removeItem(IdElem);
+                        navigator.navigateTo(BabyboardView.NAME);
+                    }
+                });
                 Label title = new Label("" + repas.getType() + " à " + repas.getTime());
                 Label description = new Label(repas.getContenu() + " Note: " + repas.getNote());
                 repasComponent.addComponent(title);
                 repasComponent.addComponent(description);
+                repasComponent.addComponent(deleteElem);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -70,8 +81,6 @@ public class CategorieLayoutRepas extends CategorieLayout {
         kind.addItem("Diner");
         kind.select("Petit-déjeunner");
         formulaire.addComponent(kind);
-
-
 
         HorizontalLayout heureInline = new HorizontalLayout();
 

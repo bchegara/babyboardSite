@@ -30,7 +30,6 @@ public class CategorieLayoutMainFact extends CategorieLayout {
     private ComboBox hour;
 
     private ComboBox minute;
-    private int IdElem;
 
     public CategorieLayoutMainFact(Baby baby) {
         super(baby);
@@ -42,23 +41,24 @@ public class CategorieLayoutMainFact extends CategorieLayout {
 
         final VerticalLayout factComponent = new VerticalLayout();
 //        factComponent.addStyleName("box-element");
-        factComponent.setSizeFull();
+//        factComponent.setSizeFull();
         try {
 
             for (MainFact fact : baby.mainFactCategorie.returnListCategorie()) {
                 IdElem = fact.getId();
                 Button deleteElem = new Button("Delete");
                 deleteElem.addClickListener(new Button.ClickListener() {
-                public void buttonClick(Button.ClickEvent event) {
-                    baby.mainFactCategorie.removeItem(IdElem);
-                    navigator.navigateTo(BabyboardView.NAME);
-                }
-            });
-                factComponent.addComponent(deleteElem);
+                    public void buttonClick(Button.ClickEvent event) {
+                        baby.mainFactCategorie.removeItem(IdElem);
+                        navigator.navigateTo(BabyboardView.NAME);
+                    }
+                });
+
                 Label title = new Label(fact.getTitle() + " à " + fact.getHour());
                 Label description = new Label(fact.getDescription());
                 factComponent.addComponent(title);
                 factComponent.addComponent(description);
+                factComponent.addComponent(deleteElem);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
