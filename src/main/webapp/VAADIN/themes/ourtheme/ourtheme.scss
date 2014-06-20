@@ -11,73 +11,86 @@
     /* Insert your theme rules here */
     /*@font-face { 	font-family: "menu";  src: url('Amandine.ttf'); }*/
 
-a{
-    text-decoration: none;
-    color: white !important;
-}
+    a{
+        text-decoration: none;
+        color: white !important;
+    }
 
-.header {
-background: rgb(138,188,188);
-display: block;
-position: relative;
-box-shadow: 0px -1px 5px #333, 0px 2px 5px #333;
-}
-.logo {
-width: 230px;
-position: relative;
-text-align: center;
-margin: 10px auto;
-display: block;
-}
+    .header {
+        background: rgb(138,188,188);
+        display: block;
+        position: relative;
+        box-shadow: 0px -1px 5px #333, 0px 2px 5px #333;
+    }
+    .logo {
+        width: 230px;
+        position: relative;
+        text-align: center;
+        margin: 10px auto;
+        display: block;
+    }
 
-.menu {
-background: rgb(164,123,185);
-margin: 0 auto;
-position: relative;
-display: block;
-text-align: center;
-}
+    .menu {
+        background: rgb(164,123,185);
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        text-align: center;
+    }
 
-.menu-link {
-display: inline-block;
-margin: 3px 10px;
-font-size: 21px;
-color: white;
-font-family: 'menu', url('Amandine.ttf');
-}
+    .menu-link {
+        display: inline-block;
+        margin: 3px 10px;
+        font-size: 21px;
+        color: white;
+        font-family: 'menu', url('Amandine.ttf');
+    }
 
 
-span.v-captiontext {
-background: rgb(164,123,185);
-padding: 5px;
-text-transform: uppercase;
-color: white;
-cursor: pointer;
-}
-div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
-text-align: center;
-}
+    span.v-captiontext {
+        background: rgb(164,123,185);
+        padding: 5px;
+        text-transform: uppercase;
+        color: white;
+        cursor: pointer;
+    }
+    div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width {
+        text-align: center;
+        /*cursor:pointer;*/
+    }
 
-.box-element {
-    background-color: rgb(138, 188, 188);
-    padding: 20px;
-    color: white;
-}
+    .box-element {
+        background-color: rgb(138, 188, 188);
+        padding: 20px;
+        color: white;
+    }
 
-div.v-label.v-widget.v-label-undef-w {
-background: rgb(164,123,185);
-padding: 5px;
-text-transform: uppercase;
-color: white;
-}
+    div.v-label.v-widget.v-label-undef-w {
+        background: rgb(164,123,185);
+        padding: 5px;
+        text-transform: uppercase;
+        color: white;
+    }
 
-.connexion{
-    display: block;
-    text-align: center;
-    background:rgb(164,123,185);
-}
-/*@font-face {
-	font-family: "menu";
-	src: url('Amandine.ttf');
-}*/
+    .connexion{
+        display: block;
+        text-align: center;
+        background:rgb(164,123,185);
+    }
+
+    .pointerLink{
+        cursor:pointer;
+
+    }
+    .baby-title{
+        color: blue;
+        cursor:pointer;
+        text-decoration:underline;
+    }
+
+
+    /*@font-face {
+            font-family: "menu";
+            src: url('Amandine.ttf');
+    }*/
 }

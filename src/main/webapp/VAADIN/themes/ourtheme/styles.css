@@ -7321,3 +7321,13 @@ body .ourtheme.v-app .v-app-loading {
 	text-align: center;
 	background: rgb(164, 123, 185);
 }
+
+.ourtheme .pointerLink {
+	cursor: pointer;
+}
+
+.ourtheme .baby-title {
+	color: blue;
+	cursor: pointer;
+	text-decoration: underline;
+}
